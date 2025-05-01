@@ -1,0 +1,34 @@
+{
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "build-main": "cd nova-components/Main && npm run dev",
+        "build-main-prod": "cd nova-components/Main && npm run prod",
+        "build-interpret": "cd nova-components/Interpret && npm run dev",
+        "build-interpret-prod": "cd nova-components/Interpret && npm run prod",
+        "build-elements": "cd nova-components/Elements && npm run dev",
+        "build-elements-prod": "cd nova-components/Elements && npm run prod",
+        "build-seasons": "cd nova-components/Seasons && npm run dev",
+        "build-seasons-prod": "cd nova-components/Seasons && npm run prod",
+        "build-invitaion": "cd nova-components/Invitaion && npm run dev",
+        "build-invitaion-prod": "cd nova-components/Invitaion && npm run prod",
+    },
+    "devDependencies": {
+        "@tailwindcss/forms": "^0.5.7",
+        "@tailwindcss/postcss": "^4.0.0",
+        "@tailwindcss/vite": "^4.0.0",
+        "@types/node": "^22.12.0",
+        "alpinejs": "^3.14.8",
+        "axios": "^1.7.9",
+        "laravel-mix": "^6.0.49",
+        "laravel-vite-plugin": "^1.2.0",
+        "postcss": "^8.5.1",
+        "tailwindcss": "^4.0.0",
+        "vite": "^6.0.11",
+        "vue": "^3.5.13",
+        "vue-loader": "^17.4.2",
+        "webpack": "^5.88.2"
+    }
+}

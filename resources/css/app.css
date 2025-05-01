@@ -1,0 +1,499 @@
+@import 'tailwindcss';
+
+@plugin '@tailwindcss/forms';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+
+@theme {
+  --font-sans: Figtree, ui-sans-serif, system-ui, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+}
+
+main{
+    margin-top: 80px;
+  }
+
+.cls-heart-physical, .cls-heart-mental, .cls-small.intestine-physical, .cls-small.intestine-mental {
+    background-color: #ffc3c8;
+    color: #000000;
+}
+
+.cls-large.intestine-physical, .cls-large.intestine-mental, .cls-lung-physical, .cls-lung-mental{
+    background-color: #e5c3ff;
+    color: #000000;
+} 
+
+.cls-spleen-pancreas-mental, .cls-spleen-pancreas-physical, .cls-pancreas-physical, .cls-pancreas-mental, .cls-stomach-physical, .cls-stomach-mental{
+    background-color: #ffdcc3;
+    color: #000000;
+}
+.cls-liver-physical, .cls-liver-mental, .cls-gall.bladder-physical, .cls-gall.bladder-mental{
+    background-color: #c3ffd0;
+    color: #000000;
+}
+
+.cls-kidney-physical, .cls-kidney-mental, .cls-bladder-physical, .cls-bladder-mental{
+    background-color: #c3d3ff;
+    color: #000000;
+}
+
+
+/* .cls-heart-mental {
+    background-color: #ffc3c8;
+    color: #000000;
+}
+.cls-small.intestine-physical,
+.cls-large.intestine-physical,
+.cls-lung-physical,
+.cls-pancreas-physical,
+.cls-stomach-physical {
+    background-color: #ddf8ff;
+    color: #000000;
+}
+.cls-small.intestine-mental,
+.cls-large.intestine-mental,
+.cls-lung-mental,
+.cls-pancreas-mental,
+.cls-stomach-mental {
+    background-color: #fdc4e4;
+    color: #000000;
+} */
+
+#sidebar-wrapper {
+    position: fixed;
+    width: 300px;
+    border-radius: 0;
+    overflow: hidden;
+    left: auto;
+    height: 100%;
+    bottom: 0;
+    background-color: #374151 !important;
+    top: 64px;
+    color: #ffffff;
+    border:none;
+}
+#sidebar-wrapper .sidebar-heading{
+text-align: center;
+padding-top:12px;
+padding-bottom: 12px;
+background-color: #0d80ba;
+}
+#sidebar-wrapper .list-group-flush a.list-group-item {
+    background-color: transparent;
+    color: #fff;
+    font-size:14px;
+    padding: 12px;
+}
+/* #sidebar-wrapper .list-group-flush>.list-group-item{
+    background-color: #4f5d70;
+
+    color:#ffffff
+} */
+#sidebar-wrapper .list-group-flush a.list-group-item span {
+    padding-left: 10px;
+}
+#sidebar-wrapper .list-group-flush{
+    margin-top: 0;
+    padding-top: 15px;
+}
+
+#sidebar-wrapper .list-group-flush>.list-group-item:hover, 
+#sidebar-wrapper .list-group-flush>.list-group-item:focus,
+#sidebar-wrapper .list-group-flush>.list-group-item.active{
+    background-color: #1d242e !important;
+    color: #ffffff !important;
+}
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td,
+th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+ 
+.cls-Fire{
+    background-color: #ffc3c8;
+}
+
+.cls-Metal{
+    background-color: #e5c3ff;
+}
+.cls-Earth{
+    background-color: #ffdcc3;
+}
+.cls-Wood{
+    background-color: #c3ffd0;
+}
+
+.cls-Water{
+    background-color: #c3d3ff;
+}
+
+
+
+
+
+
+
+/* Thankyou page */
+.thankyou {   margin-top: 50px !important;}
+
+.thankyou svg {  height: 200px;   display: inline-block;}
+
+.thankyou h5.card-title { font-size: 22px;  font-weight: 600;}
+/*--*/
+.interpret-client .result-content{margin-top:30px;}
+.interpret-client .result-content h6 {
+         text-align: center; 
+          margin-bottom: 0.8em; 
+          font-weight: 900; 
+          text-transform: uppercase;  font-size: 22px;}
+.interpret-client .logo{text-align:center;}
+.interpret-client .logo a {  display: inline-block;}
+.interpret-client .logo img{max-width:250px;}
+.interpret-client .logo-bottom{text-align: center; margin-top:50px;}
+.interpret-client .logo-bottom img {  max-width: 250px;display: inline;}
+.interpret-client .result-content {
+    max-width: 960px;
+    margin: 0 auto;
+}
+.guide-wrapper .inner-wrapper {  padding:100px 7%;}
+        .guide-content {  display: grid;  grid-gap: 30px;  grid-template-columns: 40% 1fr;}
+        .guide-content .content-box-left {  text-align: center;}
+        .guide-wrapper{    background-image: url("https://quantumevaluation.exponentialhealthcare.com/img/bg-image-new.jpg");background-size:cover;}
+        .guide-wrapper .logo a {  display: inline-block;}
+        .guide-wrapper .logo{margin-bottom:40px;}
+        .content-box-right {  padding-top: 14%;}
+        .guide-content{color:#fff;}
+
+        .tooltip {
+            position: relative;
+            visibility: visible !important;
+            opacity:1 !important;   
+            text-align: center !important;
+            font-size: 25px !important;
+            z-index: 1 !important;
+          }
+         
+          
+          .tooltip .tooltiptext {
+            visibility: hidden; font-size: 12px;
+            width: 250px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 15px;
+            left: -13%; right: 0; margin: 0 auto; top:100%;
+          
+            /* Position the tooltip */
+            position: absolute;
+            z-index: 1;
+          }
+                    .tooltip:hover .tooltiptext {   visibility: visible; }
+                    .tooltip .tooltiptext::after{    content: ""; position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent #555 transparent;}
+
+                    .result-web-page {
+                        background-image: url(https://quantumevaluation.exponentialhealthcare.com/img/result-Web-page-bg.png);
+                        background-size: 100% auto;
+                        background-color: #0a1944;
+                        color: #fff;
+                        padding: 100px 7% 60px 7%;
+                        background-repeat: no-repeat;
+                    }
+            
+                    .result-web-page .sec-page {
+                        padding-top: 150px;
+                    }
+            
+                    .result-web-dewnload-sec .row-box {
+                        display: grid;
+                        grid-gap: 30px;
+                        justify-content: space-around;
+                        grid-template-columns: 40% 27%;
+                    }
+            
+                    .result-web-dewnload-sec.thankyou .row-box {
+                        grid-template-columns:none;
+                    }
+            
+                    .sec-page .inner-row {display: flex;
+                gap: 30px;
+                flex-wrap: wrap;
+                align-items: center;
+                    }
+                    .sec-page .inner-row .img-box {
+                max-width: 20%;
+                width: 100%;
+            }
+                    .info-content {
+                max-width: calc(80% - 30px);
+                width: 100%;
+                        display: grid;
+                        grid-template-columns: 30% 1fr 1fr 1fr;
+                        text-align: center;
+                    }
+            
+                    .info-content .heading-box ul li {
+                        color: #dec552;
+                        font-size: 22px;
+                        font-weight: 900;
+                    }
+                    .info-content .heading-box h4{    min-height: 50.3px; margin-top:20px;}
+                    .info-content .heading-box ul {
+                    
+                    }
+            
+                    .info-content .heading-box ul li span {
+                        display: block;
+                        font-weight: normal;
+                        font-size: 18px;
+                    }
+            
+                    .info-content ul {
+                        padding-left: 0px;
+                    }
+            
+                    .info-content ul li {
+                        padding: 11px 0;
+                    }
+                    .info-content .box-info ul li{line-height: 60px;
+                        font-weight: bold;
+                    }
+                    .box-info h4 {
+                        margin-top: 20px;
+                        font-weight: bold;
+                    }
+            
+                    .result-web-dewnload-sec .row-box .box-inner {
+                        text-align: center;
+                    }
+            
+                    .sec-page .inner-row:last-child {
+                        margin-top: 100px;
+                    }
+            
+                    .result-web-dewnload-sec .row-box .box-inner img {
+                        max-width: 260px;
+                        display: inline;
+                        margin-bottom: 30px;
+                    }
+            
+                    .result-web-dewnload-sec .row-box .box-inner h1 {
+                        font-weight: bold;
+                        text-transform: uppercase;
+                        color: #FFF;
+                    }
+            
+                    .box-inner.buttons-box {
+                        display: flex;
+                        flex-wrap: wrap;
+                        align-items: center;
+                        justify-content: center;
+                    }
+            
+                    .buttons-box a {
+                        border-radius: 30px;
+                        display: inline-block;
+                        padding: 14px 25px;
+                        min-width: 100%;
+                        text-align: center;
+                        text-decoration: none;
+                        font-weight: 1000;
+                        text-transform: uppercase;
+                    }
+            
+                    a.white-btn {
+                        background: #fff;
+                        color: #000;
+                    }
+            
+                    a.skyblue-btn {
+                        background: #0d80ba;
+                        color: #fff;
+                    }
+            
+                    a.white-btn:hover {
+                        background: #0d80ba;
+                        color: #fff;
+                    }
+            
+                    a.skyblue-btn:hover {
+                        background: #fff;
+                        color: #000;
+                    }
+            
+                    .section-logo {
+                        text-align: center;
+                        text-transform: uppercase;
+                        margin-bottom: 50px;
+                    }
+            
+                    .section-logo h2 {
+                        color: #dec552
+                    }
+            
+                    .section-logo img {
+                        max-width: 120px;
+                        display: inline
+                    }
+            
+                    .box-info {
+                        background: #a91b35;
+                    }
+            
+                    .box-info:nth-child(3) {
+                        background: #ae3048
+                    }
+            
+                    .box-info:nth-child(4) {
+                        background: #b4566b
+                    }
+            
+                    .earth-sec .box-info {
+                        background: #ba6b14;
+                    }
+            
+                    .earth-sec .box-info:nth-child(3) {
+                        background: #bb7a33
+                    }
+            
+                    .earth-sec .box-info:nth-child(4) {
+                        background: #bf8d59
+                    }
+            
+                    .metal-sec .box-info {
+                        background: #b6a043;
+                    }
+            
+                    .metal-sec .box-info:nth-child(3) {
+                        background: #b8a96c
+                    }
+            
+                    .metal-sec .box-info:nth-child(4) {
+                        background: #c8bd8e
+                    }
+            
+                    .wood-sec .box-info {
+                        background: #1b5c0d;
+                    }
+            
+                    .wood-sec .box-info:nth-child(3) {
+                        background: #3a7f2a
+                    }
+            
+                    .wood-sec .box-info:nth-child(4) {
+                        background: #6b9866
+                    }
+            
+                    .water-sec .box-info {
+                        background: #017ea4;
+                    }
+            
+                    .water-sec .box-info:nth-child(3) {
+                        background: #3698b8
+                    }
+            
+                    .water-sec .box-info:nth-child(4) {
+                        background: #68bbd8
+                    }
+            
+                    .result-total {
+                        background-image: url(https://quantumevaluation.exponentialhealthcare.com/img/total-bg.png);
+                        background-size: cover;
+                        padding: 100px 7% 60px 7%;
+                        background-color: #0a1944 !important;
+                        text-align: center;
+                        min-height: auto;
+                        color: #fff;
+                    }
+            
+                    .result-total img {  display: inline;                    }
+            
+                    .thankyou-bottom { 
+                        background: #081737 !important;
+                        color: #fff !important; 
+                        text-align: center; 
+                        min-height: auto !important; 
+                        padding: 20px 0;
+                    }
+            
+                    .thankyou-bottom p {
+                        max-width: 750px;
+                        margin: 0 auto;
+                    }
+
+                    #myChart {
+                        width: 300px !important;
+                        height: 300px !important;
+                        margin: 0 auto;
+            
+                    }
+                    .tooltip svg {
+                        width: 16px;
+                        display: inline;
+                        fill: white;
+                        margin-left: 5px;
+                    }
+
+                    @media all and (max-width:1024px) {
+                        .tooltip .tooltiptext{    width: 215px;}
+                    } 
+                    @media all and (max-width:991px) {
+                        .sec-page .inner-row .img-box {  max-width: 100%;  text-align: center; }
+                    .sec-page .inner-row .img-box img{display: inline;}
+                    .sec-page .info-content{max-width: 100%;}
+
+                    }       
+
+        @media all and (max-width:767px) {
+            .guide-content{grid-template-columns: 1fr; gap:0}  
+            .result-web-dewnload-sec .row-box{    grid-template-columns:1fr;}
+            .sec-page .info-content{ grid-template-columns:1fr;}
+            .box-inner.buttons-box {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+            .mobile-menu a:hover, .mobile-menu a:active {
+  background-color: transparent;
+}
+.mobile-menu a {
+  text-decoration: none;
+}
+        }
+
+@media only screen and (min-width: 767px) and (max-width: 991px){
+
+}
+
+ 

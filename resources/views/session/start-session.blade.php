@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="{{ env('APP_URL') }}">
+    <title>Widget Example</title>
+    <link rel="stylesheet" href="{{ asset('chamber.css') }}">
+    <style>
+        #widget-container {
+            width: 100%;
+            height: 100%;
+        }
+
+        .end_session {
+            position: absolute;
+            z-index: 99999;
+            margin: 0 auto;
+            bottom: 2%;
+            align-items: center;
+            text-align: center;
+            right: 1%;
+        }
+
+
+        .end_session a {
+            border: 2px solid;
+            border-radius: 10px;
+            background-color: gray;
+            color: white;
+            padding: 20px;
+            text-transform: uppercase;
+        }
+
+        #nsh-canvas {
+            height: 100vh !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="widget-container"></div>
+    <script src="{{ asset('chamber.js')}}"></script>
+    <script>
+        var sessionId = {{$session_id}};
+        var userId = {{$user_id}};
+        var showControls = true;
+        var showSidebar = true; // Replace with your actual base URL
+        var baseUrl = "{{ env('APP_URL') }}/"; // Replace with your actual base URL
+        var containerId = 'widget-container'; // The ID of the container where the widget will be rendered
+        window.renderWidget(containerId, sessionId, userId, baseUrl, showSidebar, showControls)
+    </script>
+    <div class="end_session"><a href="{{route('end.session',['user_id'=>$user_id,'session_id'=>$session_id])}}">End Session</a></div>
+</body>
+
+</html>

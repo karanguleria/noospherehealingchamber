@@ -1,0 +1,79 @@
+/* Nova Card CSS */
+/* .logo-box {
+    margin-bottom: 30px;
+} */
+@keyframes blink {
+	0% {opacity: 0}
+  20% {opacity: 0.1}
+  30% {opacity: 0.3}
+  40% {opacity: 0.5}
+	49%{opacity: 0.8}
+	50% {opacity: 1}
+}
+.logo-box img {
+    max-width: 300px;
+}
+.main-wrapper p{font-size: 18px; line-height: normal; margin-bottom: 0.5em;}
+.main-wrapper h1, .main-wrapper h2, .main-wrapper h3, .main-wrapper h4, .main-wrapper h5, .main-wrapper h6{font-weight: 700;}
+.main-content-box h2 {
+    font-size: 40px;
+    font-weight: 900;
+    text-transform: uppercase;
+    line-height: normal;
+    margin-bottom: 0.5em;
+} 
+/* .main-wrapper .main-content-box h2{animation: blink 3s infinite;} */
+.main-wrapper {
+    background-image: url('https://noospherehealingchamber.exponentialhealthcare.com/img/noosphere-healing-chamber-dashboard-new.jpg');
+    padding: 30px 5% 100px 5%;
+    color: #fff;
+    min-height: 80vh;
+}
+
+.main-wrapper .main-inner {
+    display: grid;
+    grid-gap: 30px;
+    grid-template-columns: 1fr 1fr;
+}
+
+a.btn.btn-element {
+    background-color: #7f48a8;
+    color: #fff;
+    text-transform: uppercase;
+    border-radius: 20px;
+    padding: 12px 25px;
+    font-weight: 700
+}
+
+a.btn.btn-season {
+    background-color: #0d80ba;
+    color: #fff;
+    text-transform: uppercase;
+    border-radius: 20px;
+    padding: 12px 25px;
+    font-weight: 700
+}
+
+.main-content-box {
+    text-align: center;
+}
+
+.button-row {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 30px;
+}
+.main-video-box {
+    margin-top: 45px;
+}
+
+.main-wrapper iframe {
+    width: 100%;
+}
+@media all and (max-width:1600px){
+    .main-wrapper p{font-size: 14px;}
+    .main-content-box h2 {font-size: 24px;}
+}
+@media all and (max-width:1200px){
+    .main-wrapper .main-inner{grid-template-columns: 1fr;}
+}

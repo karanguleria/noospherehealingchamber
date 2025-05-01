@@ -1,0 +1,14 @@
+/* Nova Tool CSS */
+.guide-seasons-wrapper .inner-wrapper {  padding:100px 7%;}
+        .guide-content {  display: grid;  grid-gap: 30px;  grid-template-columns: 40% 1fr;}
+        .guide-content .content-box-left {  text-align: center;}
+        .guide-seasons-wrapper{   background-image: url(https://quantumevaluation.exponentialhealthcare.com/img/bg-image-new.jpg);
+            background-size: cover;}
+        .guide-wrapper .logo a {  display: inline-block;}
+        .guide-wrapper .logo{margin-bottom:40px;}
+        .guide-seasons-wrapper .content-box-right {   padding-top: 40%;      }
+        .guide-content{color:#fff;}
+        @media all and (max-width:767px) {
+            .guide-seasons-wrapper .content-box-right {   padding-top:50px;     }
+            .guide-content{grid-template-columns: 1fr; gap:0}  
+        }

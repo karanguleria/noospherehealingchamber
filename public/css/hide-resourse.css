@@ -1,0 +1,16 @@
+.sidebar-menu a[href$="/resources/bodyparts"] {
+    display: none !important;
+}
+.sidebar-menu a[href$="/resources/elements"] {
+    display: none !important;
+}
+.sidebar-menu a[href$="/resources/questions"] {
+    display: none !important;
+}
+.relative.w-full p.font-semibold.text-xs.mt-1 {
+    display: none;
+}
+
+body.nova-login-page{
+ background-image: url('/img/noosphere-healing-chamber-dashboard.jpg');
+}

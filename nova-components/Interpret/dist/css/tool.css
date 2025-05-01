@@ -1,0 +1,33 @@
+/* Nova Tool CSS */
+.interpret-client {
+    padding: 100px 5%;
+    background-size: contain;
+    background-image: url(https://quantumevaluation.exponentialhealthcare.com/img/result-Web-page-bg.png);
+    color: #fff;
+    width: 100%;;
+}
+.interpret-client .logo img {
+    display: inline; max-width: 350px;
+}
+.interpret-client .logo {
+    text-align: center; margin-bottom: 35px;
+}
+.result-content h6 {
+    text-align: center; margin-bottom: 0.8em;font-weight: 900; text-transform: uppercase; font-size: 22px;
+}
+.interpret-client,
+.interpret-client u{font-size:20px; line-height: normal;}
+.interpret-client p{font-size:20px; line-height: normal; margin-bottom: 1em;}
+.interpret-client  li{font-size:20px; line-height: normal; margin-bottom: 0.8em;}
+.interpret-client .result-content {  max-width: 960px;  margin: 0 auto;}
+.interpret-client .logo-bottom {
+    text-align: center;
+    margin-top: 50px;
+}
+.interpret-client .logo-bottom img {
+    max-width: 250px;
+    display: inline;
+}
+ul {
+    list-style: disc;
+  }

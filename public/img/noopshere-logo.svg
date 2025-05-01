@@ -1,0 +1,11 @@
+
+<svg width="500" height="100" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .text {
+      fill: #b8860b; /* Dark yellow */
+      font-size: 32px;
+      font-family: Arial, sans-serif;
+    }
+  </style>
+  <text x="10" y="60" class="text">Noopshere Healing Chamber</text>
+</svg>

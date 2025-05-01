@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/static/css/main.eb4a7380.css",
+    "main.js": "/chamber.js",
+    "Verdana.eot": "/7654d93a6a4da266130d.eot",
+    "Verdana.otf": "/b461a07cb7e0edaf1524.otf",
+    "Verdana.woff": "/df1437b32a7d104f534e.woff",
+    "Verdana.woff2": "/621e2959fe59b0d011e2.woff2",
+    "index.html": "/index.html",
+    "chamber.css.map": "/chamber.css.map",
+    "chamber.js.map": "/chamber.js.map",
+    "main.eb4a7380.css.map": "/static/css/main.eb4a7380.css.map"
+  },
+  "entrypoints": [
+    "chamber.css",
+    "chamber.js",
+    "static/css/main.eb4a7380.css"
+  ]
+}

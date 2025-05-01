@@ -1,0 +1,87 @@
+/* Nova Tool CSS */
+@keyframes blink {
+	0% {opacity: 0}
+  20% {opacity: 0.1}
+  30% {opacity: 0.3}
+  40% {opacity: 0.5}
+	49%{opacity: 0.8}
+	50% {opacity: 1}
+}
+.guide-wrapper-elements .inner-wrapper {
+    padding: 100px 5%;
+}
+
+.guide-content {
+    display: grid;
+    grid-gap: 30px;
+    grid-template-columns: 40% 1fr;
+}
+
+.guide-content .content-box-left {
+    text-align: center;
+} 
+.guide-content p{font-size:16px; line-height:normal; margin-bottom: 0.8em;}
+.guide-content h2{font-size: 41px;text-transform: uppercase; font-weight: 900; margin-bottom: 0.5em; line-height: normal;}
+ 
+.guide-wrapper-elements {
+    background-image: url(https://quantumevaluation.exponentialhealthcare.com/img/QE-Background-Multi-bg.jpg) ;
+    background-size: cover;
+}
+
+a.more {
+    color: #fff;
+    text-decoration: none;
+}
+
+.guide-wrapper .logo a {
+    display: inline-block;
+}
+
+.info-content-box {
+    margin-bottom: 35px;
+}
+
+.info-content-box p.hide {
+    display: none;
+}
+
+.info-content-box.active p.hide,
+.info-content-box p.show {
+    display: block;
+}
+
+.info-content-box.active a.more,
+.info-content-box p {
+    display: none;
+}
+.info-content-box a {
+    display: none;
+}
+.info-content-box a.more {
+    display: block;
+}
+
+.guide-wrapper .logo {
+    margin-bottom: 40px;
+}
+
+.guide-wrapper-elements .content-box-right {
+    padding-top: 42%;
+}
+
+.guide-content {
+    color: #fff;
+}
+@media all and (max-width:1600px) {
+    .guide-content h2{font-size: 30px;}
+}
+@media all and (max-width:767px) {
+    .guide-content {
+        grid-template-columns: 1fr;
+        gap: 0
+    }
+    .guide-wrapper-elements .content-box-right{
+    
+        padding-top: 40px;
+    }
+}
