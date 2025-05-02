@@ -64,13 +64,13 @@ class SessionController extends Controller
         $validator = Validator::make($request->all(), [
             'sessionId' => 'required|integer',
             'userId' => 'required|integer',
-            'audioEnabled' => 'required|integer',
+            'audioEnabled' => 'required|bool',
             'healingType' => 'required|string',
             'gender' => 'required|string',
-            'image1' => 'required|file',
-            'image2' => 'required|file',
+            'image1' => 'file',
+            'image2' => 'file',
             'voiceRecordingEnabled' => 'required|integer',
-            'voiceUrl' => 'required|file',
+            'voiceUrl' => 'file',
             'startDateTime' => 'required|date_format:Y-m-d H:i:s',
         ]);
 

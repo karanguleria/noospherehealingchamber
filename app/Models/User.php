@@ -165,6 +165,11 @@ class User extends Authenticatable
                 // Set a static password if not provided
                 $user->password = Hash::make('noosphere@123'); // Example static password
             }
+
+            if (empty($user->type_id)) {
+                // Set a static type id if not provided
+                $user->type_id = 1; // Example static type id
+            }
         });
     }
 }

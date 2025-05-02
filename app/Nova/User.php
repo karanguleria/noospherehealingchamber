@@ -435,11 +435,11 @@ class User extends Resource
 
                 //  Gravatar::make()->maxWidth(50),
                 
-                Select::make('Type Id')->options([
-                    1 => 'Client',
-                ])->displayUsingLabels()
-                    ->rules('required')
-                    ->sortable(),
+                // Select::make('Type Id')->options([
+                //     1 => 'Client',
+                // ])->displayUsingLabels()
+                //     ->rules('required')
+                //     ->sortable(),
                 /*Text::make('Name')
                     ->sortable()
                     ->rules('required', 'max:255'),*/ 
