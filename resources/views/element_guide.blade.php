@@ -80,14 +80,14 @@
         </div>
     </div>
     <script>
-        $(".more").click(function() {
-            $(this).parent().addClass('active').siblings().removeClass('active');
-            return false;
-        });
-        $(".less").click(function() {
-            $(this).parent().removeClass('active');
-            return false;
-        });
+        // $(".more").click(function() {
+        //     $(this).parent().addClass('active').siblings().removeClass('active');
+        //     return false;
+        // });
+        // $(".less").click(function() {
+        //     $(this).parent().removeClass('active');
+        //     return false;
+        // });
     </script>
     <style>
         .guide-wrapper .inner-wrapper {
