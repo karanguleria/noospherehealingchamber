@@ -13,7 +13,7 @@
         "build-seasons": "cd nova-components/Seasons && npm run dev",
         "build-seasons-prod": "cd nova-components/Seasons && npm run prod",
         "build-invitaion": "cd nova-components/Invitaion && npm run dev",
-        "build-invitaion-prod": "cd nova-components/Invitaion && npm run prod",
+        "build-invitaion-prod": "cd nova-components/Invitaion && npm run prod"
     },
     "devDependencies": {
         "@tailwindcss/forms": "^0.5.7",

@@ -165,7 +165,7 @@ return [
     */
 
     'brand' => [
-        'logo' => public_path(path: '/img/logo-chamber.svg'),
+        'logo' => public_path(path: '/img/nhc-logo.svg'),
         'colors' => [
             "400" => "24, 182, 155, 0.5",
             "500" => "24, 182, 155",

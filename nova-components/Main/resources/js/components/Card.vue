@@ -4,7 +4,7 @@
      <div class="wrapper main-wrapper">
 
 <div class="logo-box">
-  <a href="#"><img src="\img\healing-chamber-new.png" alt="logo"></a>
+  <a href="#"><img src="\img\nhc-logo.png" alt="logo"></a>
 </div>
 <div class="main-inner"> 
     <div class="main-video-box">
