@@ -62,18 +62,15 @@ background-color: #ffffff; padding: 20px; color:#ffffff; ">
                             <p style="color: #ffffff; line-height: 1.6; font-size: 16px; margin: 20px 0;">
                                 You can now log in and begin using the Noosphere Healing Chamber to support your clients through intentional, focused energy work.
                             </p>
-
-                            <p>
-                                Here are your login details:
+                            <p style="color: #ffffff; line-height: 1.6; font-size: 16px; margin: 20px 0;">
+                                Here are your login details:</p>
                             <ul>
-                                <li style="margin-bottom:8px">Login URL: https://noospherehealingchamber.exponentialhealthcare.com/nova/login</li>
-                                <li style="margin-bottom:8px">Email: {{ $user->email ?? '' }}</li>
-                                <li style="margin-bottom:8px">Password: {{ $password ?? '' }}</li>
-                            </ul>
-
-                            </p>
+                                <li style="margin-bottom:8px; color:#18b69b;">Login URL: https://noospherehealingchamber.exponentialhealthcare.com/nova/login</li>
+                                <li style="margin-bottom:8px; color:#18b69b;">Email: {{ $user->email ?? '' }}</li>
+                                <li style="margin-bottom:8px; color:#18b69b;">Password: {{ $password ?? '' }}</li>
+                            </ul>                            
                             <p style="margin-top: 30px;">
-                                <a href="{{ url('/') }}" class="button" style="display:inline-block; background-color:#6a0dad; color:#fff; padding:12px 25px; text-decoration:none; border-radius:5px; font-size: 16px;">Visit Our Website</a>
+                                <a href="{{ url('/') }}" class="button" style="display:inline-block; background-color:#18b69b; color:#1e293b; padding:12px 25px; text-decoration:none; border-radius:5px; font-size: 16px;">Visit Our Website</a>
                             </p>
                         </td>
                     </tr>

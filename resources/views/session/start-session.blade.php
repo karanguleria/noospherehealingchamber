@@ -25,7 +25,7 @@
 
 
         .end_session a {
-    background: #0006;
+    background: #ff0000a6;
     padding: 10px 30px;
     border-radius: 10px;
     color: #fff;
