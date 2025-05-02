@@ -25,13 +25,15 @@
 
 
         .end_session a {
-            border: 2px solid;
-            border-radius: 10px;
-            background-color: gray;
-            color: white;
-            padding: 20px;
-            text-transform: uppercase;
-        }
+    background: #0006;
+    padding: 10px 30px;
+    border-radius: 10px;
+    color: #fff;
+    position: relative;
+    bottom: -6px;
+    right: 33px;
+    font-size: 14px;
+}
 
         #nsh-canvas {
             height: 100vh !important;
