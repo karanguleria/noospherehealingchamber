@@ -8,6 +8,22 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Log;
 class UserObserver
 {
+    protected array $rawPasswords = [];
+
+    /**
+     * Handle the User "creating" event.
+     */
+    public function creating(User $user): void
+    {
+        if (!empty($user->password)) {
+            // Store raw password temporarily (by user email or ID)
+            $this->rawPasswords[$user->email] = $user->password;
+
+            // Hash the password before saving
+            $user->password = Hash::make($user->password);
+        }
+    }
+
     /**
      * Handle the User "created" event.
      */
@@ -15,7 +31,8 @@ class UserObserver
     {
         //
         if ($user->type_id == 2) {
-            Mail::to($user->email)->send(new SendEmailPractitioner($user));
+            $rawPassword = $this->rawPasswords[$user->email] ?? null;
+            Mail::to($user->email)->send(new SendEmailPractitioner($user, $rawPassword));
             Log::info('SendEmailPractitioner email sent to user.', ['user_id' => $user->id]);
         } else {
             Log::info('Email not sent. User is not type 2.', ['user_id' => $user->id]);

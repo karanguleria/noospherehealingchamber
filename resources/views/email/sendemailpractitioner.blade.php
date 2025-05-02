@@ -53,10 +53,23 @@
                     <!-- Main Content -->
                     <tr>
                         <td class="content" style="background-color: #ffffff; padding: 20px; border-radius: 8px;">
-                        <h1>Hello {{$user->first_name ?? 'Practitioner'}}</h1>    
-                        <h2 style="color: #333; margin-top: 0;">Welcome to the Noosphere Healing Chamber</h2>
+                        <h1>Dear {{$user->first_name ?? 'Practitioner'}}</h1>    
+                        <h2 style="color: #333; margin-top: 0;">Welcome to the Noosphere Healing Chamber – Your Account Details</h2>
                             <p style="color: #666; line-height: 1.6; font-size: 16px; margin: 20px 0;">
-                                Thank you for joining our community. Your energy healing journey begins now. Stay connected for upcoming sessions and guidance.
+                                Congratulations, your practitioner account has been successfully created!
+                            </p>
+                            <p style="color: #666; line-height: 1.6; font-size: 16px; margin: 20px 0;">
+                                You can now log in and begin using the Noosphere Healing Chamber to support your clients through intentional, focused energy work.
+                            </p>
+
+                            <p>
+                                Here are your login details:
+                            <ul>
+                                <li>Login URL: https://noospherehealingchamber.exponentialhealthcare.com/nova/login</li>
+                                <li>Email: {{ $user->email ?? '' }}</li>
+                                <li>Password: {{ $password ?? '' }}</li>
+                            </ul>
+
                             </p>
                             <p style="margin-top: 30px;">
                                 <a href="{{ url('/') }}" class="button" style="display:inline-block; background-color:#6a0dad; color:#fff; padding:12px 25px; text-decoration:none; border-radius:5px; font-size: 16px;">Visit Our Website</a>

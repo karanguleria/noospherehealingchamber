@@ -14,13 +14,16 @@ class SendEmailPractitioner extends Mailable
 {
     use Queueable, SerializesModels;
     public $user;
+    public $password;
 
     /**
      * Create a new message instance.
      */
-    public function __construct(User $user)
+    public function __construct(User $user, string $password)
     {
         $this->user = $user;
+        $this->password = $password;
+
     }
 
     /**
@@ -29,7 +32,7 @@ class SendEmailPractitioner extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Send Email Practitioner',
+            subject: 'Welcome to the Noosphere Healing Chamber - Create Your Practitioner Account',
         );
     }
 
