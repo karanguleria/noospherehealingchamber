@@ -33,7 +33,7 @@ class InvitationEmail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Invitation to Your Nosphere Healing: Uncover Your Body\'s Harmony',
+            subject: 'Welcome to the Noosphere Healing Chamber - Create Your Practitioner Account',
         );
     }
 

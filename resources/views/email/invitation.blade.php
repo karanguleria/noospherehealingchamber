@@ -2,15 +2,18 @@
 
 Dear **{{$name}}**,
 
-It is my pleasure to introduce you to the Nosphere Healing.
+We invite you to join the Noosphere Healing Chamber, a purpose-built space that empowers you to deliver focused, intentional energy support to your clients.
 
-This unique assessment will show us the balance of your body in relation to your organs and the five elements of Taoist Medicine. This ancient and intelligent system correlates specific emotions and symptoms to the balance, excess, or insufficiency of each organ, providing insight into your overall well-being.
+Once you create your account, you’ll be able to set up client profiles, start new healing sessions, upload visuals such as blood microscopy images and voice recordings, add session notes, and review past session details, all in one place.
 
-Upon completing the questionnaire, you will receive your results via email. Together, we can delve into these findings, gaining a deeper understanding of your health.
+Getting started is simple. Just click the button below to create your practitioner account and begin working with the Chamber’s unique features.
 
-Kindly fill out the Nosphere Healing questionnaire through this link: <a href="https://noospherehealingchamber.exponentialhealthcare.com/register-user/{{$id}}">https://noospherehealingchamber.exponentialhealthcare.com/register-user/{{$id}}</a>
+Kindly fill out the Noosphere Healing Chamber questionnaire through this link: <a href="https://noospherehealingchamber.exponentialhealthcare.com/register-user/{{$id}}">https://noospherehealingchamber.exponentialhealthcare.com/register-user/{{$id}}</a>
 
-Warm regards,
+Thank you for being part of this important work. We look forward to supporting you every step of the way.
 
-{{$practitioner_name}}
+Sincerely,
+
+The Noosphere Healing Chamber Team
+
 @endcomponent

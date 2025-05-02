@@ -19,13 +19,13 @@ class InvitationObserver
      */
     public function created(Invitation $invitation)
     {
-        // dd($invitation);
         // Log::debug('An informational message.',$invitation->name);
         // Log::stack(['single'])->info('Sending email invitation to '. $invitation->practitioner);
         // dd($invitation);
         // Mail::to($invitation->email)->queue(new InvitationEmail($invitation));
+        Mail::to($invitation->email)->send(new InvitationEmail($invitation->name,$invitation->practitioner->name,$invitation->practitioner->id));
+
         // Mail::to($invitation->email)->queue(new InvitationEmail($invitation->name,$invitation->practitioner->name,$invitation->practitioner->id));
-        Mail::to("himekaranguleria@gmail.com")->queue(new InvitationEmail("karan","practiciner karan",69));
         // Mail::to($invitation->email)->queue(new InvitationPractitionerEmail($invitation->name,$invitation->practitioner->name));
     }
 
