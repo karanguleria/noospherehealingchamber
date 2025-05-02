@@ -67,10 +67,10 @@ class SessionController extends Controller
             'audioEnabled' => 'required|bool',
             'healingType' => 'required|string',
             'gender' => 'required|string',
-            'image1' => 'file',
-            'image2' => 'file',
+            // 'image1' => 'string',
+            // 'image2' => 'string',
             'voiceRecordingEnabled' => 'required|integer',
-            'voiceUrl' => 'file',
+            // 'voiceUrl' => 'string',
             'startDateTime' => 'required|date_format:Y-m-d H:i:s',
         ]);
 
@@ -93,26 +93,26 @@ class SessionController extends Controller
         }
 
         // File uploads
-        $image1Path = $request->file('image1')->store('uploads/images', 'public');
-        $image2Path = $request->file('image2')->store('uploads/images', 'public');
-        $voiceUrlPath = $request->file('voiceUrl')->store('uploads/voices', 'public');
+        // $image1Path = $request->file('image1')->store('uploads/images', 'public');
+        // $image2Path = $request->file('image2')->store('uploads/images', 'public');
+        // $voiceUrlPath = $request->file('voiceUrl')->store('uploads/voices', 'public');
 
         // Update record
         $record->user_id = $validated['userId'];
         $record->audio_enabled = $validated['audioEnabled'];
         $record->healing_type = $validated['healingType'];
         $record->gender = $validated['gender'];
-        $record->image_1 = $image1Path;
-        $record->image_2 = $image2Path;
+        // $record->image_1 = $image1Path;
+        // $record->image_2 = $image2Path;
         $record->voice_recording_enabled = $validated['voiceRecordingEnabled'];
-        $record->audio = $voiceUrlPath;
+        // $record->audio = $voiceUrlPath;
         $record->session_start = $validated['startDateTime'];
         $record->save();
 
         // Append full URLs
-        $record->image_1 = url(Storage::url($record->image_1));
-        $record->image_2 = url(Storage::url($record->image_2));
-        $record->audio = url(Storage::url($record->audio));
+        // $record->image_1 = url(Storage::url($record->image_1));
+        // $record->image_2 = url(Storage::url($record->image_2));
+        // $record->audio = url(Storage::url($record->audio));
 
         return response()->json([
             'message' => 'User session saved successfully.',

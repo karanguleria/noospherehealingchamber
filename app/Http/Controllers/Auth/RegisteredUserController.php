@@ -51,11 +51,11 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             // 'user_type' => ['required', 'number'],
         ]);
-        if($request->user_type ==2){
+        // if($request->user_type ==2){
             $practitioner_id = '';
-        }else{
-            $practitioner_id = $request->practitioner_id;
-        }
+        // }else{
+        //     $practitioner_id = $request->practitioner_id;
+        // }
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
