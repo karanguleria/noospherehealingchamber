@@ -1,0 +1,34 @@
+{
+    "compilerOptions": {
+        "allowJs": true,
+        "module": "ESNext",
+        "moduleResolution": "bundler",
+        "jsx": "preserve",
+        "strict": true,
+        "isolatedModules": true,
+        "target": "ESNext",
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "noEmit": true,
+        "skipLibCheck": true,
+        "baseUrl": ".",
+        "paths": {
+            "@/*": [
+                "./resources/js/*"
+            ],
+            "~/*": [
+                "./resources/js/*"
+            ]
+        },
+        "types": [
+            "@types/node"
+        ]
+    },
+    "include": [
+        "vite.config.ts",
+        "vitest.config.ts",
+        "resources/js/*/.ts",
+        "resources/js/*/.vue",
+        "resources/js/*/.d.ts"
+    ]
+}
