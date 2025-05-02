@@ -47,7 +47,7 @@
                     <!-- Main Content -->
                     <tr>
                         <td class="content" style="background-color: #ffffff; padding: 20px; border-radius: 8px;">
-                        <h1>Dear {{$name ?? '' }}</h1>    
+                        <h1 style="color: #666;">Dear {{$name ?? '' }}</h1>    
                         <h2 style="color: #333; margin-top: 0;">Get Started with Your Practitioner Account</h2>
                             <p style="color: #666; line-height: 1.6; font-size: 16px; margin: 20px 0;">
                             We invite you to join the Noosphere Healing Chamber, a purpose-built space that empowers you to deliver focused, intentional energy support to your clients.
@@ -61,7 +61,7 @@
                             </p>
 
                             <p style="margin-top: 30px;">
-                                <a href="https://noospherehealingchamber.exponentialhealthcare.com/register-user/{{$id}}">Create Your Account</a>
+                                <a  class="button" style="display:inline-block; background-color:#6a0dad; color:#fff; padding:12px 25px; text-decoration:none; border-radius:5px; font-size: 16px;" href="https://noospherehealingchamber.exponentialhealthcare.com/register-user/{{$id}}">Create Your Account</a>
                             </p>
 
                             <p  style="color: #666; line-height: 1.6; font-size: 16px; margin: 20px 0;">
