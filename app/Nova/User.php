@@ -468,7 +468,12 @@ class User extends Resource
                 //HasMany::make('Users'),
                 HasMany::make('Client Session', 'userSession', \App\Nova\UserSession::class),
                 //BelongsTo::make('Practitioner','practitioner' ,User::class),
-                
+                BelongsTo::make('Practitioner', 'practitioner', User::class)
+                ->hideWhenCreating()
+                ->hideWhenUpdating()
+                ->hideFromIndex()
+                ->hideFromDetail(),
+
 
                 Select::make('Country')
                     ->options([
