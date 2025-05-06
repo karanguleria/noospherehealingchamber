@@ -56,8 +56,8 @@ background-color: #ffffff; padding: 20px; color:#ffffff; ">
                     <h1>Hello, {{$mailData['name'] ?? ''}}</h1>    
                    
                     <p>You have been invited! Click the link below to join:</p>
-    <p><a href="{{ $mailData['invitation_url'] }}" target="__blank">{{ $mailData['invitation_url'] }}</a></p>
-    <p>This link is unique and should not be shared.</p>
+                    <p><a href="{{ $mailData['invitation_url'] }}" target="__blank">{{ $mailData['invitation_url'] }}</a></p>
+                    <p>This link is unique and should not be shared.</p>
                     </td>
                 </tr>
 
