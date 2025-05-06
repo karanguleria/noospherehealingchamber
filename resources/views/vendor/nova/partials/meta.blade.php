@@ -1,6 +1,19 @@
 <script src="{{asset('theme.js')}}"></script>
 <script src="{{ asset('js/nova-login-mod.js') }}"></script>
 <link href="{{ asset('css/hide-resourse.css') }}">
+@if (Route::has('login'))
+    <style>
+        body.login .hidden.lg\:w-60.shrink-0.md\:flex.items-center a svg {
+            background-color:transparent;
+        }
+    </style>
+@else
+    <style>
+        body.login .hidden.lg\:w-60.shrink-0.md\:flex.items-center a svg {
+            background-color: #ffffff;
+        }
+    </style>
+@endif
 <style>
     body.nova-login-page {
         background-image: url('/img/noosphere-healing-chamber-dashboard.jpg');
@@ -33,7 +46,6 @@ body.nova-login-page div[class*="py-6"][class*="px-1"] div[class*="py-8"]{
 
 body.login .hidden.lg\:w-60.shrink-0.md\:flex.items-center a svg {
     /* fill: #ffffff; */
-    background-color: #ffffff;
     border-radius: 8px;
     padding: 5px 10px;
     height: 50px;
