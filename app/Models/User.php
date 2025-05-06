@@ -170,6 +170,10 @@ class User extends Authenticatable
                 // Set a static type id if not provided
                 $user->type_id = 1; // Example static type id
             }
+
+            if (empty($user->practitioner_id) && $user->type_id == 1) {
+                $user->practitioner_id = request()->user()->id;
+            }
         });
     }
 }

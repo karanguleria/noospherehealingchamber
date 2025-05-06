@@ -89,7 +89,7 @@ class User extends Resource
                     ->onlyOnForms()
                     ->dependsOn(['type_id'], function (Password $field, NovaRequest $request, FormData $formData) {
                         // Hide password field when Type Id is "Client" (value = 1)
-                        if ($formData->type_id == 1 || $formData->type_id == 3) {
+                        if ($formData->type_id == 1) {
                             $field->hide();
                             $field->creationRules([]); // remove required
                         } else {
@@ -468,7 +468,12 @@ class User extends Resource
                 //HasMany::make('Users'),
                 HasMany::make('Client Session', 'userSession', \App\Nova\UserSession::class),
                 //BelongsTo::make('Practitioner','practitioner' ,User::class),
-                
+                BelongsTo::make('Practitioner', 'practitioner', User::class)
+                ->hideWhenCreating()
+                ->hideWhenUpdating()
+                ->hideFromIndex()
+                ->hideFromDetail(),
+
 
                 Select::make('Country')
                     ->options([

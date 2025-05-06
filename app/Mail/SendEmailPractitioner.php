@@ -32,7 +32,7 @@ class SendEmailPractitioner extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Welcome to the Noosphere Healing Chamber - Create Your Practitioner Account',
+            subject: 'Welcome to the Noosphere Healing Chamber – Your Account Details',
         );
     }
 
