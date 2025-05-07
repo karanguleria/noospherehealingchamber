@@ -45,14 +45,14 @@
 
                     <!-- Header -->
                     <tr>
-                        <td align="center">
+                        <td style="background-color: #000035;" align="center">
                             <img src="{{ asset('img/header-blue.png') }}" alt="Noosphere Healing Chamber" style="display:block; max-width:100%; height:auto;" />
                         </td>
                     </tr>
 
                     <!-- Main Content -->
                     <tr>
-                        <td class="content" style="background-color: #000d36; padding: 20px; color:#ffffff; ">
+                        <td class="content" style="background-color: #000035; padding: 20px; color:#ffffff; ">
                         <h1 style="font-size: 14px;">Dear {{ucfirst($user->first_name) ?? 'Practitioner'}},</h1>    
                         <h2 style="color: #ffffff; margin-top: 0;font-size: 14px;">Welcome to the Noosphere Healing Chamber – Your Account Details</h2>
                             <p style="color: #ffffff; line-height: 1.6; font-size: 12px; margin: 15px 0;">
@@ -76,7 +76,7 @@
 
                     <!-- Footer -->
                     <tr>
-                        <td align="center">
+                        <td style="background-color: #000035;" align="center">
                             <img src="{{ asset('img/footer-blue.png') }}" alt="Footer" style="display:block; max-width:100%; height:auto;" />
                         </td>
                     </tr>
