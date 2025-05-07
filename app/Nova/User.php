@@ -74,10 +74,10 @@ class User extends Resource
                 
                 Text::make('First Name')
                     ->sortable()
-                    ->rules('max:255'),
+                    ->rules('required','max:254'),
                 Text::make('Last Name')
                     ->sortable()
-                    ->rules('max:255'),
+                    ->rules('required','max:254'),
 
                 Text::make('Email')
                     ->sortable()
@@ -445,10 +445,10 @@ class User extends Resource
                     ->rules('required', 'max:255'),*/ 
                 Text::make('First Name')
                     ->sortable()
-                    ->rules('max:255'),
+                    ->rules('required','max:254'),
                 Text::make('Last Name')
                     ->sortable()
-                    ->rules('max:255'),
+                    ->rules('required','max:254'),
 
                 Text::make('Email')
                     ->sortable()
@@ -759,10 +759,10 @@ class User extends Resource
                 ->rules('required', 'max:255'),*/ 
             Text::make('First Name')
                 ->sortable()
-                ->rules('max:255'),
+                ->rules('required','max:254'),
             Text::make('Last Name')
                 ->sortable()
-                ->rules('max:255'),
+                ->rules('required','max:254'),
             Text::make('Email')
                 ->sortable()
                 ->rules('required', 'email', 'max:254')

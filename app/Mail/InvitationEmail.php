@@ -55,7 +55,7 @@ class InvitationEmail extends Mailable
     public function build()
     {
         return $this->subject('Invitation')
-            ->from(env('MAIL_FROM_ADDRESS','invitation@example.com'), 'Nosphere Healing')
+            ->from(env('MAIL_FROM_ADDRESS','invitation@example.com'), 'Noosphere Healing Chamber')
             ->bcc('himekaraguleria@gmail.com')
             ->markdown('email.invitation')
             ->with([
