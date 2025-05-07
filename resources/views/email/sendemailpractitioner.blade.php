@@ -52,7 +52,7 @@
 
                     <!-- Main Content -->
                     <tr>
-                        <td class="content" style=" padding: 20px; color:#000000; ">
+                        <td class="content" style="padding: 20px; color:#000000; background-color:white; ">
                         <p style="font-size: 12px;">Dear {{ucfirst($user->first_name) ?? 'Practitioner'}},</p>    
                         <!-- <h2 style="color: #000000; margin-top: 0;font-size: 14px;">Welcome to the Noosphere Healing Chamber – Your Account Details</h2> -->
                             <p style="color: #000000; line-height: 1.6; font-size: 12px; margin: 15px 0;">
