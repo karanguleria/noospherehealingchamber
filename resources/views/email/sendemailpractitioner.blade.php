@@ -69,8 +69,9 @@
                                 <li style="margin-bottom:8px; font-size: 12px;">Password: <span style="color:#18b69b; font-size: 12px;">{{ $password ?? '' }}</span></li>
                             </ul>                            
                              <p style="margin-top: 30px;">
-                                  <a href="{{ url('/') }}" class="button" style="display:inline-block; background-color:#18b69b; color:#ffffff; padding:12px 25px; text-decoration:none; border-radius:5px; font-size: 12px;">Visit Our Website</a>
+                                  <a href="{{ url('/') }}" class="button" style="display:inline-block; background-color:#18b69b; color:#ffffff; padding:12px 25px; text-decoration:none; border-radius:5px; font-size: 12px;">log in now</a>
                             </p>
+                            
                         </td>
                     </tr>
 
