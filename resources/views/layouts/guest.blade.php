@@ -56,8 +56,9 @@ object-fit: cover;" poster="https://www.projectnoosphere.com/wp-content/uploads/
                     <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
                 </a>
             </div> -->
-            <h4  class="p-2 rounded-lg text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight" style="filter: drop-shadow(0px 0px 10px #444);">
-                <img class="logo-login" src="/img/nhc-logo.png" width="220px"></h4>
+            <h4  class="p-2 rounded-lg text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+                <img class="logo-login" src="/img/nhc-logo.svg" width="220px">
+            </h4>
             <div class="w-full max-w-xs sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
                
                 {{ $slot }}

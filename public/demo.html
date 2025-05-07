@@ -17,14 +17,36 @@
     <div id="widget-container"></div>
     <script src="chamber.js"></script>
     <script>
-        var sessionId = '123';
-        var userId = '456';
-        var showControls = true;
-        var showSidebar = false;
-        var baseUrl = "http://localhost/nospherehealingtest/"; // Replace with your actual base URL
-        var containerId = 'widget-container'; // The ID of the container where the widget will be rendered
+                        // var sessionId = '123';
+                        // var userId = '456';
+                        // var showControls = true;
+                        // var showSidebar = false;
+                        // var baseUrl = "http://localhost/nospherehealingtest/"; // Replace with your actual base URL
+                        // var containerId = 'widget-container'; // The ID of the container where the widget will be rendered
 
-        window.renderWidget(containerId, sessionId, userId, baseUrl, showSidebar, showControls)
+                        // window.renderWidget(containerId, sessionId, userId, baseUrl, showSidebar, showControls)
+                        var sessionId = 105;
+                        var userId = 73;
+                        var showControls = true;
+                        var showSidebar = false;
+                        var baseUrl = "https://noospherehealingchamber.exponentialhealthcare.com/"; // Replace with your actual base URL
+                        var apiUrl = "https://noospherehealingchamber.exponentialhealthcare.com/"; // Replace with your actual API URL
+                        var containerId = 'widget-container'; // The ID of the container where the widget will be rendered
+
+
+
+
+
+    var options = {
+        containerId: containerId,
+        session: {
+            sessionId: sessionId,
+            userId: userId,
+        },
+        baseUrl: baseUrl,
+        apiUrl: apiUrl,
+    };
+    window.renderWidget(options)
     </script>
 </body>
 
