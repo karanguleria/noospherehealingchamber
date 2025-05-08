@@ -27,9 +27,9 @@
 
  
 
-    body.nova-login-page div[class*="py-6"][class*="px-1"] div[class*="py-8"] svg g{
+    /* body.nova-login-page div[class*="py-6"][class*="px-1"] div[class*="py-8"] svg g{
     fill:#ffffff;
-}
+} */
 body.nova-login-page div[class*="py-6"][class*="px-1"] div[class*="py-8"] span > svg{
     height: 7rem;
     width: 100%;
