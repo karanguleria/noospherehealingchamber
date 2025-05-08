@@ -44,7 +44,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
         Nova::withoutThemeSwitcher();
         
         Nova::footer(function ($request) {
-            return '<p class="text-center"><b>Powered by <a class="link-default" href="https://healingchamber.exponentialhealthcare.com"/>Powered by Exponential Healthcare</a> © '. date('Y') .'</b> </p>';
+            return '<p class="text-center"><b>Powered by <a class="link-default" href="https://healingchamber.exponentialhealthcare.com"/>Exponential Healthcare</a> © '. date('Y') .'</b> </p>';
         });
         
         Nova::style('hide-resource', public_path('css/hide-resourse.css'));

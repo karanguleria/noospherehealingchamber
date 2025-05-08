@@ -27,13 +27,12 @@
 
  
 
-    body.nova-login-page div[class*="py-6"][class*="px-1"] div[class*="py-8"] svg g{
+    /* body.nova-login-page div[class*="py-6"][class*="px-1"] div[class*="py-8"] svg g{
     fill:#ffffff;
-}
+} */
 body.nova-login-page div[class*="py-6"][class*="px-1"] div[class*="py-8"] span > svg{
     height: 7rem;
     width: 100%;
-    background-color: rgba(var(--colors-gray-800));
     /* filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4)); */
     padding-left:20px;
 padding-right:20px;
@@ -45,10 +44,12 @@ body.nova-login-page div[class*="py-6"][class*="px-1"] div[class*="py-8"]{
 }
 
 body.login .hidden.lg\:w-60.shrink-0.md\:flex.items-center a svg {
-    /* fill: #ffffff; */
+       /* fill: #ffffff; */
     border-radius: 8px;
     padding: 5px 10px;
     height: 50px;
+    width: auto;
+
 }
 body.login .hidden.lg\:w-60.shrink-0.md\:flex.items-center a+a{
     font-size:9px

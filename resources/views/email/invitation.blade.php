@@ -45,30 +45,30 @@
 
                   <tr>
                         <td style="background-color: #000035;" align="center">
-                            <img src="{{ asset('img/header-blue.png') }}" alt="Noosphere Healing Chamber" style="display:block; max-width:100%; height:auto;" />
+                            <img src="{{ asset('img/mail-header.jpg') }}" alt="Noosphere Healing Chamber" style="display:block; max-width:100%; height:auto;" />
                         </td>
                     </tr>
                     <!-- Main Content -->
                     <tr>
-                         <td class="content" style="background-color: #000035; padding: 20px; color:#ffffff; ">
-                        <h1 style="color: #ffffff;font-size: 14px;">Dear {{$name ?? '' }},</h1>    
-                        <h2 style="color: #ffffff; margin-top: 0;font-size: 14px;">Get Started with Your Practitioner Account</h2>
-                            <p style="color: #ffffff; line-height: 1.6; font-size: 12px; margin: 15px 0;">
+                         <td class="content" style="padding: 20px; color:#000000; background-color:white; ">
+                        <p style="color: #000000;font-size: 12px;">Dear {{$name ?? '' }},</p>    
+                        <!-- <h2 style="color: #000000; margin-top: 0;font-size: 14px;">Get Started with Your Practitioner Account</h2> -->
+                            <p style="color: #000000; line-height: 1.6; font-size: 12px; margin: 15px 0;">
                             We invite you to join the Noosphere Healing Chamber, a purpose-built space that empowers you to deliver focused, intentional energy support to your clients.
                             </p>
-                            <p style="color: #ffffff; line-height: 1.6; font-size: 12px; margin: 15px 0;">
+                            <p style="color: #000000; line-height: 1.6; font-size: 12px; margin: 15px 0;">
                                 Once you create your account, you’ll be able to set up client profiles, start new healing sessions, upload visuals such as blood microscopy images and voice recordings, add session notes, and review past session details, all in one place.
                             </p>
 
-                            <p style="color: #ffffff; line-height: 1.6; font-size: 12px; margin: 15px 0;">
+                            <p style="color: #000000; line-height: 1.6; font-size: 12px; margin: 15px 0;">
                             Getting started is simple. Just click the button below to create your practitioner account and begin working with the Chamber’s unique features.
                             </p>
 
                             <p style="margin-top: 30px;">
-                                  <a href="https://noospherehealingchamber.exponentialhealthcare.com/register-user/{{$id}}" class="button" style="display:inline-block; background-color:#18b69b; color:#1e293b; padding:12px 25px; text-decoration:none; border-radius:5px; font-size: 14px;">Create Your Account</a>
+                                  <a href="https://noospherehealingchamber.exponentialhealthcare.com/register-user/{{$id}}" class="button" style="display:inline-block; background-color:#18b69b; color:#ffffff; padding:12px 25px; text-decoration:none; border-radius:5px; font-size: 14px;">Create Your Account</a>
                             </p>
 
-                            <p  style="color: #ffffff; line-height: 1.6; font-size: 12px; margin: 15px 0;">
+                            <p  style="color: #000000; line-height: 1.6; font-size: 12px; margin: 15px 0;">
                             Thank you for being part of this important work. We look forward to supporting you every step of the way.
                             <br><br>
                             Sincerely,<br>
@@ -78,8 +78,8 @@
                         </td>
                     </tr>
 <tr>
-                        <td style="background-color: #000035;" align="center">
-                            <img src="{{ asset('img/footer-blue.png') }}" alt="Footer" style="display:block; max-width:100%; height:auto;" />
+                        <td align="center">
+                            <img src="{{ asset('img/mail-footer.jpg') }}" alt="Footer" style="display:block; max-width:100%; height:auto;" />
                         </td>
                     </tr>
                     
