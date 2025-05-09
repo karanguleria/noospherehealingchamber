@@ -33,7 +33,7 @@
       <input type="hidden" name="user_type" value="2" required  />
       
       <div class="flex items-center justify-end mt-4">
-         <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md"
+         <a class="text-sm text-gray-500 font-bold no-underline rounded-md"
             href="{{ route('login') }}">
          {{ __('Already registered?') }}
          </a>
