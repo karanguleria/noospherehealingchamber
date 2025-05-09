@@ -8,6 +8,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 /**
  * Class User
@@ -162,13 +163,17 @@ class User extends Authenticatable
         static::saving(function ($user) {
             // Check if the password is empty
             if (empty($user->password)) {
-                // Set a static password if not provided
-                $user->password = Hash::make('noosphere@123'); // Example static password
+                $plainPassword = Str::random(8);
+                $user->password = Hash::make($plainPassword);
+                $user->plain_password = $plainPassword;
+                
             }
-
+            if ($user->type_id == 2) {
+                $user->is_first_login = 1;
+            }
+           
             if (empty($user->type_id)) {
-                // Set a static type id if not provided
-                $user->type_id = 1; // Example static type id
+                $user->type_id = 1;
             }
 
             if (empty($user->practitioner_id) && $user->type_id == 1) {

@@ -89,7 +89,7 @@ class User extends Resource
                     ->onlyOnForms()
                     ->dependsOn(['type_id'], function (Password $field, NovaRequest $request, FormData $formData) {
                         // Hide password field when Type Id is "Client" (value = 1)
-                        if ($formData->type_id == 1) {
+                        if ($formData->type_id == 1 || $formData->type_id == 2) {
                             $field->hide();
                             $field->creationRules([]); // remove required
                         } else {
