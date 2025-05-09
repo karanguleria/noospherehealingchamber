@@ -65,7 +65,7 @@
                             </p>
 
                             <p style="margin-top: 30px;">
-                                  <a href="https://noospherehealingchamber.exponentialhealthcare.com/register-user/{{$id}}" class="button" style="display:inline-block; background-color:#18b69b; color:#ffffff; padding:12px 25px; text-decoration:none; border-radius:5px; font-size: 14px;">Create Your Account</a>
+                                  <a href="https://noospherehealingchamber.exponentialhealthcare.com/register-user/{{$id}}" class="button" style="display:inline-block; width:auto; background-color:#18b69b; color:#ffffff; padding:12px 25px; text-decoration:none; border-radius:5px; font-size: 14px;">Create Your Account</a>
                             </p>
 
                             <p  style="color: #000000; line-height: 1.6; font-size: 12px; margin: 15px 0;">
