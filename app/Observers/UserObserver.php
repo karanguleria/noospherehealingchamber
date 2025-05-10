@@ -19,10 +19,13 @@ class UserObserver
     {
         if ($user->type_id == 2) {
             $rawPassword = $user->plain_password ?? null;
-            if($user->is_first_login == 1){
+            
+            if (!empty($user) && (int) $user->is_first_login === 1) {
+
                 $token = Password::createToken($user);
                 $resetPasswordLink = url("/nova/password/reset/{$token}?email=" . urlencode($user->email));
                 Mail::to($user->email)->send(new WelcomeEmailPractitioner($user, $rawPassword, $resetPasswordLink));
+
             }else{
                 Mail::to($user->email)->send(new SendEmailPractitioner($user, $rawPassword));
             }
