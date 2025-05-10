@@ -131,6 +131,17 @@ class Invitation extends Resource
         return __('Send :resource', ['resource' => static::singularLabel()]);
     }
 
+
+    
+    // public static function label()
+    // {
+    //     return 'Send & Invite Another';
+    // }
+
+    // public static function singularLabel()
+    // {
+    //     return 'Send & Invite Another';
+    // }
     /*public static function availableForNavigation(Request $request)
     {
         return $request->user()->role_id === 1;

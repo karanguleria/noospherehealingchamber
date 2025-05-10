@@ -48,6 +48,10 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
         });
         
         Nova::style('hide-resource', public_path('css/hide-resourse.css'));
+        // In NovaServiceProvider.php boot() method or via a custom tool:
+
+        Nova::script('custom-button-label', public_path('js/nova-custom-button.js'));
+
     }
 
     /**
