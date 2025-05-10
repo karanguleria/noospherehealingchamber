@@ -68,12 +68,6 @@
                                     Please update your password here: <span style="color:#18b69b;">{{ $resetPasswordLink ?? ''}}<span>
                                 </li>
 
-<<<<<<< Updated upstream
-                            </ul>                            
-                           
-                            <p> 
-                                If you have any questions or need assistance, feel free to contact us at <a href="mailto:support@projectnoosphere.com">support@projectnoosphere.com</a>
-=======
                             </ul>  
                             
                                 <p style="margin-top: 30px;">
@@ -81,12 +75,11 @@
                                   lass="button" 
                                   style="display:inline-flex; background-color:#18b69b; color:#ffffff; padding:12px 25px; text-decoration:none; border-radius:5px; font-size: 14px;">Log In Now</a>
                             </p>
-                             If you have any questions or need assistance, feel free to contact us at <a style="color:#18b69b;" href="mailto:alumni@quantumuniversity.com">alumni@quantumuniversity.com</a>
+                             If you have any questions or need assistance, feel free to contact us at <a style="color:#18b69b;" href="mailto:support@projectnoosphere.com">support@projectnoosphere.com</a>
                             <br><br>
                             Sincerely,<br>
 
                             The Noosphere Healing Chamber Team
->>>>>>> Stashed changes
                             </p>
                         </td>
                     </tr>
