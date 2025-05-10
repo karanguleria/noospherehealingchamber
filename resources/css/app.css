@@ -26,7 +26,18 @@
     border-color: var(--color-gray-200, currentColor);
   }
 }
+.dark .form-input {
+    background-color: rgba(var(--colors-gray-900));
+    color: rgba(var(--colors-gray-400));
+}
 
+button.btn-submit {
+    background-color: #18b69b;
+}
+
+button.btn-submit:hover {
+    background-color: #1b6f6b;
+}
 main{
     margin-top: 80px;
   }
