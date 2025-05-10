@@ -62,7 +62,7 @@
                             </ul>                            
                            
                             <p>
-                                If you have any questions or need assistance, feel free to contact us at <a href="mailto:alumni@quantumuniversity.com">alumni@quantumuniversity.com</a>
+                                If you have any questions or need assistance, feel free to contact us at <a href="mailto:support@projectnoosphere.com">support@projectnoosphere.com</a>
                             </p>
                         </td>
                     </tr>
