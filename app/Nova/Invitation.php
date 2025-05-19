@@ -13,6 +13,7 @@ use Quant\Invitaion\Invitaion as InvitationHome;
 
 class Invitation extends Resource
 {
+    
     /**
      * The model the resource corresponds to.
      *

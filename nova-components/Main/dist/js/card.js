@@ -65,7 +65,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           "position": "relative"
         }
       }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("iframe", {
-        src: "https://player.vimeo.com/video/1085150424?h=473b0fe485&badge=0&autopause=0&player_id=0&app_id=58479",
+        src: "https://player.vimeo.com/video/919292409?h=1fe1f295ad&badge=0&autopause=0&player_id=0&app_id=58479",
         frameborder: "0",
         allow: "autoplay; fullscreen; picture-in-picture",
         style: {
@@ -78,7 +78,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         title: "Nosphere Healing Demo - Exponential Healthcare"
       })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
         "class": "main-content-box"
-      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", null, "WELCOME TO THE NOOSPHERE HEALING CHAMBER"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "a virtual energetic space designed for wellness coaches to facilitate intentional healing. This experimental tool utilizes the sacred geometry of the star tetrahedron to generate targeted energetic effects aligned with focused intention."), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Within the chamber, coaches can upload client images, voice recordings, and micro- scopic blood visuals, serving as energetic inputs for each personalized session. Drawing inspiration from the teachings of Lynne McTaggart and Nassim Haramein, the chamber integrates concepts similar to Vacuum Engineering on a virtual scale, working in harmony with Collective Consciousness to amplify the power of intentional healing."), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "From this dashboard, you can easily add new clients, initiate healing sessions, record personalized session notes, and access each client's complete energetic history every time you return."), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Watch the video tutorial to learn how to navigate and use the platform effectively.")])])], -1 /* HOISTED */))];
+      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", null, "WELCOME TO THE NOOSPHERE HEALING CHAMBER"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "A virtual energetic space designed for wellness coaches to facilitate intentional healing. This experimental tool utilizes the sacred geometry of the star tetrahedron to generate targeted energetic effects aligned with focused intention."), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Within the chamber, coaches can upload client images, voice recordings, and microscopic blood visuals, serving as energetic inputs for each personalized session. Drawing inspiration from the teachings of Lynne McTaggart and Nassim Haramein, the chamber integrates concepts similar to Vacuum Engineering on a virtual scale, working in harmony with Collective Consciousness to amplify the power of intentional healing."), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "From this dashboard, you can easily add new clients, initiate healing sessions, record personalized session notes, and access each client's complete energetic history every time you return."), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Watch the video tutorial to learn how to navigate and use the platform effectively.")])])], -1 /* HOISTED */))];
     }),
     _: 1 /* STABLE */
   });
