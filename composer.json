@@ -20,7 +20,8 @@
         "quant/interpret": "@dev",
         "quant/invitaion": "@dev",
         "quant/main": "@dev",
-        "quant/seasons": "@dev"
+        "quant/seasons": "@dev",
+        "quant/endsession": "@dev"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
@@ -105,6 +106,10 @@
         {
             "type": "path",
             "url": "./nova-components/Invitaion"
+        },
+        {
+            "type": "path",
+            "url": "./nova-components/Endsession"
         }
     ]
 }

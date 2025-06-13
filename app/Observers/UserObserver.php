@@ -17,7 +17,7 @@ class UserObserver
      */
     public function created(User $user): void
     {
-        if ($user->type_id == 2) {
+        if ($user->type_id == 2 || $user->type_id == 4) {
             $rawPassword = $user->plain_password ?? null;
 
             if (!empty($user) && (int) $user->is_first_login === 1) {

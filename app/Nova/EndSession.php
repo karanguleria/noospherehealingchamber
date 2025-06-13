@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Nova;
-
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
 use Carbon\Carbon;
@@ -12,9 +10,9 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\BelongsTo as FieldsBelongsTo;
 use Illuminate\Support\Facades\Storage;
 use Laravel\Nova\Fields\Textarea;
-class UserSession extends Resource
+class EndSession extends Resource
 {
-    /**
+     /**
      * The model the resource corresponds to.
      *
      * @var class-string<\App\Models\UserSession>
@@ -110,19 +108,6 @@ class UserSession extends Resource
                 ->withMeta([
                     'placeholder' => 'Add your notes here'
                 ]),
-
-                Text::make('Resume Session', function () {
-
-                    return '<a href="' . config('app.url') . '/start-session/'.auth()->user()->id.'/' . $this->id . '" 
-                                class="shrink-0 h-9 px-4 focus:outline-none ring-primary-200 dark:ring-gray-600 focus:ring text-white dark:text-gray-800 
-                                inline-flex items-center font-bold shadow rounded focus:outline-none ring-primary-200 dark:ring-gray-600 focus:ring 
-                                bg-primary-500 hover:bg-primary-400 active:bg-primary-600 text-white dark:text-gray-800 inline-flex items-center 
-                                font-bold px-4 h-9 text-sm shrink-0 h-9 px-4 focus:outline-none ring-primary-200 dark:ring-gray-600 focus:ring 
-                                text-white dark:text-gray-800 inline-flex items-center font-bold" 
-                                target="_blank">
-                                Resume Session
-                            </a>';
-                })->asHtml(),
             /*FieldsBelongsTo::make('Practitioner', 'practitioner', \App\Nova\User::class)->hideWhenCreating()->sortable()->readonly(),
             */ 
             ];
@@ -222,7 +207,7 @@ class UserSession extends Resource
         if(auth()->user()->is_admin()){
             return $query;
         }else if(auth()->user()->is_premium_member()){
-            return $query->where('user_id',auth()->id())->where('is_complete',0);
+            return $query->where('user_id',auth()->id())->where('is_complete',1);
         }
         else{
             return $query->whereRelation('user',function($query){

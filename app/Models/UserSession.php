@@ -29,7 +29,8 @@ class UserSession extends Model
         'gender',
         'voice_recording_enabled',
         'created_at',
-        'updated_at'
+        'updated_at',
+        'is_complete'
     ];
     protected $casts = [
         'session_start' => 'datetime',
