@@ -86,12 +86,26 @@ class SessionController extends Controller
                 ]);
                  $freshSession = false;
             }
-            $photo1 = !empty($userSession) ? $userSession->image_1 : '';
-            $photo2 =  !empty($userSession) ? $userSession->image_2 : '';
+            // dd($userSession);
+            $photo1 = !empty($userSession) ? asset('storage/'.$userSession->image_1) : '';
+            $photo2 =  !empty($userSession) ? asset('storage/'.$userSession->image_2) : '';
             $gender = !empty($userSession) ? $userSession->gender : '';
             $recording_url = !empty($userSession) ? $userSession->recording_url : '';
             $type = !empty($userSession) ? $userSession->type : '';
             $is_complete = !empty($userSession) ? $userSession->is_complete : '';
+
+        //    $data =  [
+        //     'user_id' => $user_id,
+        //     'session_id' => $session->id ?? $session_id,
+        //     'photo1' => $photo1,
+        //     'photo2' => $photo2,
+        //     'gender' => $gender,
+        //     'recording_url' => $recording_url,
+        //     'type' => $type,
+        //     'is_complete' => $is_complete,
+        //     'freshSession' => $freshSession 
+        //     ];
+        //     dd($data);
         return view('session.start-session', [
             'user_id' => $user_id,
             'session_id' => $session->id ?? $session_id,

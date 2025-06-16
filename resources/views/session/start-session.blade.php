@@ -35,10 +35,41 @@
     right: 33px;
     font-size: 14px;
 }
-
         #nsh-canvas {
             height: 100vh !important;
         }
+
+        .end-session-buttons {
+    display: flex;
+    justify-content: flex-end; /* aligns buttons to the right */
+    gap: 10px;
+    margin-top: 15px;
+    /* position: relative;
+    bottom: -6px;
+    right: 33px; */
+}
+
+.btn-session {
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 600;
+    color: #fff;
+    transition: background-color 0.3s;
+}
+
+.btn-session.end {
+    background-color: #e74c3c;
+}
+
+.btn-session.resume {
+    background-color: #2ecc71;
+}
+
+.btn-session:hover {
+    opacity: 0.85;
+}
+
     </style>
     </head>
 
@@ -96,9 +127,20 @@
                         
                         window.renderWidget(options)
     </script>
-        <div class="end_session"><a href="{{route('end.session',['user_id'=>$user_id,'session_id'=>$session_id,'is_complete'=>true])}}">End Session</a></div>
+        <!-- <div class="end_session"><a href="{{route('end.session',['user_id'=>$user_id,'session_id'=>$session_id,'is_complete'=>true])}}">End Session</a></div>
 
-    <div class="end_session"><a href="{{route('end.session',['user_id'=>$user_id,'session_id'=>$session_id, 'is_complete'=>false])}}">Resume Session</a></div>
+    <div class="end_session"><a href="{{route('end.session',['user_id'=>$user_id,'session_id'=>$session_id, 'is_complete'=>false])}}">Resume Session</a></div> -->
+
+    <div class="end-session-buttons">
+    <a href="{{ route('end.session', ['user_id' => $user_id, 'session_id' => $session_id, 'is_complete' => false]) }}" class="btn-session resume">
+        Pause Session
+    </a>
+    <a href="{{ route('end.session', ['user_id' => $user_id, 'session_id' => $session_id, 'is_complete' => true]) }}" class="btn-session end">
+        End Session
+    </a>
+    
+</div>
+
 </body>
 
 </html>
