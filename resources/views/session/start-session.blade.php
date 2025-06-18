@@ -133,7 +133,7 @@
 
     <div class="end-session-buttons">
     <a href="{{ route('end.session', ['user_id' => $user_id, 'session_id' => $session_id, 'is_complete' => false]) }}" class="btn-session resume">
-        Pause Session
+        Save Session
     </a>
     <a href="{{ route('end.session', ['user_id' => $user_id, 'session_id' => $session_id, 'is_complete' => true]) }}" class="btn-session end">
         End Session

@@ -54,7 +54,11 @@
                         <p style="color: #000000;font-size: 12px;">Hi  {{ucfirst($user->first_name) ?? 'Practitioner'}},</p>    
                         <!-- <h2 style="color: #000000; margin-top: 0;font-size: 14px;">Get Started with Your Practitioner Account</h2> -->
                             <p style="color: #000000; line-height: 1.6; font-size: 12px; margin: 15px 0;">
-                            You’ve been added to the Noosphere Healing Chamber as a {{ $user->type_id == 2 ? 'Practitioner' : 'Client' }}
+                            You've been added to the Noosphere Healing Chamber as a {{ 
+    $user->type_id == 2 ? 'Practitioner' : 
+    ($user->type_id == 4 ? 'Project Noosphere Premium Member' : 
+    ($user->type_id == 3 ? 'Admin' : 'Client'))
+}}
                             </p>
                             <p style="color: #000000; line-height: 1.6; font-size: 12px; margin: 15px 0;">
                                 Here are your login details:
@@ -65,7 +69,7 @@
                                 <li style="margin-bottom:8px;">Temporary Password: <span style="color:#18b69b;">{{ $password ?? '' }}</span></li>
 
                                 <li style="margin-bottom:8px;">
-                                    Please update your password here: <span style="color:#18b69b;">{{ $resetPasswordLink ?? ''}}<span>
+                                    Please update your password here: <a href="{{ $resetPasswordLink ?? ''}}" style="color:#18b69b;">{{ $resetPasswordLink ?? ''}}</a>
                                 </li>
 
                             </ul>  

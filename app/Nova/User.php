@@ -111,7 +111,7 @@ class User extends Resource
                     ->onlyOnForms()
                     ->dependsOn(['type_id'], function ($field, $value, $formData) {
                         // Access 'type_id' directly from the formData, not from $value
-                        if (isset($formData['type_id']) && in_array($formData['type_id'] ,[3, 4])) {
+                        if (isset($formData['type_id']) && in_array($formData['type_id'] ,[3])) {
                             $field->hide();
                             $field->creationRules([]); // Remove required
                         } else {
@@ -126,7 +126,7 @@ class User extends Resource
                     ->onlyOnForms()
                     ->dependsOn(['type_id'], function ($field, $value, $formData) {
                         // Access 'type_id' directly from the formData, not from $value
-                        if (isset($formData['type_id']) && in_array($formData['type_id'] ,[2, 3, 4])) {
+                        if (isset($formData['type_id']) && in_array($formData['type_id'] ,[2, 3])) {
                             $field->hide();
                             $field->creationRules([]); // Remove required
                         } else {
@@ -141,7 +141,7 @@ class User extends Resource
                     ->onlyOnForms()
                     ->dependsOn(['type_id'], function ($field, $value, $formData) {
                         // Access 'type_id' directly from the formData, not from $value
-                        if (isset($formData['type_id']) && in_array($formData['type_id'] ,[3, 4])) {
+                        if (isset($formData['type_id']) && in_array($formData['type_id'] ,[3])) {
                             $field->hide();
                             $field->creationRules([]); // Remove required
                         } else {
@@ -406,7 +406,7 @@ class User extends Resource
                     ->displayUsingLabels()
                     ->onlyOnForms()
                     ->dependsOn(['type_id'], function ($field, $value, $formData) {
-                        if (isset($formData['type_id']) && in_array($formData['type_id'] ,[3, 4])) {
+                        if (isset($formData['type_id']) && in_array($formData['type_id'] ,[3])) {
                             $field->hide();
                             $field->creationRules([]);
                             $field->updateRules([]);
