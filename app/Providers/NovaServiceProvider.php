@@ -59,7 +59,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                  // 3. Add custom Resources section
                     $menuItems[] = MenuSection::make('Resources', [
 
-                        MenuItem::link('client', '/resources/users'),
+                        MenuItem::link('Clients', '/resources/users'),
                     ])->icon('folder')->collapsable();
 
             }

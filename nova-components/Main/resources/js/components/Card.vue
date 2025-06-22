@@ -15,13 +15,16 @@
         </div>
         <div class="main-content-box">
           <h2>
-            Welcome to the Noosphere Healing Chamber, a virtual energetic environment created to support your personal healing journey. This innovative space uses the sacred geometry of the star tetrahedron to generate focused energetic effects aligned with your healing intentions.          
-          </h2>
+            Welcome to the Noosphere Healing Chamber</h2>
+           <p> A virtual energetic environment created to support your personal healing journey. This innovative space uses the sacred geometry of the star tetrahedron to generate focused energetic effects aligned with your healing intentions.</p>
+          
           <p>
             As a Project Noosphere Premium Member, you can upload your own photo, voice recording, and microscopic blood imagery, these serve as energetic inputs that help personalize your sessions. Inspired by the teachings of Lynne McTaggart and Nassim Haramein, the chamber applies principles similar to Vacuum Engineering and works in harmony with Collective Consciousness to enhance the power of intentional healing on a virtual scale.
+
           </p>
           <p>
-            From your dashboard, you can easily begin new sessions, review past experiences, and track your energetic healing journey over time.          </p>
+            From your dashboard, you can easily begin new sessions, review past experiences, and track your energetic healing journey over time.
+</p>
         </div>
       </div>
     </div>
@@ -41,7 +44,7 @@
 
           </div>
           <div class="main-content-box">
-              <h2>WELCOME TO THE NOOSPHERE HEALING CHAMBER 1</h2>
+              <h2>WELCOME TO THE NOOSPHERE HEALING CHAMBER</h2>
               <p>A virtual energetic space designed for wellness coaches to facilitate intentional healing. This experimental tool utilizes the sacred geometry of the star tetrahedron to generate targeted energetic effects aligned with focused intention.</p>
 
               <p>Within the chamber, coaches can upload client images, voice recordings, and microscopic blood visuals, serving as energetic inputs for each personalized session. Drawing inspiration from the teachings of Lynne McTaggart and Nassim Haramein, the chamber integrates concepts similar to Vacuum Engineering on a virtual scale, working in harmony with Collective Consciousness to amplify the power of intentional healing.</p>

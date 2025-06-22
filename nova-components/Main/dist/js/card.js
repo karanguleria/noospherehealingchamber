@@ -21,7 +21,7 @@ __webpack_require__.r(__webpack_exports__);
   // 'resourceName',
   ],
   mounted: function mounted() {
-    //
+    console.log('Card Prop:', this.card); // Debug prop
   }
 });
 
@@ -40,13 +40,49 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "vue");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 
+var _hoisted_1 = {
+  key: 0,
+  "class": "wrapper main-wrapper"
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Card = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Card", true);
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Card, {
     "class": "flex flex-col items-center justify-center"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("-main Page-"), _cache[0] || (_cache[0] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+      return [$props.card.type_id === 4 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, _cache[0] || (_cache[0] = [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+        "class": "logo-box"
+      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+        href: "#"
+      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+        src: "/img/Quantum-evaluation-logo.png",
+        alt: "logo"
+      })])], -1 /* HOISTED */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+        "class": "main-inner"
+      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+        "class": "main-video-box"
+      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+        style: {
+          "padding": "56.25% 0 0 0",
+          "position": "relative"
+        }
+      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("iframe", {
+        src: "https://player.vimeo.com/video/919292409?h=1fe1f295ad&badge=0&autopause=0&player_id=0&app_id=58479",
+        frameborder: "0",
+        allow: "autoplay; fullscreen; picture-in-picture",
+        style: {
+          "position": "absolute",
+          "top": "0",
+          "left": "0",
+          "width": "100%",
+          "height": "100%"
+        },
+        title: "Nosphere Healing Demo - Exponential Healthcare"
+      })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+        "class": "main-content-box"
+      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", null, " Welcome to the Noosphere Healing Chamber"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, " A virtual energetic environment created to support your personal healing journey. This innovative space uses the sacred geometry of the star tetrahedron to generate focused energetic effects aligned with your healing intentions."), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, " As a Project Noosphere Premium Member, you can upload your own photo, voice recording, and microscopic blood imagery, these serve as energetic inputs that help personalize your sessions. Inspired by the teachings of Lynne McTaggart and Nassim Haramein, the chamber applies principles similar to Vacuum Engineering and works in harmony with Collective Consciousness to enhance the power of intentional healing on a virtual scale. "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, " From your dashboard, you can easily begin new sessions, review past experiences, and track your energetic healing journey over time. ")])], -1 /* HOISTED */)]))) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+        key: 1
+      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("-main Page-"), _cache[1] || (_cache[1] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
         "class": "wrapper main-wrapper"
       }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
         "class": "logo-box"
@@ -78,7 +114,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         title: "Nosphere Healing Demo - Exponential Healthcare"
       })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
         "class": "main-content-box"
-      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", null, "WELCOME TO THE NOOSPHERE HEALING CHAMBER"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "A virtual energetic space designed for wellness coaches to facilitate intentional healing. This experimental tool utilizes the sacred geometry of the star tetrahedron to generate targeted energetic effects aligned with focused intention."), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Within the chamber, coaches can upload client images, voice recordings, and microscopic blood visuals, serving as energetic inputs for each personalized session. Drawing inspiration from the teachings of Lynne McTaggart and Nassim Haramein, the chamber integrates concepts similar to Vacuum Engineering on a virtual scale, working in harmony with Collective Consciousness to amplify the power of intentional healing."), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "From this dashboard, you can easily add new clients, initiate healing sessions, record personalized session notes, and access each client's complete energetic history every time you return."), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Watch the video tutorial to learn how to navigate and use the platform effectively.")])])], -1 /* HOISTED */))];
+      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", null, "WELCOME TO THE NOOSPHERE HEALING CHAMBER"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "A virtual energetic space designed for wellness coaches to facilitate intentional healing. This experimental tool utilizes the sacred geometry of the star tetrahedron to generate targeted energetic effects aligned with focused intention."), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Within the chamber, coaches can upload client images, voice recordings, and microscopic blood visuals, serving as energetic inputs for each personalized session. Drawing inspiration from the teachings of Lynne McTaggart and Nassim Haramein, the chamber integrates concepts similar to Vacuum Engineering on a virtual scale, working in harmony with Collective Consciousness to amplify the power of intentional healing."), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "From this dashboard, you can easily add new clients, initiate healing sessions, record personalized session notes, and access each client's complete energetic history every time you return."), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Watch the video tutorial to learn how to navigate and use the platform effectively.")])])], -1 /* HOISTED */))], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))];
     }),
     _: 1 /* STABLE */
   });
@@ -154,7 +190,8 @@ __webpack_require__.r(__webpack_exports__);
 ;
 const __exports__ = /*#__PURE__*/(0,_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_Card_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_Card_vue_vue_type_template_id_b9bc2c0a__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/Card.vue"]])
 /* hot reload */
-if (false) {}
+if (false) // removed by dead control flow
+{}
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__exports__);

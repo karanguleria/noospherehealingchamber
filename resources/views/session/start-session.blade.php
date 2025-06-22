@@ -70,6 +70,12 @@
     opacity: 0.85;
 }
 
+.end-session-buttons{
+    position: fixed;
+    bottom:20px;
+    right:20px;
+}
+
     </style>
     </head>
 
