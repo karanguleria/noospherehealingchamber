@@ -40,7 +40,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
 
                 // MenuItem::link('Start Quiz', '../../questions'),
                 MenuItem::externalLink('Start New Session', url('start-session/'.$request->user()->id)),
-                MenuItem::link('Resume Session', 'resources/user-sessions'),
+                MenuItem::link('Resume Sessions', 'resources/user-sessions'),
                 MenuItem::link('History', 'resources/end-sessions'),
 
 

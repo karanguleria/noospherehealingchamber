@@ -112,17 +112,23 @@ class UserSession extends Resource
                 ]),
 
                 Text::make('Resume Session', function () {
+                  
+                    if (auth()->check() && count(auth()->user()->usersession)) {
+                        foreach(auth()->user()->usersession as $userSession){
+                            if($userSession->is_complete == 0){
+                                return '<a href="' . config('app.url') . '/start-session/' . auth()->user()->id . '/' . $this->id . '" 
+                                    class="shrink-0 h-9 px-4 focus:outline-none ring-primary-200 dark:ring-gray-600 focus:ring text-white dark:text-gray-800 
+                                    inline-flex items-center font-bold shadow rounded bg-primary-500 hover:bg-primary-400 active:bg-primary-600 text-sm" 
+                                    target="_blank">
+                                    Resume Session
+                                </a>';
+                            }
+                        }
+                        
+                    }
 
-                    return '<a href="' . config('app.url') . '/start-session/'.auth()->user()->id.'/' . $this->id . '" 
-                                class="shrink-0 h-9 px-4 focus:outline-none ring-primary-200 dark:ring-gray-600 focus:ring text-white dark:text-gray-800 
-                                inline-flex items-center font-bold shadow rounded focus:outline-none ring-primary-200 dark:ring-gray-600 focus:ring 
-                                bg-primary-500 hover:bg-primary-400 active:bg-primary-600 text-white dark:text-gray-800 inline-flex items-center 
-                                font-bold px-4 h-9 text-sm shrink-0 h-9 px-4 focus:outline-none ring-primary-200 dark:ring-gray-600 focus:ring 
-                                text-white dark:text-gray-800 inline-flex items-center font-bold" 
-                                target="_blank">
-                                Resume Session
-                            </a>';
-                })->asHtml(),
+                    return ''; // Show nothing for other user types
+                })->asHtml()->onlyOnIndex(),
             /*FieldsBelongsTo::make('Practitioner', 'practitioner', \App\Nova\User::class)->hideWhenCreating()->sortable()->readonly(),
             */ 
             ];
@@ -179,8 +185,10 @@ class UserSession extends Resource
 
     public static function authorizedToCreate(Request $request)
     {
-        return true; // Disables the "Create Session" button
+        // return !auth()->check() || !auth()->user()->is_premium_member();
+        return false;
     }
+
 
     public function authorizedToDelete(Request $request)
     {
@@ -198,22 +206,30 @@ class UserSession extends Resource
     public function title()
     {
          
-        return $this->user ? $this->user->name : 'Client Session';
+        return $this->user ? $this->user->name : 'Session';
     }
 
     public static function resourceTitle(NovaRequest $request, $resource)
     {
-        return 'Update Client Session: ' . $resource->user->name;
+        // return 'Update Session Details: ' . $resource->user->name;
+        return 'Update Session Details:';
     }
 
     public static function label()
     {
-        return 'Client Sessions';
+        return 'Sessions';
     }
 
     public static function singularLabel()
     {
-        return 'Client Session';
+        $request = app(NovaRequest::class);
+
+        if ($request->route('resourceId')) {
+            return 'Session Notes';
+        }else{
+        
+            return 'Session';
+        }
     }
 
     
@@ -230,4 +246,11 @@ class UserSession extends Resource
             });
         }
     }
+
+        
+    public static function emptyResourceMessage(NovaRequest $request)
+    {
+        return 'No Sessions Available';
+    }
+
 }

@@ -164,7 +164,7 @@ class EndSession extends Resource
 
     public static function authorizedToCreate(Request $request)
     {
-        return true; // Disables the "Create Session" button
+        return false; // Disables the "Create Session" button
     }
 
     public function authorizedToDelete(Request $request)
@@ -183,23 +183,34 @@ class EndSession extends Resource
     public function title()
     {
          
-        return $this->user ? $this->user->name : 'Client Session';
+        return $this->user ? $this->user->name : 'Session';
     }
 
     public static function resourceTitle(NovaRequest $request, $resource)
     {
-        return 'Update Client Session: ' . $resource->user->name;
+        return 'Update Session Details:';
+        // return 'Update Session Details: ' . $resource->user->name;
     }
 
     public static function label()
     {
-        return 'Client Sessions';
+        return 'All Sessions';
     }
 
     public static function singularLabel()
     {
-        return 'Client Session';
+        $request = app(NovaRequest::class);
+
+        if ($request->route('resourceId')) {
+            return 'Session Notes';
+        }else{
+        
+            return 'Session';
+        }
+
+       
     }
+
 
     
     public static function indexQuery(NovaRequest $request, $query)

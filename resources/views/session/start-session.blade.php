@@ -71,9 +71,9 @@
 }
 
 .end-session-buttons{
-    position: fixed;
-    bottom:20px;
-    right:20px;
+        position: fixed;
+    bottom: 2px;
+    right: 15px;
 }
 
     </style>
@@ -100,18 +100,23 @@
                             var options = {
                                 containerId: containerId,
                                 session: {
-                                    gender: gender,
-                                    flowStep: type,
+                                    intro: false,
+                                    gender: "male",
+                                    flowStep: "finalShow",
+                                    showHumanModel: true,
                                     sessionId: sessionId,
                                     userId: userId,
-                                    uploadAudio: false,
+                                    uploadAudio: true,
                                     showSidebar: true,
                                     showControls: true,
                                     showSessionLoader: false,
-                                    sessionStarted: false,
+                                    sessionStarted: true, // Save to database and start session.
                                     voiceUrl:recording_url,
                                     photo1: photo1,
                                     photo2: photo2,
+                                    healingType:"physical",
+                                    showHealingFloor: true,
+                                    
                                 },
                                 baseUrl: baseUrl,
                                 apiUrl: apiUrl,
