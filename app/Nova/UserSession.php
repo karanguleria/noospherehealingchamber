@@ -225,7 +225,7 @@ class UserSession extends Resource
         $request = app(NovaRequest::class);
 
         if ($request->route('resourceId')) {
-            return 'Session Notes';
+            return 'Session Details';
         }else{
         
             return 'Session';

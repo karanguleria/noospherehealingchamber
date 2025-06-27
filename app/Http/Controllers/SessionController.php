@@ -74,7 +74,7 @@ class SessionController extends Controller
         $userSession = '';
         $user = User::find($user_id);
             if($session_id){
-                $freshSession = false;
+                $freshSession = true;
                 $userSession = UserSession::find($session_id);
             }else{
                 // Create a new session
@@ -87,10 +87,10 @@ class SessionController extends Controller
                  $freshSession = false;
             }
             // dd($userSession);
-            $photo1 = !empty($userSession) ? asset('storage/'.$userSession->image_1) : '';
-            $photo2 =  !empty($userSession) ? asset('storage/'.$userSession->image_2) : '';
+            $photo1 = (!empty($userSession) && !empty($userSession->image_1)) ? asset('storage/'.$userSession->image_1) : asset('img/noimage.png');
+            $photo2 =  (!empty($userSession) && !empty($userSession->image_2)) ? asset('storage/'.$userSession->image_2) : asset('img/noimage.png');
             $gender = !empty($userSession) ? $userSession->gender : '';
-            $recording_url = !empty($userSession) ? $userSession->recording_url : '';
+            $recording_url = (!empty($userSession) && !empty($userSession->recording_url)) ? $userSession->recording_url : asset('img/nomusic.png');
             $type = !empty($userSession) ? $userSession->type : '';
             $is_complete = !empty($userSession) ? $userSession->is_complete : '';
 
