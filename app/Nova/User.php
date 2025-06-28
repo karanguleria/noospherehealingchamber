@@ -1135,6 +1135,14 @@ class User extends Resource
     {
         return $this->name;
     }
+
+    /**
+     * Remove Replicate button
+     */
+    public function authorizedToReplicate(Request $request)
+    {
+        return false;
+    }
     public static function label()
     {
         $user = Auth::user();
