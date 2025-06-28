@@ -81,7 +81,7 @@
 
 <body>
     <div id="widget-container"></div>
-    <script src="{{ asset('chamber.js')}}"></script>
+    <script src="{{ asset('chamber_v1.js')}}"></script>
     <script>               
 // More actions
 
@@ -90,11 +90,11 @@
                         var photo1 = "{{$photo1 ?? ''}}";
                         var photo2 = "{{$photo2 ?? '' }}";
                         var gender = "{{$gender ?? '' }}";
-                        var recording_url =" {{$recording_url ?? '' }}";
-                        var uploadAudio = false;
-                        if(recording_url){
+                        var recording_url = "{{$recording_url ?? null }}";
+                        // var uploadAudio = false;
+                        // if(recording_url){
                             uploadAudio = true;
-                        }
+                        // }
                         var healingType = "{{$type ?? ''}}";
                         var freshSession = "{{$freshSession}}";
                         var showControls = true;
@@ -126,25 +126,14 @@
                                 baseUrl: baseUrl,
                                 apiUrl: apiUrl,
                             };
-
                         }else{
-
-
-
                             var options = {
-
                                 containerId: containerId,
-
                                 session: {
-
                                     sessionId: sessionId,
-
                                     userId: userId,
-
                                     // photo1: "https://noospherehealingchamber.exponentialhealthcare.com/storage/uploads/HLIgBXUx4VAycmrRrmCCTZ1bsXR4Kzb4rRebWlc2.jpg",
-
                                     // photo2:  "https://noospherehealingchamber.exponentialhealthcare.com/storage/uploads/8GKctIzKIleO8BMksgGlUQUZ3AMyURLJ5RzS4MB7.jpg",
-
                                 },
 
                                 baseUrl: baseUrl,

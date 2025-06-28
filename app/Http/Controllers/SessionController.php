@@ -87,10 +87,10 @@ class SessionController extends Controller
                  $freshSession = false;
             }
             // dd($userSession);
-            $photo1 = (!empty($userSession) && !empty($userSession->image_1)) ? asset('storage/'.$userSession->image_1) : asset('img/noimage.png');
-            $photo2 =  (!empty($userSession) && !empty($userSession->image_2)) ? asset('storage/'.$userSession->image_2) : asset('img/noimage.png');
+            $photo1 = (!empty($userSession) && !empty($userSession->image_1)) ? asset('storage/'.$userSession->image_1) : null;
+            $photo2 =  (!empty($userSession) && !empty($userSession->image_2)) ? asset('storage/'.$userSession->image_2) : null;
             $gender = !empty($userSession) ? $userSession->gender : '';
-            $recording_url = (!empty($userSession) && !empty($userSession->recording_url)) ? $userSession->recording_url : asset('img/nomusic.png');
+            $recording_url = (!empty($userSession) && !empty($userSession->recording_url)) ? $userSession->recording_url : null;
             $type = !empty($userSession) ? $userSession->type : '';
             $is_complete = !empty($userSession) ? $userSession->is_complete : '';
 

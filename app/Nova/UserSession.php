@@ -113,19 +113,19 @@ class UserSession extends Resource
 
                 Text::make('Resume Session', function () {
                   
-                    if (auth()->check() && count(auth()->user()->usersession)) {
-                        foreach(auth()->user()->usersession as $userSession){
-                            if($userSession->is_complete == 0){
+                    // if (auth()->check() && count(auth()->user()->usersession)) {
+                    //     foreach(auth()->user()->usersession as $userSession){
+                            // if($userSession->is_complete == 0){
                                 return '<a href="' . config('app.url') . '/start-session/' . auth()->user()->id . '/' . $this->id . '" 
                                     class="shrink-0 h-9 px-4 focus:outline-none ring-primary-200 dark:ring-gray-600 focus:ring text-white dark:text-gray-800 
                                     inline-flex items-center font-bold shadow rounded bg-primary-500 hover:bg-primary-400 active:bg-primary-600 text-sm" 
                                     target="_blank">
                                     Resume Session
                                 </a>';
-                            }
-                        }
+                            // }
+                        // }
                         
-                    }
+                    // }
 
                     return ''; // Show nothing for other user types
                 })->asHtml()->onlyOnIndex(),

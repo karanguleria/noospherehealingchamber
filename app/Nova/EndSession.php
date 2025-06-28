@@ -200,7 +200,7 @@ class EndSession extends Resource
     public static function singularLabel()
     {
         $request = app(NovaRequest::class);
-
+        // dd($request->route());
         if ($request->route('resourceId')) {
             return 'Session Notes';
         }else{
