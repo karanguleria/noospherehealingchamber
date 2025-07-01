@@ -2,8 +2,8 @@
   <Card class="flex flex-col items-center justify-center">
 
       <div v-if="card.type_id === 4" class="wrapper main-wrapper">
-      <div class="logo-box">
-        <a href="#"><img src="/img/Quantum-evaluation-logo.png" alt="logo" /></a>
+      <div class="logo-box" style="padding-top:100px">
+        <a href="#"></a>
       </div>
       <div class="main-inner">
         <div class="main-video-box">

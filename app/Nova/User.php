@@ -104,7 +104,7 @@ class User extends Resource
                 //HasMany::make('Answers'),
                 //HasMany::make('Invitations'),
                 //HasMany::make('Users'),
-                HasMany::make('Client Session', 'userSession', \App\Nova\UserSession::class),
+                HasMany::make('Client Session History', 'userSession', \App\Nova\UserSession::class),
                 //BelongsTo::make('Practitioner','practitioner' ,User::class),
                 
                 Text::make('Company Name')
@@ -467,7 +467,7 @@ class User extends Resource
                 //HasMany::make('Answers'),
                 //HasMany::make('Invitations'),
                 //HasMany::make('Users'),
-                HasMany::make('Client Session', 'userSession', \App\Nova\UserSession::class),
+                HasMany::make('Client Session History', 'userSession', \App\Nova\UserSession::class),
                 //BelongsTo::make('Practitioner','practitioner' ,User::class),
                 BelongsTo::make('Practitioner', 'practitioner', User::class)
                 ->hideWhenCreating()
