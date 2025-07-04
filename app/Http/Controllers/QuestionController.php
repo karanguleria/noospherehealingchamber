@@ -19,47 +19,56 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http; 
 use App\Jobs\SaveResult;
 
+/**
+ * QuestionController handles the questionnaire system for the Noosphere Healing platform.
+ * 
+ * This controller manages the flow of the healing assessment questionnaire,
+ * processes responses, generates results, and handles various result display formats
+ * including PDFs and downloadable reports.
+ */
 class QuestionController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display the main questionnaire interface with all questions organized by elements.
+     *
+     * This method retrieves all active questions and elements, organizes the questions
+     * by element and body part, sorts them in a specific order (Fire, Earth, Metal, Water, Wood),
+     * and prepares the data structure for the question view.
+     *
+     * @return \Illuminate\View\View The view with organized questions and elements
      */
     public function index(): View
     {
         Cache::put('password_authenticated', 'value', 0);
         $questions = Question::where('state', '1')->get();
-        
         $elements = Element::where('state', '1')->get();
         
         $elements_arr = [];
-         foreach($elements as $key => $element){
+        foreach($elements as $key => $element) {
             $elements_arr[$element->title]['name'] = $element->title;
             $elements_arr[$element->title]['seasone'] = $element->seasone;
             $elements_arr[$element->title]['description'] = $element->description;
             $elements_arr[$element->title]['image'] = $element->image;
-
-         }
+        }
+        
         $question_arr = [];
 
-        foreach($questions as $key => $val){
-            $type =  "Physical";
-            if($val->type == 1){
-                $type = "Physical";
-            }else{
-                $type ="Mental";
+        foreach($questions as $key => $val) {
+            $type = ($val->type == 1) ? "Physical" : "Mental";
+            
+            // Create sorted key prefixes for the elements
+            if($val->element->title == "Fire") {
+                $key_arr = "0_Fire";
+            } else if($val->element->title == "Metal") {
+                $key_arr = "2_Metal";
+            } else if($val->element->title == "Earth") {
+                $key_arr = "1_Earth";
+            } else if($val->element->title == "Water") {
+                $key_arr = "3_Water";
+            } else if($val->element->title == "Wood") {
+                $key_arr = "4_Wood";
             }
-            // Changed the key to sort the array
-            if($val->element->title == "Fire"){
-                $key_arr = "0_Fire" ;
-            }else if($val->element->title == "Metal"){
-                $key_arr = "2_Metal" ;
-            }else if($val->element->title == "Earth"){
-                $key_arr = "1_Earth" ;
-            }else if($val->element->title == "Water"){
-                $key_arr = "3_Water" ;
-            }else if($val->element->title == "Wood"){
-                $key_arr = "4_Wood" ;
-            }
+            
             $question_arr[$key_arr][$val->bodypart->title]['image'] = $val->bodypart->image;
             $question_arr[$key_arr][$val->bodypart->title][$type][$key]['question'] = $val->title;
             $question_arr[$key_arr][$val->bodypart->title][$type][$key]['id'] = $val->id;
@@ -67,18 +76,27 @@ class QuestionController extends Controller
             $question_arr[$key_arr][$val->bodypart->title][$type][$key]['option_b'] = $val->option_b;
             $question_arr[$key_arr][$val->bodypart->title][$type][$key]['option_c'] = $val->option_c;
         }
-        // ksort done for sorting
-        ksort($question_arr) ; 
+        
+        // Sort by the numeric prefix
+        ksort($question_arr);
 
-        // loop to reset the keys back
-        foreach($question_arr as $key => $val ){
+        // Remove the numeric prefixes from the keys
+        $question_arr_sorted = [];
+        foreach($question_arr as $key => $val) {
             $key_data = explode("_",$key);    
             $question_arr_sorted[$key_data[1]] = $val;
         }
 
-        return view('question', ['questions' => $question_arr_sorted,'elements_arr'=>$elements_arr]);
+        return view('question', ['questions' => $question_arr_sorted, 'elements_arr' => $elements_arr]);
     }
     
+    /**
+     * Display a list of results for the authenticated user.
+     *
+     * Retrieves all assessment results associated with the currently logged-in user.
+     *
+     * @return \Illuminate\View\View The view with user's results
+     */
     public function result(): View
     {
         $results = Result::where('user_id', auth()->user()->id)->get();
@@ -87,25 +105,46 @@ class QuestionController extends Controller
     }  
 
     /**
-     * Display the specified resource.
+     * Display detailed results for a specific assessment.
+     *
+     * This method retrieves a specific result and its associated answers,
+     * then organizes the answers by element and body part to display
+     * in the detailed result view.
+     *
+     * @param string $id The ID of the result to display
+     * @return \Illuminate\View\View The view with organized result data
      */
     public function resultShow(string $id)
     {
         $result = Result::where('id', $id)->first();
         $answers = Answer::where('result_id', $id)->get();
-    
-        foreach($answers as $answer){
-            $elements[$answer->element][$answer->bodypart]['type'][] = (@$answer->type == "Total") ? "" : $answer->type ; 
+        
+        $elements = [];
+        foreach($answers as $answer) {
+            $elements[$answer->element][$answer->bodypart]['type'][] = ($answer->type == "Total") ? "" : $answer->type; 
             $elements[$answer->element][$answer->bodypart]['excess'][] = $answer->excess;
             $elements[$answer->element][$answer->bodypart]['balance'][] = $answer->balance;
             $elements[$answer->element][$answer->bodypart]['insufficiency'][] = $answer->insufficiency;
         }
 
-        return view('result_detail', ['elements' => $elements, 'result' => $result,'answers' => $answers]);
+        return view('result_detail', [
+            'elements' => $elements, 
+            'result' => $result,
+            'answers' => $answers
+        ]);
     }
+    /**
+     * Display result details for a user-facing view.
+     *
+     * Similar to resultShow but formatted for user viewing rather than
+     * practitioner viewing. Provides a more user-friendly display of
+     * the assessment results.
+     *
+     * @param string $id The ID of the result to display
+     * @return \Illuminate\View\View The view with user-oriented result data
+     */
     public function resultShowUser(string $id)
     {
-
         $result = Result::where('id', $id)->first();
         $answers = Answer::where('result_id', $id)->get();
         $elements = [];
@@ -212,12 +251,21 @@ class QuestionController extends Controller
                 $elements[$answer->element][$answer->bodypart]['balance'][] = $answer->balance;
                 $elements[$answer->element][$answer->bodypart]['insufficiency'][] = $answer->insufficiency;
             }
-        return view('result_detail_user', ['elements' => $elements, 'result' => $result,'answers' => $answers]);
+            
+            return view('result_detail_user', ['elements' => $elements, 'result' => $result, 'answers' => $answers]);
     }
     
     /**
-      *  New page for the result thnkyou for user only
-    */
+     * Display a thank you page with assessment results for users.
+     *
+     * This method retrieves a specific result and its associated answers,
+     * organizes data by element and body part, ensures all necessary values
+     * are present (defaulting to 0 when missing), and prepares custom messages
+     * for each element to display in the user-facing thank you page.
+     *
+     * @param string $id The ID of the completed result
+     * @return \Illuminate\View\View The thank you page with organized result data
+     */
     public function resultThankyou(string $id)
     {
         $result = Result::where('id', $id)->first();
@@ -320,7 +368,13 @@ class QuestionController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Generate and download a PDF report of assessment results.
+     *
+     * This method creates a detailed PDF document containing all assessment
+     * results, organized by element and body part, for downloading.
+     *
+     * @param string $id The ID of the result to download
+     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse The PDF download response
      */
     public function download(string $id)
     {
@@ -408,7 +462,13 @@ class QuestionController extends Controller
     }
 
      /**
-     * Display the specified resource.
+     * Display multiple-choice question answers for a specific assessment.
+     *
+     * Shows all the multiple-choice answers provided by a user during
+     * their assessment, organized by element and body part.
+     *
+     * @param string $id The ID of the result to display MCQ answers for
+     * @return \Illuminate\View\View The view with MCQ answers
      */
     public function mcqAnswers(string $id)
     {
@@ -472,7 +532,13 @@ class QuestionController extends Controller
     }
 
      /**
-     * Display the specified resource.
+     * Generate and download a PDF of multiple-choice question answers.
+     *
+     * Creates a PDF document containing all the multiple-choice answers
+     * from a specific assessment result.
+     *
+     * @param string $id The ID of the result to download MCQ answers for
+     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse The PDF download response
      */
     public function mcqAnswersDownload(string $id)
     {
@@ -496,20 +562,21 @@ class QuestionController extends Controller
             $type =  "Physical";
             if($val->type == 1){
                 $type = "Physical";
-            }else{
-                $type ="Mental";
+            } else {
+                $type = "Mental";
             }
-             // Changed the key to sort the array
-             if($val->element->title == "Fire"){
-                $key_arr = "0_Fire" ;
-            }else if($val->element->title == "Metal"){
-                $key_arr = "2_Metal" ;
-            }else if($val->element->title == "Earth"){
-                $key_arr = "1_Earth" ;
-            }else if($val->element->title == "Water"){
-                $key_arr = "3_Water" ;
-            }else if($val->element->title == "Wood"){
-                $key_arr = "4_Wood" ;
+             
+            // Create sorted element keys with numeric prefixes for proper ordering
+            if($val->element->title == "Fire") {
+                $key_arr = "0_Fire";
+            } else if($val->element->title == "Metal") {
+                $key_arr = "2_Metal";
+            } else if($val->element->title == "Earth") {
+                $key_arr = "1_Earth";
+            } else if($val->element->title == "Water") {
+                $key_arr = "3_Water";
+            } else if($val->element->title == "Wood") {
+                $key_arr = "4_Wood";
             }
             $question_arr[$key_arr][$val->bodypart->title]['image'] = $val->bodypart->image;
             $question_arr[$key_arr][$val->bodypart->title][$type][$key]['question'] = $val->title;
@@ -532,6 +599,16 @@ class QuestionController extends Controller
         return $pdf->download('Nosphere Healing Results Answer.pdf');
     }
     
+    /**
+     * Process submitted assessment data and display thank you page.
+     *
+     * This method processes all the submitted answers from the assessment form,
+     * calculates the results, saves them to the database, and displays a
+     * thank you page to the user.
+     *
+     * @param \Illuminate\Http\Request $request The request containing all assessment answers
+     * @return \Illuminate\View\View The thank you page
+     */
     public function thankyou(Request $request)
     {
         $data = $_POST['radio'];
@@ -657,20 +734,51 @@ class QuestionController extends Controller
 
         return redirect('/result-thankyou/' . $result_insert->id);
     }
+    /**
+     * Display the elements guide information page.
+     *
+     * Provides educational information about the different elements
+     * used in the assessment and their significance.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\View\View The elements guide view
+     */
     public function elementsGuide(Request $request)
     {
         return view('element_guide');
     }
+    /**
+     * Display information about elements related to seasons.
+     *
+     * Shows the relationship between different elements and seasons
+     * in the healing framework.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\View\View The elements seasons view
+     */
     public function elementsSeasons(Request $request)
     {
         return view('elements_seasons');
     }
+    /**
+     * Display the interpretation guide for assessment results.
+     *
+     * Provides guidance on how to interpret the various results
+     * from the assessment.
+     *
+     * @return \Illuminate\View\View The interpretation guide view
+     */
     public function interpret(): View
     {   
         return view('interpret');
     } 
      /**
-     * Display the specified resource.
+     * Display a preview of the downloadable assessment report.
+     *
+     * Shows a preview of what the PDF report will look like before
+     * the user chooses to download it.
+     *
+     * @return \Illuminate\View\View The download preview view
      */
     public function downloadpreview()
     {
@@ -721,7 +829,7 @@ class QuestionController extends Controller
             $bodypart_arr =Bodypart::where('element_id', $element->id)->get();
                 foreach($bodypart_arr as $bodypart_key => $bodypart){
 
-                    // $elements[$element->title." m"][strtoupper($bodypart->title)]['Physical']['excess']="Asd";
+
                     if (!isset($elements[$element->title][strtoupper($bodypart->title)]['Physical']['excess'])) {
                         $elements[$element->title][strtoupper($bodypart->title)]['Physical']['excess']="0";
                     }
