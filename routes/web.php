@@ -27,8 +27,8 @@ Route::get('/', function () {
 Route::get('/send-invitation/{user_id}', [SessionController::class, 'sendInvitation'])->name('send.invitation');
 Route::post('/send-invitation', [SessionController::class, 'sendInvitationEmail'])->name('sendinvitation.email');
 
-Route::get('/start-session/{user_id}',[SessionController::class,'startSession'])->name('start-session');
-Route::get('/end-session/{user_id}/{session_id}', [SessionController::class, 'endSession'])->name('end.session');
+Route::get('/start-session/{user_id}/{session_id?}',[SessionController::class,'startSession'])->name('start-session');
+Route::get('/end-session/{user_id}/{session_id}/{is_complete?}', [SessionController::class, 'endSession'])->name('end.session');
 //Route::post('/update-recording', [SessionController::class, 'updateRecording'])->name('session.recording');
 
 

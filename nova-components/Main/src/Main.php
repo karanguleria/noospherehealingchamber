@@ -3,7 +3,7 @@
 namespace Quant\Main;
 
 use Laravel\Nova\Card;
-
+use Illuminate\Http\Request;
 class Main extends Card
 {
     /**
@@ -21,5 +21,17 @@ class Main extends Card
     public function component()
     {
         return 'main';
+    }
+
+    public function __construct()
+    {
+
+        parent::__construct();
+        $typeId = auth()->user() ? auth()->user()->type_id : null;
+        \Log::info('Main Card type_id: ' . $typeId); // Debug log
+        $this->withMeta([
+            'type_id' => (int) $typeId, // Cast to integer
+        ]);
+        
     }
 }

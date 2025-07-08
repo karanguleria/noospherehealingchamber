@@ -147,6 +147,15 @@ class User extends Authenticatable
         return $this->type_id == 2;
     }
 
+    /**
+     * Check if the user is a Premium Member based on the type_id attribute.
+     *
+     * @return bool
+     */
+    public function is_premium_member()
+    {
+        return $this->type_id == 4;
+    }
 
     public function usersession()
     {
@@ -168,7 +177,7 @@ class User extends Authenticatable
                 $user->plain_password = $plainPassword;
                 
             }
-            if ($user->type_id == 2) {
+            if ($user->type_id == 2 || $user->type_id == 4 ) {
                 $user->is_first_login = 1;
             }
            
