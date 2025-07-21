@@ -48,6 +48,13 @@ class SessionController extends Controller
             $gender = !empty($userSession) ? $userSession->gender : '';
             $recording_url = (!empty($userSession) && !empty($userSession->recording_url)) ? $userSession->recording_url : null;
             $type = !empty($userSession) ? $userSession->type : '';
+            \Illuminate\Support\Facades\Log::info('Session type from DB', ['session_id' => $session_id, 'type' => $type, 'healing_type' => !empty($userSession) ? $userSession->healing_type : '']);
+            
+            // If type is empty but healing_type exists, use healing_type instead
+            if (empty($type) && !empty($userSession) && !empty($userSession->healing_type)) {
+                $type = $userSession->healing_type;
+                \Illuminate\Support\Facades\Log::info('Using healing_type instead of type', ['type' => $type]);
+            }
             $is_complete = !empty($userSession) ? $userSession->is_complete : '';
 
         return view('session.start-session', [

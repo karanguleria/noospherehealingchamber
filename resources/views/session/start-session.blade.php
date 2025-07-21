@@ -96,7 +96,16 @@
                             uploadAudio = true;
                         // }
                         var healingType = "{{$type ?? ''}}";
+                        // Default to 'physical' if healingType is empty
+                        if (!healingType || healingType.trim() === '') {
+                            healingType = 'physical';
+                        }
                         var freshSession = "{{$freshSession}}";
+                        console.log('Session data:', {
+                            healingType: healingType,
+                            freshSession: freshSession,
+                            typeFromServer: "{{$type}}"
+                        });
                         var showControls = true;
                         var showSidebar = false;
                         var baseUrl = "{{ env('APP_URL') }}/"; // Replace with your actual base URL// Replace with your actual base URL
@@ -120,7 +129,7 @@
                                     photo1: photo1,
                                     photo2: photo2,
                                     showHealingFloor: true,
-                                    healingType: "physical",
+                                    healingType: healingType,
                                     showHumanModel: true,
                                 },
                                 baseUrl: baseUrl,
@@ -142,7 +151,9 @@
 
                             };
                         }
-                        console.log(options);
+                        console.log('Final widget options:', options);
+                        // Log specifically the healing type being used
+                        console.log('Final healing type:', options.session && options.session.healingType);
                         window.renderWidget(options)
 
     </script>
