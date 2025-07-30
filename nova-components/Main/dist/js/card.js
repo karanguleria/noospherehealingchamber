@@ -67,7 +67,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           "position": "relative"
         }
       }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("iframe", {
-        src: "https://player.vimeo.com/video/919292409?h=1fe1f295ad&badge=0&autopause=0&player_id=0&app_id=58479",
+        src: "https://player.vimeo.com/video/1104324631?h=43b734ac4b&title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479",
         frameborder: "0",
         allow: "autoplay; fullscreen; picture-in-picture",
         style: {
@@ -190,8 +190,7 @@ __webpack_require__.r(__webpack_exports__);
 ;
 const __exports__ = /*#__PURE__*/(0,_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_Card_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_Card_vue_vue_type_template_id_b9bc2c0a__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/Card.vue"]])
 /* hot reload */
-if (false) // removed by dead control flow
-{}
+if (false) {}
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__exports__);
