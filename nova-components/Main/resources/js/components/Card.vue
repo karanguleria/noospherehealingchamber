@@ -24,6 +24,9 @@
           </p>
           <p>
             From your dashboard, you can easily begin new sessions, review past experiences, and track your energetic healing journey over time.
+</p><br>
+<p>
+    <strong> If you’d like a Quantum University Exponential Health Coach to safely guide you through collecting a Dry Blood Sample for your Healing Session, simply connect with a practitioner from the Quantum University Corporate Wellness Directory: <a target="_blank" href="https://quantumuniversity.world/all-listings/">https://quantumuniversity.world/all-listings/</a></strong>
 </p>
         </div>
       </div>
@@ -38,7 +41,7 @@
       <div class="main-inner"> 
           <div class="main-video-box">
               <div style="padding:56.25% 0 0 0;position:relative;">
-              <iframe src="https://player.vimeo.com/video/919292409?h=1fe1f295ad&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Nosphere Healing Demo - Exponential Healthcare">
+              <iframe src="https://player.vimeo.com/video/1085150424?h=473b0fe485&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Nosphere Healing Demo - Exponential Healthcare">
               </iframe>
             </div>
 
