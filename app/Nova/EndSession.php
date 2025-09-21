@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Nova;
-
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
 use Carbon\Carbon;
@@ -12,9 +10,9 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\BelongsTo as FieldsBelongsTo;
 use Illuminate\Support\Facades\Storage;
 use Laravel\Nova\Fields\Textarea;
-class UserSession extends Resource
+class EndSession extends Resource
 {
-    /**
+     /**
      * The model the resource corresponds to.
      *
      * @var class-string<\App\Models\UserSession>
@@ -110,20 +108,6 @@ class UserSession extends Resource
                 ->withMeta([
                     'placeholder' => 'Add your notes here'
                 ]),
-
-                Text::make('Resume Session', function () {
-                    // Only show the Resume Session button if is_complete is 0
-                    if ($this->is_complete == 0) {
-                        return '<a href="' . config('app.url') . '/start-session/' . auth()->user()->id . '/' . $this->id . '" 
-                            class="shrink-0 h-9 px-4 focus:outline-none ring-primary-200 dark:ring-gray-600 focus:ring text-white dark:text-gray-800 
-                            inline-flex items-center font-bold shadow rounded bg-primary-500 hover:bg-primary-400 active:bg-primary-600 text-sm" 
-                            target="_blank">
-                            Resume Session
-                        </a>';
-                    }
-                    
-                    return ''; // Show nothing if session is complete
-                })->asHtml()->onlyOnIndex(),
             /*FieldsBelongsTo::make('Practitioner', 'practitioner', \App\Nova\User::class)->hideWhenCreating()->sortable()->readonly(),
             */ 
             ];
@@ -180,10 +164,8 @@ class UserSession extends Resource
 
     public static function authorizedToCreate(Request $request)
     {
-        // return !auth()->check() || !auth()->user()->is_premium_member();
-        return false;
+        return false; // Disables the "Create Session" button
     }
-
 
     public function authorizedToDelete(Request $request)
     {
@@ -206,26 +188,29 @@ class UserSession extends Resource
 
     public static function resourceTitle(NovaRequest $request, $resource)
     {
-        // return 'Update Session Details: ' . $resource->user->name;
         return 'Update Session Details:';
+        // return 'Update Session Details: ' . $resource->user->name;
     }
 
     public static function label()
     {
-        return 'Sessions';
+        return 'All Sessions';
     }
 
     public static function singularLabel()
     {
         $request = app(NovaRequest::class);
-
+        // dd($request->route());
         if ($request->route('resourceId')) {
-            return 'Session';
+            return 'Session Notes';
         }else{
         
             return 'Session';
         }
+
+       
     }
+
 
     
     public static function indexQuery(NovaRequest $request, $query)
@@ -233,7 +218,7 @@ class UserSession extends Resource
         if(auth()->user()->is_admin()){
             return $query;
         }else if(auth()->user()->is_premium_member()){
-            return $query->where('user_id',auth()->id())->where('is_complete',0);
+            return $query->where('user_id',auth()->id())->where('is_complete',1);
         }
         else{
             return $query->whereRelation('user',function($query){
@@ -241,11 +226,4 @@ class UserSession extends Resource
             });
         }
     }
-
-        
-    public static function emptyResourceMessage(NovaRequest $request)
-    {
-        return 'No Sessions Available';
-    }
-
 }

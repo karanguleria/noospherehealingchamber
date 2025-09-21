@@ -66,6 +66,7 @@ class User extends Resource
                         1 => 'Client',
                         2 => 'Practitioner',
                         3 => 'Admin',
+                        4 => 'Project Noosphere Premium Member',
                     ])
                     ->displayUsingLabels()
                     ->rules('required')
@@ -89,7 +90,7 @@ class User extends Resource
                     ->onlyOnForms()
                     ->dependsOn(['type_id'], function (Password $field, NovaRequest $request, FormData $formData) {
                         // Hide password field when Type Id is "Client" (value = 1)
-                        if ($formData->type_id == 1 || $formData->type_id == 2) {
+                        if (in_array($formData->type_id, [1, 2, 4])) {
                             $field->hide();
                             $field->creationRules([]); // remove required
                         } else {
@@ -103,14 +104,14 @@ class User extends Resource
                 //HasMany::make('Answers'),
                 //HasMany::make('Invitations'),
                 //HasMany::make('Users'),
-                HasMany::make('Client Session', 'userSession', \App\Nova\UserSession::class),
+                HasMany::make('Client Session History', 'userSession', \App\Nova\UserSession::class),
                 //BelongsTo::make('Practitioner','practitioner' ,User::class),
                 
                 Text::make('Company Name')
                     ->onlyOnForms()
                     ->dependsOn(['type_id'], function ($field, $value, $formData) {
                         // Access 'type_id' directly from the formData, not from $value
-                        if (isset($formData['type_id']) && $formData['type_id'] == 3) {
+                        if (isset($formData['type_id']) && in_array($formData['type_id'] ,[3])) {
                             $field->hide();
                             $field->creationRules([]); // Remove required
                         } else {
@@ -125,7 +126,7 @@ class User extends Resource
                     ->onlyOnForms()
                     ->dependsOn(['type_id'], function ($field, $value, $formData) {
                         // Access 'type_id' directly from the formData, not from $value
-                        if (isset($formData['type_id']) && ($formData['type_id'] == 2 || $formData['type_id'] == 3)) {
+                        if (isset($formData['type_id']) && in_array($formData['type_id'] ,[2, 3])) {
                             $field->hide();
                             $field->creationRules([]); // Remove required
                         } else {
@@ -140,7 +141,7 @@ class User extends Resource
                     ->onlyOnForms()
                     ->dependsOn(['type_id'], function ($field, $value, $formData) {
                         // Access 'type_id' directly from the formData, not from $value
-                        if (isset($formData['type_id']) && $formData['type_id'] == 3) {
+                        if (isset($formData['type_id']) && in_array($formData['type_id'] ,[3])) {
                             $field->hide();
                             $field->creationRules([]); // Remove required
                         } else {
@@ -405,7 +406,7 @@ class User extends Resource
                     ->displayUsingLabels()
                     ->onlyOnForms()
                     ->dependsOn(['type_id'], function ($field, $value, $formData) {
-                        if (isset($formData['type_id']) && $formData['type_id'] == 3) {
+                        if (isset($formData['type_id']) && in_array($formData['type_id'] ,[3])) {
                             $field->hide();
                             $field->creationRules([]);
                             $field->updateRules([]);
@@ -466,7 +467,7 @@ class User extends Resource
                 //HasMany::make('Answers'),
                 //HasMany::make('Invitations'),
                 //HasMany::make('Users'),
-                HasMany::make('Client Session', 'userSession', \App\Nova\UserSession::class),
+                HasMany::make('Client Session History', 'userSession', \App\Nova\UserSession::class),
                 //BelongsTo::make('Practitioner','practitioner' ,User::class),
                 BelongsTo::make('Practitioner', 'practitioner', User::class)
                 ->hideWhenCreating()
@@ -1122,7 +1123,7 @@ class User extends Resource
     {
         $user = Auth::user();
 
-        if ($user && $user->type_id == 3) {
+        if ($user && in_array($user->type_id ,[3, 4])) {
             return 'User Profile ';
         } else{
         return 'Client Profile '; 
@@ -1134,11 +1135,19 @@ class User extends Resource
     {
         return $this->name;
     }
+
+    /**
+     * Remove Replicate button
+     */
+    public function authorizedToReplicate(Request $request)
+    {
+        return false;
+    }
     public static function label()
     {
         $user = Auth::user();
 
-        if ($user && $user->type_id == 3) {
+        if ($user && in_array($user->type_id ,[3, 4])) {
             return 'Users';
         } else {
             return 'Clients';

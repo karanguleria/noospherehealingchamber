@@ -136,11 +136,16 @@ public static function searchableColumns()
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
+
     public static function indexQuery(NovaRequest $request, $query)
     {
         if(auth()->user()->is_admin()){
             return $query;
-        }else{
+        }else if(auth()->user()->is_premium_member()){
+            return $query->where('user_id',auth()->id());
+            
+        }
+        else{
             return $query->whereRelation('user',function($query){
                 $query->where('practitioner_id',auth()->id());
             });
