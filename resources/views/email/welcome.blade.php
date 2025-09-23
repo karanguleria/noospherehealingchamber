@@ -45,12 +45,9 @@
 
                   <tr>
                         <td style="background-color: #000035;" align="center">
-                            @if ($user->type_id == 4)
-                                <img src="{{ asset('img/new-image/mail-header.jpg') }}" alt="Noosphere Healing Chamber" style="display:block; max-width:100%; height:auto;" />
-
-                            @else
+                           
                                 <img src="{{ asset('img/mail-header.jpg') }}" alt="Noosphere Healing Chamber" style="display:block; max-width:100%; height:auto;" />
-                            @endif
+                           
                         </td>
                     </tr>
                     <!-- Main Content -->
