@@ -10,26 +10,25 @@
     "require": {
         "php": "^8.1",
         "barryvdh/laravel-dompdf": "^2.0",
-        "guzzlehttp/guzzle": "^7.2",
+        "guzzlehttp/guzzle": "^7.7",
         "inertiajs/inertia-laravel": "^1.0",
         "laravel/framework": "^11.0",
-        "laravel/nova": "4.34.2",
+        "laravel/nova": "^4",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.8",
-        "quant/elements": "@dev",
-        "quant/interpret": "@dev",
-        "quant/invitaion": "@dev",
-        "quant/main": "@dev",
-        "quant/seasons": "@dev",
-        "quant/endsession": "@dev"
+        "quant/elements": "dev-main",
+        "quant/interpret": "dev-main",
+        "quant/invitaion": "dev-main",
+        "quant/main": "dev-main",
+        "quant/seasons": "dev-main"
     },
     "require-dev": {
-        "fakerphp/faker": "^1.9.1",
+        "fakerphp/faker": "^1.21",
         "laravel/breeze": "^2.0",
         "laravel/pint": "^1.0",
         "laravel/sail": "^1.18",
         "nunomaduro/collision": "^8.1",
-        "pestphp/pest": "2.34.7",
+        "pestphp/pest": "^2.34",
         "pestphp/pest-plugin-laravel": "2.x-dev",
         "spatie/laravel-ignition": "^2.0"
     },
@@ -44,12 +43,12 @@
         }
     },
     "autoload-dev": {
-        "files": [
-            "app/helpers.php"
-        ],
         "psr-4": {
             "Tests\\": "tests/"
-        }
+        },
+        "files": [
+            "app/helpers.php"
+        ]
     },
     "scripts": {
         "post-autoload-dump": [
@@ -80,7 +79,7 @@
             "php-http/discovery": true
         }
     },
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "prefer-stable": true,
     "repositories": [
         {
@@ -89,27 +88,38 @@
         },
         {
             "type": "path",
-            "url": "./nova-components/Main"
+            "url": "./nova-components/Main",
+            "options": {
+                "symlink": true
+            }
         },
         {
             "type": "path",
-            "url": "./nova-components/Interpret"
+            "url": "./nova-components/Interpret",
+            "options": {
+                "symlink": true
+            }
         },
         {
             "type": "path",
-            "url": "./nova-components/Elements"
+            "url": "./nova-components/Elements",
+            "options": {
+                "symlink": true
+            }
         },
         {
             "type": "path",
-            "url": "./nova-components/Seasons"
+            "url": "./nova-components/Seasons",
+            "options": {
+                "symlink": true
+            }
         },
         {
             "type": "path",
-            "url": "./nova-components/Invitaion"
-        },
-        {
-            "type": "path",
-            "url": "./nova-components/Endsession"
+            "url": "./nova-components/Invitaion",
+            "options": {
+                "symlink": true
+            }
         }
     ]
 }
