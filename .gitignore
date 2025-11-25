@@ -28,3 +28,6 @@ Homestead.json
 .env.production
 .phpactor.json
 auth.json
+CLIENT_UPDATE_EMAIL.md
+CLIENT_UPDATE_REPORT.md
+PACKAGE_UPDATE_SUMMARY.md
