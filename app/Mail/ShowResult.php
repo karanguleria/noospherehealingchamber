@@ -84,6 +84,7 @@ class ShowResult extends Mailable
     {              
         return $this->subject('Your Nosphere Healing Results')
             ->from(env('MAIL_FROM_ADDRESS','invitation@example.com'),'Nosphere Healing')
+            ->replyTo('support@projectnoosphere.com')
             ->bcc('himekaraguleria@gmail.com')
             ->markdown('email.result')
             ->with([

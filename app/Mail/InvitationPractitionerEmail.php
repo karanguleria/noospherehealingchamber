@@ -54,6 +54,7 @@ class InvitationPractitionerEmail extends Mailable
     {
         return $this->subject('Invitation')
             ->from(env('MAIL_FROM_ADDRESS','invitation@example.com'), 'Nosphere Healing')
+            ->replyTo('alumni@quantumuniversity.com')
             ->bcc('himekaraguleria@gmail.com')
             ->markdown('email.invitationPractitioner')
             ->with([

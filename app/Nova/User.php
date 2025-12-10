@@ -321,6 +321,7 @@ class User extends Resource
                         2 => 'Practitioner',
                         3 => 'Admin',
                         4 => 'Project Noosphere Premium Member',
+                        5 => 'Project Noosphere Free Member',
                     ])
                     ->displayUsingLabels()
                     ->rules('required')
@@ -343,8 +344,8 @@ class User extends Resource
                 Password::make('Password')
                     ->onlyOnForms()
                     ->dependsOn(['type_id'], function (Password $field, NovaRequest $request, FormData $formData) {
-                        // Hide password field when Type Id is "Client" (value = 1)
-                        if (in_array($formData->type_id, [1, 2, 4])) {
+                        // Hide password field when Type Id is Client, Practitioner, Premium Member or Free Member
+                        if (in_array($formData->type_id, [1, 2, 4, 5])) {
                             $field->hide();
                             $field->creationRules([]); // remove required
                         } else {

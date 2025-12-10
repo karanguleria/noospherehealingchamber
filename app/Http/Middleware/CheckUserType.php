@@ -11,7 +11,7 @@ public function handle(Request $request, Closure $next)
 {
 $user = Auth::user();
 
-// Prevent users with type_id 1 and allow users with type_id 2 or 3
+// Prevent users with type_id 1 and allow users with type_id 2, 3, 4, or 5
 if ($user && in_array($user->type_id, [1])) {
 return abort(403, 'Unauthorized Access');
 }

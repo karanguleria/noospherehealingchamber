@@ -157,6 +157,26 @@ class User extends Authenticatable
         return $this->type_id == 4;
     }
 
+    /**
+     * Check if the user is a Project Noosphere Free Member based on the type_id attribute.
+     *
+     * @return bool
+     */
+    public function is_free_member()
+    {
+        return $this->type_id == 5;
+    }
+
+    /**
+     * Check if the user is any type of Noosphere member (Premium or Free)
+     *
+     * @return bool
+     */
+    public function is_noosphere_member()
+    {
+        return $this->type_id == 4 || $this->type_id == 5;
+    }
+
     public function usersession()
     {
         return $this->hasMany(UserSession::class, 'user_id', 'id');
@@ -177,7 +197,7 @@ class User extends Authenticatable
                 $user->plain_password = $plainPassword;
                 
             }
-            if ($user->type_id == 2 || $user->type_id == 4 ) {
+            if ($user->type_id == 2 || $user->type_id == 4 || $user->type_id == 5) {
                 $user->is_first_login = 1;
             }
            

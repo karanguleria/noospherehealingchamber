@@ -34,7 +34,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
             $menuItems[] = MenuSection::dashboard(\App\Nova\Dashboards\Main::class)
                 ->icon('view-grid');
           
-            if ($request->user() && $request->user()->type_id == 4) {
+            if ($request->user() && ($request->user()->type_id == 4 || $request->user()->type_id == 5)) {
                  // 3. Add custom Resources section
             $menuItems[] = MenuSection::make('Resources', [
 
@@ -74,8 +74,8 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
         Nova::auth(function ($request) {
             $user = Auth::user();
 
-            // Check if user is not authenticated or has type_id not equal to 2 or 3
-            if (!$user || !in_array($user->type_id, [2, 3, 4])) {
+            // Check if user is not authenticated or has type_id not equal to 2, 3, 4, or 5
+            if (!$user || !in_array($user->type_id, [2, 3, 4, 5])) {
                 // Log the user out if unauthorized
                 Auth::logout(); 
 
@@ -128,7 +128,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                   'himekarangulera@gmail.com','mekaranguleria@gmail.com'
             ]) || $user->type_id != 1;*/
 
-            return $user && in_array($user->type_id, [2, 3 ,4]);
+            return $user && in_array($user->type_id, [2, 3, 4, 5]);
         });
     }
 
