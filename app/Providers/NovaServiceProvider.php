@@ -9,6 +9,7 @@ use Quant\Elements\Elements;
 use Quant\Interpret\Interpret;
 use Quant\Seasons\Seasons;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Laravel\Nova\Menu\MenuItem;
 use Laravel\Nova\Menu\MenuSection;
@@ -97,7 +98,58 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
         // In NovaServiceProvider.php boot() method or via a custom tool:
 
         Nova::script('custom-button-label', public_path('js/nova-custom-button.js'));
+        
+        // Register Nova pages script
+        Nova::serving(function ($event) {
+            $manifestPath = public_path('build/manifest.json');
+            if (file_exists($manifestPath)) {
+                $manifest = json_decode(file_get_contents($manifestPath), true);
+                if (isset($manifest['resources/js/nova-pages.js']['file'])) {
+                    $assetPath = asset('build/' . $manifest['resources/js/nova-pages.js']['file']);
+                    Nova::script('nova-pages', $assetPath);
+                }
+            }
+        });
+        
+        // Add Profile and Change Password links to user dropdown menu
+        Nova::userMenu(function (Request $request, \Laravel\Nova\Menu\Menu $menu) {
+            return $menu
+                ->prepend(
+                    MenuItem::link('My Profile', '/profile')
+                )
+                ->append(
+                    MenuItem::link('Change Password', '/change-password')
+                );
+        });
+        
+        // Register routes with Nova's router to get sidebar
+        $this->app->booted(function () {
+            $this->registerNovaCustomRoutes();
+        });
 
+    }
+    
+    /**
+     * Register custom Nova routes with sidebar support
+     */
+    protected function registerNovaCustomRoutes()
+    {
+        if ($this->app->routesAreCached()) {
+            return;
+        }
+        
+        // Register routes with Nova's router so they get the sidebar
+        Nova::router(['nova', \Laravel\Nova\Http\Middleware\Authenticate::class])
+            ->group(function () {
+                Route::get('/profile', [\App\Http\Controllers\ProfileController::class, 'novaProfile'])
+                    ->name('nova.pages.profile');
+                Route::post('/profile', [\App\Http\Controllers\ProfileController::class, 'updateNovaProfile'])
+                    ->name('nova.pages.profile.update');
+                Route::get('/change-password', [\App\Http\Controllers\ProfileController::class, 'novaChangePassword'])
+                    ->name('nova.pages.change-password');
+                Route::post('/change-password', [\App\Http\Controllers\ProfileController::class, 'updatePassword'])
+                    ->name('nova.pages.change-password.update');
+            });
     }
 
     /**

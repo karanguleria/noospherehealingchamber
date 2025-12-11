@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use Inertia\Inertia;
+use Inertia\Response;
+use Laravel\Nova\Http\Requests\NovaRequest;
 
 /**
  * ProfileController handles user profile management and questionnaire access
@@ -52,23 +55,27 @@ class ProfileController extends Controller
     /**
      * Display the Nova change password form.
      *
-     * @return \Illuminate\View\View
+     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
+     * @return \Inertia\Response
      */
-    public function novaChangePassword(): View
+    public function novaChangePassword(NovaRequest $request): Response
     {
-        return view('auth.nova-change-password');
+        return inertia('ChangePassword', [
+            'status' => session('status'),
+        ]);
     }
 
     /**
      * Update the user's password.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Inertia\Response|\Illuminate\Http\RedirectResponse
      */
     public function updatePassword(Request $request): RedirectResponse
     {
         // For debugging
         \Illuminate\Support\Facades\Log::info('updatePassword method called');
+        \Illuminate\Support\Facades\Log::info('Request data: ', $request->all());
         
         $validated = $request->validate([
             'current_password' => ['required', 'current_password'],
@@ -80,19 +87,29 @@ class ProfileController extends Controller
             'is_first_login' => 0,
         ]);
 
-        return back()->with('status', 'password-updated');
+        \Illuminate\Support\Facades\Log::info('Password updated successfully');
+
+        // Use redirect back - Inertia will handle it automatically
+        return redirect()->route('nova.pages.change-password')->with('status', 'password-updated');
     }
 
     /**
      * Display the Nova profile form.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\View\View
+     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
+     * @return \Inertia\Response
      */
-    public function novaProfile(Request $request): View
+    public function novaProfile(NovaRequest $request): Response
     {
-        return view('auth.nova-profile', [
-            'user' => $request->user(),
+        return inertia('Profile', [
+            'user' => [
+                'id' => $request->user()->id,
+                'name' => $request->user()->name,
+                'first_name' => $request->user()->first_name ?? '',
+                'last_name' => $request->user()->last_name ?? '',
+                'email' => $request->user()->email,
+            ],
+            'status' => session('status'),
         ]);
     }
 
@@ -118,6 +135,11 @@ class ProfileController extends Controller
         }
 
         $request->user()->save();
+
+        // Check if this is a Nova route
+        if ($request->routeIs('nova.pages.profile.update') || $request->routeIs('profile.update.nova')) {
+            return Redirect::route('nova.pages.profile')->with('status', 'profile-updated');
+        }
 
         return back()->with('status', 'profile-updated');
     }

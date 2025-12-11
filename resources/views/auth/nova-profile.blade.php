@@ -9,11 +9,9 @@
             {{ session('status') }}
         </div>
     @endif
-
     <form method="POST" action="{{ route('profile.update.nova') }}">
         @csrf
         @method('POST')
-
         <!-- Name -->
         <div>
             <x-input-label for="name" :value="__('Name')" />
@@ -47,7 +45,7 @@
                 <a href="{{ url('/nova') }}" class="text-sm text-gray-400 hover:text-gray-100">
                     {{ __('← Back to Dashboard') }}
                 </a>
-                <a href="{{ route('password.change') }}" class="text-sm text-gray-400 hover:text-gray-100">
+                <a href="{{ route('password.change.nova') }}" class="text-sm text-gray-400 hover:text-gray-100">
                     {{ __('Change Password') }}
                 </a>
             </div>
