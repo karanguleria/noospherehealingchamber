@@ -21,7 +21,7 @@
             <div class="hidden sm:flex sm:items-center sm:ml-6 dropdown-cls">
                <x-dropdown align="right" width="48">
                   <x-slot name="trigger">
-                     <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-100 bg-white hover:text-gray-400 capitalize focus:outline-hidden transition ease-in-out duration-150">
+                     <button class="inline-flex items-center px-3 py-2 border border-gray-500 text-sm leading-4 font-medium rounded-md text-white bg-gray-700 hover:bg-gray-600 capitalize focus:outline-hidden transition ease-in-out duration-150">
                         <div>{{ Auth::user()->name }}</div>
                         <div class="ml-1">
                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -31,8 +31,14 @@
                      </button>
                   </x-slot>
                   <x-slot name="content">
-                     <x-dropdown-link :href="route('profile.edit')">
-                        {{ __('Profile') }}
+                     <x-dropdown-link href="/nova">
+                        {{ __('Nova Dashboard') }}
+                     </x-dropdown-link>
+                     <x-dropdown-link :href="route('profile.nova')">
+                        {{ __('My Profile') }}
+                     </x-dropdown-link>
+                     <x-dropdown-link :href="route('password.change.nova')">
+                        {{ __('Change Password') }}
                      </x-dropdown-link>
                      <!-- Authentication -->
                      <form method="POST" action="{{ route('logout') }}">
@@ -60,7 +66,7 @@
       <!-- Responsive Navigation Menu -->
       <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden mobile-menu">
          <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+            <x-responsive-nav-link href="/nova" :active="request()->is('nova')">
                {{ __('Dashboard') }}
             </x-responsive-nav-link>
          </div>
@@ -71,8 +77,14 @@
                <div class="font-medium text-sm text-gray-300">{{ Auth::user()->email }}</div>
             </div>
             <div class="mt-3 space-y-1">
-               <x-responsive-nav-link :href="route('profile.edit')">
-                  {{ __('Profile') }}
+               <x-responsive-nav-link href="/nova">
+                  {{ __('Nova Dashboard') }}
+               </x-responsive-nav-link>
+               <x-responsive-nav-link :href="route('profile.nova')">
+                  {{ __('My Profile') }}
+               </x-responsive-nav-link>
+               <x-responsive-nav-link :href="route('password.change.nova')">
+                  {{ __('Change Password') }}
                </x-responsive-nav-link>
                <a class="block w-full pl-3 pr-4 py-2 border-l-4 border-transparent text-left text-base font-medium text-white hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:outline-hidden focus:text-gray-800 focus:bg-gray-50 focus:border-gray-300 transition duration-150 ease-in-out" href="https://quantumevaluation.exponentialhealthcare.com">
      Questions

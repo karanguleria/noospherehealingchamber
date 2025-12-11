@@ -50,6 +50,79 @@ class ProfileController extends Controller
     }
 
     /**
+     * Display the Nova change password form.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function novaChangePassword(): View
+    {
+        return view('auth.nova-change-password');
+    }
+
+    /**
+     * Update the user's password.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function updatePassword(Request $request): RedirectResponse
+    {
+        // For debugging
+        \Illuminate\Support\Facades\Log::info('updatePassword method called');
+        
+        $validated = $request->validate([
+            'current_password' => ['required', 'current_password'],
+            'password' => ['required', 'confirmed', \Illuminate\Validation\Rules\Password::defaults()],
+        ]);
+
+        $request->user()->update([
+            'password' => \Illuminate\Support\Facades\Hash::make($validated['password']),
+            'is_first_login' => 0,
+        ]);
+
+        return back()->with('status', 'password-updated');
+    }
+
+    /**
+     * Display the Nova profile form.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\View\View
+     */
+    public function novaProfile(Request $request): View
+    {
+        return view('auth.nova-profile', [
+            'user' => $request->user(),
+        ]);
+    }
+
+    /**
+     * Update the user's profile information for Nova users.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function updateNovaProfile(Request $request): RedirectResponse
+    {
+        $validated = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'first_name' => ['nullable', 'string', 'max:255'],
+            'last_name' => ['nullable', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . $request->user()->id],
+        ]);
+
+        $request->user()->fill($validated);
+
+        if ($request->user()->isDirty('email')) {
+            $request->user()->email_verified_at = null;
+        }
+
+        $request->user()->save();
+
+        return back()->with('status', 'profile-updated');
+    }
+
+    /**
      * Delete the user's account.
      */
     public function destroy(Request $request): RedirectResponse
