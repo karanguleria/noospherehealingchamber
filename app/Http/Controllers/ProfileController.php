@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -71,25 +72,37 @@ class ProfileController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Inertia\Response|\Illuminate\Http\RedirectResponse
      */
-    public function updatePassword(Request $request): RedirectResponse
+    public function updatePassword(Request $request)
     {
-        // For debugging
-        \Illuminate\Support\Facades\Log::info('updatePassword method called');
-        \Illuminate\Support\Facades\Log::info('Request data: ', $request->all());
-        
-        $validated = $request->validate([
+        // Manually validate to have better control
+        $validator = \Illuminate\Support\Facades\Validator::make($request->all(), [
             'current_password' => ['required', 'current_password'],
             'password' => ['required', 'confirmed', \Illuminate\Validation\Rules\Password::defaults()],
         ]);
 
+        // If validation fails, return the ChangePassword component with errors
+        if ($validator->fails()) {
+           
+            return redirect()->route('nova.pages.change-password')
+                ->withErrors($validator->errors())
+                ->withInput();
+            return redirect()->route('nova.pages.change-password')->with('error', $validator->errors());
+
+        }
+
+        // Validation passed, update the password
         $request->user()->update([
-            'password' => \Illuminate\Support\Facades\Hash::make($validated['password']),
+            'password' => \Illuminate\Support\Facades\Hash::make($request->password),
             'is_first_login' => 0,
         ]);
 
-        \Illuminate\Support\Facades\Log::info('Password updated successfully');
+        // Return success
+        if ($request->header('X-Inertia')) {
+            return Inertia::render('ChangePassword', [
+                'status' => 'password-updated',
+            ]);
+        }
 
-        // Use redirect back - Inertia will handle it automatically
         return redirect()->route('nova.pages.change-password')->with('status', 'password-updated');
     }
 

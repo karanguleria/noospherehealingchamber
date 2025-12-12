@@ -7,6 +7,11 @@
       <p class="text-sm font-medium">Password updated successfully!</p>
     </div>
 
+    <!-- General Error Message -->
+    <div v-if="formErrors && Object.keys(formErrors).length > 0 && !formErrors.current_password && !formErrors.password && !formErrors.password_confirmation" class="mb-6 p-4 bg-red-100 dark:bg-red-900 border border-red-400 dark:border-red-700 text-red-700 dark:text-red-300 rounded">
+      <p class="text-sm font-medium">Please correct the errors below.</p>
+    </div>
+
     <Card>
       <form @submit.prevent="submitPassword">
         <div class="space-y-6">
@@ -24,8 +29,8 @@
               autofocus
               class="w-full form-control form-input form-control-bordered"
             />
-            <div v-if="errors && errors.current_password" class="mt-1.5 text-sm text-red-600 dark:text-red-400">
-              {{ Array.isArray(errors.current_password) ? errors.current_password[0] : errors.current_password }}
+            <div v-if="formErrors && formErrors.current_password" class="mt-1.5 text-sm text-red-600 dark:text-red-400">
+              {{ Array.isArray(formErrors.current_password) ? formErrors.current_password[0] : formErrors.current_password }}
             </div>
           </div>
 
@@ -42,8 +47,8 @@
               required
               class="w-full form-control form-input form-control-bordered"
             />
-            <div v-if="errors && errors.password" class="mt-1.5 text-sm text-red-600 dark:text-red-400">
-              {{ Array.isArray(errors.password) ? errors.password[0] : errors.password }}
+            <div v-if="formErrors && formErrors.password" class="mt-1.5 text-sm text-red-600 dark:text-red-400">
+              {{ Array.isArray(formErrors.password) ? formErrors.password[0] : formErrors.password }}
             </div>
           </div>
 
@@ -60,8 +65,8 @@
               required
               class="w-full form-control form-input form-control-bordered"
             />
-            <div v-if="errors && errors.password_confirmation" class="mt-1.5 text-sm text-red-600 dark:text-red-400">
-              {{ Array.isArray(errors.password_confirmation) ? errors.password_confirmation[0] : errors.password_confirmation }}
+            <div v-if="formErrors && formErrors.password_confirmation" class="mt-1.5 text-sm text-red-600 dark:text-red-400">
+              {{ Array.isArray(formErrors.password_confirmation) ? formErrors.password_confirmation[0] : formErrors.password_confirmation }}
             </div>
           </div>
         </div>
@@ -99,6 +104,12 @@ export default {
       processing: false,
     }
   },
+  computed: {
+    // Access errors from Inertia page props (fallback to prop if not available)
+    formErrors() {
+      return this.$page?.props?.errors || this.errors || {}
+    },
+  },
   watch: {
     status(newStatus) {
       // Clear form when password is successfully updated
@@ -110,7 +121,7 @@ export default {
         }
       }
     },
-    errors(newErrors) {
+    formErrors(newErrors) {
       // Log errors for debugging
       if (newErrors && Object.keys(newErrors).length > 0) {
         console.log('Validation errors:', newErrors)
@@ -119,41 +130,20 @@ export default {
   },
   methods: {
     submitPassword() {
-      // Check if form fields are filled (check for empty strings and null/undefined)
-      const hasCurrentPassword = this.form.current_password && this.form.current_password.trim() !== ''
-      const hasPassword = this.form.password && this.form.password.trim() !== ''
-      const hasPasswordConfirmation = this.form.password_confirmation && this.form.password_confirmation.trim() !== ''
-      
-      console.log('Form validation check:', {
-        current_password: hasCurrentPassword,
-        password: hasPassword,
-        password_confirmation: hasPasswordConfirmation,
-        form: this.form
-      })
-      
-      if (!hasCurrentPassword || !hasPassword || !hasPasswordConfirmation) {
-        console.error('Form validation failed - missing fields', {
-          current_password: this.form.current_password,
-          password: this.form.password,
-          password_confirmation: this.form.password_confirmation
-        })
-        return
-      }
-      
       this.processing = true
-      console.log('Submitting password form:', {
-        current_password: '***',
-        password: '***',
-        password_confirmation: '***',
-        formKeys: Object.keys(this.form)
-      })
       
       this.$inertia.post('/nova/change-password', this.form, {
         preserveScroll: true,
         onSuccess: (page) => {
           this.processing = false
-          console.log('Password update successful:', page)
-          // Form will be cleared by watcher if status is 'password-updated'
+          // Clear form on success
+          if (page.props.status === 'password-updated') {
+            this.form = {
+              current_password: '',
+              password: '',
+              password_confirmation: '',
+            }
+          }
         },
         onError: (errors) => {
           this.processing = false
