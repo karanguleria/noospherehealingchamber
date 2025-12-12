@@ -1,10 +1,10 @@
 <template>
   <div>
-    <Heading class="mb-6">Change Password</Heading>
+    <h1 class="font-normal text-xl md:text-xl mb-3 flex items-center" dusk="index-heading"><span>Change Password</span></h1>
 
     <!-- Success Message -->
-    <div v-if="status === 'password-updated'" class="mb-6 p-4 bg-green-100 dark:bg-green-900 border border-green-400 dark:border-green-700 text-green-700 dark:text-green-300 rounded">
-      <p class="text-sm font-medium">Password updated successfully!</p>
+     <div v-if="status === 'password-updated'" class="mb-6 p-4 dark:bg-green-900 border border-transparent rounded">
+      <p class="text-sm font-medium border p-4 border-green-900"  style="color: rgba(var(--colors-primary-500))">Password updated successfully!</p>
     </div>
 
     <Card>

@@ -1,33 +1,16 @@
 <template>
   <div>
-    <Heading class="mb-6">Profile</Heading>
+    <h1 class="font-normal text-xl md:text-xl mb-3 flex items-center" dusk="index-heading"><span>Profile</span></h1>
 
     <!-- Success Message -->
-    <div v-if="status === 'profile-updated'" class="mb-6 p-4 bg-green-100 dark:bg-green-900 border border-green-400 dark:border-green-700 text-green-700 dark:text-green-300 rounded">
-      <p class="text-sm font-medium">Profile updated successfully!</p>
+    <div v-if="status === 'profile-updated'" class="mb-6 p-4 dark:bg-green-900 border border-transparent rounded">
+      <p class="text-sm font-medium border p-4 border-green-900"  style="color: rgba(var(--colors-primary-500))">Profile updated successfully!</p>
     </div>
 
     <Card>
       <form @submit.prevent="submitProfile">
         <div class="space-y-6">
-          <!-- Name Field -->
-          <div>
-            <label for="name" class="block text-sm font-medium text-white-700 text-white-300 mb-2">
-              Name
-            </label>
-            <input
-              id="name"
-              :value="form.name || user?.name || ''"
-              @input="form.name = $event.target.value"
-              type="text"
-              required
-              autofocus
-              class="w-full form-control form-input form-control-bordered"
-            />
-            <div v-if="errors.name" class="mt-1.5 text-sm text-red-600 dark:text-red-400">
-              {{ errors.name }}
-            </div>
-          </div>
+         
 
           <!-- First Name and Last Name Row -->
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
