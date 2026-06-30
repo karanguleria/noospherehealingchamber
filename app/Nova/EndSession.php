@@ -10,8 +10,11 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\BelongsTo as FieldsBelongsTo;
 use Illuminate\Support\Facades\Storage;
 use Laravel\Nova\Fields\Textarea;
+use App\Nova\Concerns\SearchesSessionColumns;
 class EndSession extends Resource
 {
+    use SearchesSessionColumns;
+
      /**
      * The model the resource corresponds to.
      *

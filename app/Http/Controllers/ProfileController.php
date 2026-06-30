@@ -135,11 +135,18 @@ class ProfileController extends Controller
     public function updateNovaProfile(Request $request): RedirectResponse
     {
         $validated = $request->validate([
-            'name' => ['required', 'string', 'max:255'],
             'first_name' => ['nullable', 'string', 'max:255'],
             'last_name' => ['nullable', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . $request->user()->id],
         ]);
+
+        // Derive the display name from first/last name so it stays in sync.
+        // The profile form does not submit a "name" field, so requiring it would
+        // break updates for users whose name column is empty (non-admin roles).
+        $fullName = trim(($validated['first_name'] ?? '') . ' ' . ($validated['last_name'] ?? ''));
+        if ($fullName !== '') {
+            $validated['name'] = $fullName;
+        }
 
         $request->user()->fill($validated);
 

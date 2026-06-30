@@ -12,8 +12,11 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\BelongsTo as FieldsBelongsTo;
 use Illuminate\Support\Facades\Storage;
 use Laravel\Nova\Fields\Textarea;
+use App\Nova\Concerns\SearchesSessionColumns;
 class UserSession extends Resource
 {
+    use SearchesSessionColumns;
+
     /**
      * The model the resource corresponds to.
      *
@@ -35,6 +38,10 @@ class UserSession extends Resource
      */
     public static $search = [
         'id',
+        'session_start',
+        'session_end',
+        'total_session_time',
+        'recording_url',
     ];
 
     /**
