@@ -81,7 +81,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                 Auth::logout(); 
 
                 // Redirect to login page with error message
-                return redirect()->route('nova.login')->withErrors([
+                return redirect()->route('login')->withErrors([
                     'email' => 'Access denied. Only authorized users can access Nova.'
                 ]);
             }
@@ -217,7 +217,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
      */
     public function register()
     {
-        //
+        parent::register();
     }
 
     protected function redirectTo()
