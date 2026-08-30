@@ -58,4 +58,3 @@ body.login .hidden.lg\:w-60.shrink-0.md\:flex.items-center a+a{
 
 
 </style>
-</script>
