@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Services\NovaNotifier;
 use Illuminate\Http\Request;
 use App\Models\UserSession as Session;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+
 class SessionController extends Controller
 {
     //
@@ -92,27 +94,21 @@ class SessionController extends Controller
             return response()->json(['message' => 'Record not found'], 404);
         }
 
-        // File uploads
-        // $image1Path = $request->file('image1')->store('uploads/images', 'public');
-        // $image2Path = $request->file('image2')->store('uploads/images', 'public');
-        // $voiceUrlPath = $request->file('voiceUrl')->store('uploads/voices', 'public');
+        // Notify only when the exercise actually starts (first healing setup).
+        $alreadyStarted = filled($record->healing_type);
 
         // Update record
         $record->user_id = $validated['userId'];
         $record->audio_enabled = $validated['audioEnabled'];
         $record->healing_type = $validated['healingType'];
         $record->gender = $validated['gender'];
-        // $record->image_1 = $image1Path;
-        // $record->image_2 = $image2Path;
         $record->voice_recording_enabled = $validated['voiceRecordingEnabled'];
-        // $record->audio = $voiceUrlPath;
         $record->session_start = $validated['startDateTime'];
         $record->save();
 
-        // Append full URLs
-        // $record->image_1 = url(Storage::url($record->image_1));
-        // $record->image_2 = url(Storage::url($record->image_2));
-        // $record->audio = url(Storage::url($record->audio));
+        if (!$alreadyStarted) {
+            NovaNotifier::sessionStarted($record->fresh(['user']));
+        }
 
         return response()->json([
             'message' => 'User session saved successfully.',

@@ -89,6 +89,8 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
             return true;  // Grant access if user has type_id 2 or 3
         });
         Nova::withoutThemeSwitcher();
+        Nova::showUnreadCountInNotificationCenter();
+        Nova::notificationPollingInterval(10);
         
         Nova::footer(function ($request) {
             return '<p class="text-center"><b>Powered by <a class="link-default" href="https://healingchamber.exponentialhealthcare.com"/>Exponential Healthcare</a> © '. date('Y') .'</b> </p>';
@@ -116,6 +118,9 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
             return $menu
                 ->prepend(
                     MenuItem::link('My Profile', '/profile')
+                )
+                ->prepend(
+                    MenuItem::link('Notifications', '/notifications')
                 )
                 ->append(
                     MenuItem::link('Change Password', '/change-password')
@@ -149,6 +154,19 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                     ->name('nova.pages.change-password');
                 Route::post('/change-password', [\App\Http\Controllers\ProfileController::class, 'updatePassword'])
                     ->name('nova.pages.change-password.update');
+
+                Route::get('/notifications', [\App\Http\Controllers\NotificationsController::class, 'index'])
+                    ->name('nova.pages.notifications');
+                Route::post('/notifications/read-all', [\App\Http\Controllers\NotificationsController::class, 'markAllRead'])
+                    ->name('nova.pages.notifications.read-all');
+                Route::delete('/notifications/all', [\App\Http\Controllers\NotificationsController::class, 'destroyAll'])
+                    ->name('nova.pages.notifications.destroy-all');
+                Route::post('/notifications/{notification}/read', [\App\Http\Controllers\NotificationsController::class, 'markRead'])
+                    ->name('nova.pages.notifications.read');
+                Route::post('/notifications/{notification}/unread', [\App\Http\Controllers\NotificationsController::class, 'markUnread'])
+                    ->name('nova.pages.notifications.unread');
+                Route::delete('/notifications/{notification}', [\App\Http\Controllers\NotificationsController::class, 'destroy'])
+                    ->name('nova.pages.notifications.destroy');
             });
     }
 

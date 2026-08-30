@@ -5,13 +5,13 @@ namespace App\Observers;
 use App\Models\User;
 use App\Mail\SendEmailPractitioner;
 use App\Mail\WelcomeEmailPractitioner;
+use App\Services\NovaNotifier;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Password;
+
 class UserObserver
 {
-  
     /**
      * Handle the User "created" event.
      */
@@ -34,6 +34,8 @@ class UserObserver
         } else {
             Log::info('Email not sent. User is not type 2.', ['user_id' => $user->id]);
         }
+
+        NovaNotifier::userCreated($user);
     }
 
     /**
