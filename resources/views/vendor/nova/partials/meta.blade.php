@@ -1,6 +1,9 @@
 <script src="{{asset('theme.js')}}"></script>
 <script src="{{ asset('js/nova-login-mod.js') }}"></script>
 <link href="{{ asset('css/hide-resourse.css') }}">
+@if (file_exists(public_path('js/nova-pages.css')))
+    <link rel="stylesheet" href="{{ asset('js/nova-pages.css') }}?v={{ filemtime(public_path('js/nova-pages.css')) }}">
+@endif
 @if (Route::has('login'))
     <style>
         body.login .hidden.lg\:w-60.shrink-0.md\:flex.items-center a svg {

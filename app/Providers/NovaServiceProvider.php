@@ -101,15 +101,17 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
 
         Nova::script('custom-button-label', public_path('js/nova-custom-button.js'));
         
-        // Register Nova pages script
+        // Register Nova pages script + CSS (Notifications, Profile, etc.)
+        // Built via: npm run build-nova-pages  → public/js/nova-pages.js + .css
         Nova::serving(function ($event) {
-            $manifestPath = public_path('build/manifest.json');
-            if (file_exists($manifestPath)) {
-                $manifest = json_decode(file_get_contents($manifestPath), true);
-                if (isset($manifest['resources/js/nova-pages.js']['file'])) {
-                    $assetPath = asset('build/' . $manifest['resources/js/nova-pages.js']['file']);
-                    Nova::script('nova-pages', $assetPath);
-                }
+            $novaPagesJs = public_path('js/nova-pages.js');
+            if (is_file($novaPagesJs)) {
+                Nova::script('nova-pages', $novaPagesJs);
+            }
+
+            $novaPagesCss = public_path('js/nova-pages.css');
+            if (is_file($novaPagesCss)) {
+                Nova::style('nova-pages', $novaPagesCss);
             }
         });
         

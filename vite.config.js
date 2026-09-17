@@ -9,7 +9,6 @@ export default defineConfig({
                 'resources/css/app.css',
                 'resources/css/style.css',
                 'resources/js/app.js',
-                'resources/js/nova-pages.js',
             ],
             refresh: true,
         }),

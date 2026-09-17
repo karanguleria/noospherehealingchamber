@@ -3,7 +3,8 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
-        "build": "vite build",
+        "build": "vite build && vite build --config vite.nova-pages.config.js",
+        "build-nova-pages": "vite build --config vite.nova-pages.config.js",
         "build-main": "cd nova-components/Main && npm run dev",
         "build-main-prod": "cd nova-components/Main && npm run prod",
         "build-interpret": "cd nova-components/Interpret && npm run dev",
