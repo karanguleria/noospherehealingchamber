@@ -4,6 +4,9 @@
 @if (file_exists(public_path('js/nova-pages.css')))
     <link rel="stylesheet" href="{{ asset('js/nova-pages.css') }}?v={{ filemtime(public_path('js/nova-pages.css')) }}">
 @endif
+@if (file_exists(public_path('css/nova-notification-footer.css')))
+    <link rel="stylesheet" href="{{ asset('css/nova-notification-footer.css') }}?v={{ filemtime(public_path('css/nova-notification-footer.css')) }}">
+@endif
 @if (Route::has('login'))
     <style>
         body.login .hidden.lg\:w-60.shrink-0.md\:flex.items-center a svg {

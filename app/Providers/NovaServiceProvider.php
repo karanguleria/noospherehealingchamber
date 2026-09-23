@@ -113,6 +113,11 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
             if (is_file($novaPagesCss)) {
                 Nova::style('nova-pages', $novaPagesCss);
             }
+
+            $footerCss = public_path('css/nova-notification-footer.css');
+            if (is_file($footerCss)) {
+                Nova::style('nova-notification-footer', $footerCss);
+            }
         });
         
         // Add Profile and Change Password links to user dropdown menu

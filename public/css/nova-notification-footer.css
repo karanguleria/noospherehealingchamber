@@ -1,0 +1,65 @@
+/* Nova notification drawer — keep View All pinned while scrolling */
+.nhc-notification-footer {
+  position: sticky;
+  bottom: 0;
+  z-index: 20;
+  flex-shrink: 0;
+  margin-top: auto;
+  padding: 0.85rem 1rem 1rem;
+  background: linear-gradient(
+    180deg,
+    rgba(31, 41, 55, 0) 0%,
+    rgba(31, 41, 55, 0.92) 35%,
+    rgba(31, 41, 55, 1) 100%
+  );
+}
+
+html:not(.dark) .nhc-notification-footer {
+  background: linear-gradient(
+    180deg,
+    rgba(243, 244, 246, 0) 0%,
+    rgba(243, 244, 246, 0.95) 35%,
+    rgba(243, 244, 246, 1) 100%
+  );
+}
+
+.nhc-notification-footer button {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 40px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 700;
+  border: 0;
+  cursor: pointer;
+  background: rgb(24, 182, 155);
+  color: #0f172a;
+}
+
+.nhc-notification-footer button svg {
+  width: 14px;
+  height: 14px;
+}
+
+.nhc-notification-footer button:hover {
+  filter: brightness(1.05);
+}
+
+/* Make the drawer a column so the footer can stay at the bottom */
+div.fixed.flex.inset-0.z-20 > .relative.divide-y,
+div.fixed.flex.inset-0.z-20 > .relative {
+  display: flex !important;
+  flex-direction: column !important;
+  max-height: 100vh;
+}
+
+/* Notification list scrolls; footer stays put */
+div.fixed.flex.inset-0.z-20 > .relative.divide-y > .overflow-y-auto,
+div.fixed.flex.inset-0.z-20 > .relative > .overflow-y-auto,
+div.fixed.flex.inset-0.z-20 [class*='overflow-y-auto'] {
+  flex: 1 1 auto;
+  min-height: 0;
+}
