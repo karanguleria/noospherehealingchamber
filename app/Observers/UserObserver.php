@@ -43,7 +43,8 @@ class UserObserver
      */
     public function updated(User $user): void
     {
-        //
+        // Admin password changes are saved on the user record only.
+        // Do not email the user when an admin sets a new password.
     }
 
     /**

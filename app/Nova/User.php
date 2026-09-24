@@ -10,6 +10,7 @@ use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\HasOne As HasOneRelation;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Password;
+use Laravel\Nova\Fields\PasswordConfirmation;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\BelongsTo as FieldsBelongsTo;
 use Laravel\Nova\Fields\BelongsTo;
@@ -343,16 +344,26 @@ class User extends Resource
                               
                 Password::make('Password')
                     ->onlyOnForms()
-                    ->dependsOn(['type_id'], function (Password $field, NovaRequest $request, FormData $formData) {
-                        // Hide password field when Type Id is Client, Practitioner, Premium Member or Free Member
+                    ->dependsOnCreating(['type_id'], function (Password $field, NovaRequest $request, FormData $formData) {
+                        // On create, non-admin users still get a generated password by email.
                         if (in_array($formData->type_id, [1, 2, 4, 5])) {
                             $field->hide();
-                            $field->creationRules([]); // remove required
+                            $field->creationRules([]);
                         } else {
+                            $field->show();
                             $field->creationRules(['required', Rules\Password::defaults()]);
                         }
                     })
-                    ->updateRules('nullable', Rules\Password::defaults()),
+                    ->dependsOnUpdating(['type_id'], function (Password $field, NovaRequest $request, FormData $formData) {
+                        // Admins can set a new password for any user type. Blank keeps the current one.
+                        $field->show();
+                        $field->rules('nullable', 'confirmed', Rules\Password::defaults());
+                        $field->help('Leave blank to keep the current password.');
+                    })
+                    ->updateRules('nullable', 'confirmed', Rules\Password::defaults()),
+
+                PasswordConfirmation::make('Confirm Password', 'password_confirmation')
+                    ->hideWhenCreating(),
                 
                 //HasOneRelation::make('Profile'),
                 //HasMany::make('Results'),
