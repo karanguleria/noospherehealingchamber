@@ -26,6 +26,10 @@ return Application::configure(basePath: dirname(__DIR__))
             'nova.redirect'   => RedirectAfterNovaLogin::class,
         ]);
 
+        // Signed-in users who open /login must not be sent back to /,
+        // because / sends guests to /login.
+        $middleware->redirectUsersTo('/nova');
+
         $middleware->trustProxies(
             at: '*',
             headers: \Illuminate\Http\Request::HEADER_X_FORWARDED_FOR |
