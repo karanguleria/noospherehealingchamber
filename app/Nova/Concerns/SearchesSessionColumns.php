@@ -2,8 +2,6 @@
 
 namespace App\Nova\Concerns;
 
-use Illuminate\Contracts\Database\Eloquent\Builder;
-
 /**
  * Adds search support for session resources that matches the values as they
  * are displayed in the index table rather than the raw database values.
@@ -18,8 +16,14 @@ trait SearchesSessionColumns
 {
     /**
      * Apply the search query to the query.
+     *
+     * Signature must stay untyped to match Laravel\Nova\Resource::applySearch($query, $search).
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @param  string  $search
+     * @return \Illuminate\Database\Eloquent\Builder
      */
-    protected static function applySearch(Builder $query, string $search): Builder
+    protected static function applySearch($query, $search)
     {
         $like = '%' . $search . '%';
 

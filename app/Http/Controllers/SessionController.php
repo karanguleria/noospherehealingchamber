@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\UserSession;
 use App\Models\User;
+use App\Services\NovaNotifier;
 use Carbon\Carbon;
 use Mail;
 use App\Mail\SendInvitation;
@@ -127,9 +128,22 @@ class SessionController extends Controller
      */
     public function endSession($user_id, $session_id, $is_complete = false){
         $user_session = UserSession::where('id', $session_id)->first();
+
+        if (!$user_session) {
+            abort(404);
+        }
+
+        $completed = filter_var($is_complete, FILTER_VALIDATE_BOOLEAN);
+        $alreadyEnded = filled($user_session->session_end);
+
         $user_session->session_end = Carbon::now();
-        $user_session->is_complete = $is_complete;
+        $user_session->is_complete = $completed ? 1 : 0;
         $user_session->save();
+
+        // Notify on first save/end (avoid duplicates if page is hit twice).
+        if (!$alreadyEnded) {
+            NovaNotifier::sessionEnded($user_session->fresh(['user']), $completed);
+        }
 
         $url = env('APP_URL') ."/nova/resources/user-sessions/" . $session_id. "/edit?viaRelationship=userSession&viaResource=users&viaResourceId=".$user_id;
         return redirect($url);
