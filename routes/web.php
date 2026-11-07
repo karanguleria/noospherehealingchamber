@@ -22,6 +22,10 @@ Route::get('/email-template', function () {
     return view('email.sendemailpractitioner'); // create a basic test.blade.php
 });
 Route::get('/', function () {
+    if (Auth::check()) {
+        return Redirect::to('/nova');
+    }
+
     return Redirect::to(route('login'));
 });
 Route::get('/send-invitation/{user_id}', [SessionController::class, 'sendInvitation'])->name('send.invitation');
