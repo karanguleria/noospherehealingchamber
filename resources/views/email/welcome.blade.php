@@ -45,7 +45,9 @@
 
                   <tr>
                         <td style="background-color: #000035;" align="center">
-                            <img src="{{ asset('img/mail-header.jpg') }}" alt="Noosphere Healing Chamber" style="display:block; max-width:100%; height:auto;" />
+                           
+                                <img src="{{ asset('img/mail-header.jpg') }}" alt="Noosphere Healing Chamber" style="display:block; max-width:100%; height:auto;" />
+                           
                         </td>
                     </tr>
                     <!-- Main Content -->
@@ -57,7 +59,8 @@
                             You've been added to the Noosphere Healing Chamber as a {{ 
     $user->type_id == 2 ? 'Practitioner' : 
     ($user->type_id == 4 ? 'Project Noosphere Premium Member' : 
-    ($user->type_id == 3 ? 'Admin' : 'Client'))
+    ($user->type_id == 5 ? 'Project Noosphere Free Member' : 
+    ($user->type_id == 3 ? 'Admin' : 'Client')))
 }}
                             </p>
                             <p style="color: #000000; line-height: 1.6; font-size: 12px; margin: 15px 0;">
@@ -88,7 +91,11 @@
                     </tr>
                             <tr>
                         <td align="center">
+                            @if ($user->type_id == 4 || $user->type_id == 5)
+                            <img src="{{ asset('img/new-image/mail-footer.jpg') }}" alt="Footer" style="display:block; max-width:100%; height:auto;" />
+                            @else
                             <img src="{{ asset('img/mail-footer.jpg') }}" alt="Footer" style="display:block; max-width:100%; height:auto;" />
+                            @endif
                         </td>
                     </tr>
                     

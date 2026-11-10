@@ -5,7 +5,9 @@ namespace App\Providers;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\Nova;
 use Laravel\Nova\NovaApplicationServiceProvider;
-
+use Quant\Elements\Elements;
+use Quant\Interpret\Interpret;
+use Quant\Seasons\Seasons;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
@@ -33,7 +35,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
             $menuItems[] = MenuSection::dashboard(\App\Nova\Dashboards\Main::class)
                 ->icon('view-grid');
           
-            if ($request->user() && $request->user()->type_id == 4) {
+            if ($request->user() && ($request->user()->type_id == 4 || $request->user()->type_id == 5)) {
                  // 3. Add custom Resources section
             $menuItems[] = MenuSection::make('Resources', [
 
@@ -51,6 +53,9 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                     $menuItems[] = MenuSection::make('Resources', [
 
                         MenuItem::link('Users', '/resources/users'),
+                        MenuItem::link('Invitations', '/resources/invitations'),
+                        MenuItem::link('Sessions', '/resources/user-sessions'),
+                        MenuItem::link('All Sessions', '/resources/end-sessions'),
              
                     ])->icon('folder')->collapsable();
 
@@ -59,6 +64,8 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                     $menuItems[] = MenuSection::make('Resources', [
 
                         MenuItem::link('Clients', '/resources/users'),
+                        MenuItem::link('Sessions', '/resources/user-sessions'),
+                        MenuItem::link('All Sessions', '/resources/end-sessions'),
                     ])->icon('folder')->collapsable();
 
             }
@@ -73,13 +80,13 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
         Nova::auth(function ($request) {
             $user = Auth::user();
 
-            // Check if user is not authenticated or has type_id not equal to 2 or 3
-            if (!$user || !in_array($user->type_id, [2, 3, 4])) {
+            // Check if user is not authenticated or has type_id not equal to 2, 3, 4, or 5
+            if (!$user || !in_array($user->type_id, [2, 3, 4, 5])) {
                 // Log the user out if unauthorized
                 Auth::logout(); 
 
                 // Redirect to login page with error message
-                return redirect()->route('nova.login')->withErrors([
+                return redirect()->route('login')->withErrors([
                     'email' => 'Access denied. Only authorized users can access Nova.'
                 ]);
             }
@@ -87,6 +94,8 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
             return true;  // Grant access if user has type_id 2 or 3
         });
         Nova::withoutThemeSwitcher();
+        Nova::showUnreadCountInNotificationCenter();
+        Nova::notificationPollingInterval(10);
         
         Nova::footer(function ($request) {
             return '<p class="text-center"><b>Powered by <a class="link-default" href="https://healingchamber.exponentialhealthcare.com"/>Exponential Healthcare</a> © '. date('Y') .'</b> </p>';
@@ -96,25 +105,47 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
         // In NovaServiceProvider.php boot() method or via a custom tool:
 
         Nova::script('custom-button-label', public_path('js/nova-custom-button.js'));
+        
+        // Register Nova pages script + CSS (Notifications, Profile, etc.)
+        // Built via: npm run build-nova-pages  → public/js/nova-pages.js + .css
+        Nova::serving(function ($event) {
+            $novaPagesJs = public_path('js/nova-pages.js');
+            if (is_file($novaPagesJs)) {
+                Nova::script('nova-pages', $novaPagesJs);
+            }
 
+            $novaPagesCss = public_path('js/nova-pages.css');
+            if (is_file($novaPagesCss)) {
+                Nova::style('nova-pages', $novaPagesCss);
+            }
+
+            $footerCss = public_path('css/nova-notification-footer.css');
+            if (is_file($footerCss)) {
+                Nova::style('nova-notification-footer', $footerCss);
+            }
+        });
+        
         // Add Profile and Change Password links to user dropdown menu
         Nova::userMenu(function (Request $request, \Laravel\Nova\Menu\Menu $menu) {
             return $menu
                 ->prepend(
-                    MenuItem::link('My Profile', 'profile')
+                    MenuItem::link('My Profile', '/profile')
+                )
+                ->prepend(
+                    MenuItem::link('Notifications', '/notifications')
                 )
                 ->append(
-                    MenuItem::link('Change Password', 'change-password')
+                    MenuItem::link('Change Password', '/change-password')
                 );
         });
-
+        
         // Register routes with Nova's router to get sidebar
         $this->app->booted(function () {
             $this->registerNovaCustomRoutes();
         });
 
     }
-
+    
     /**
      * Register custom Nova routes with sidebar support
      */
@@ -123,13 +154,31 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
         if ($this->app->routesAreCached()) {
             return;
         }
-
+        
+        // Register routes with Nova's router so they get the sidebar
         Nova::router(['nova', \Laravel\Nova\Http\Middleware\Authenticate::class])
             ->group(function () {
                 Route::get('/profile', [\App\Http\Controllers\ProfileController::class, 'novaProfile'])
                     ->name('nova.pages.profile');
+                Route::post('/profile', [\App\Http\Controllers\ProfileController::class, 'updateNovaProfile'])
+                    ->name('nova.pages.profile.update');
                 Route::get('/change-password', [\App\Http\Controllers\ProfileController::class, 'novaChangePassword'])
                     ->name('nova.pages.change-password');
+                Route::post('/change-password', [\App\Http\Controllers\ProfileController::class, 'updatePassword'])
+                    ->name('nova.pages.change-password.update');
+
+                Route::get('/notifications', [\App\Http\Controllers\NotificationsController::class, 'index'])
+                    ->name('nova.pages.notifications');
+                Route::post('/notifications/read-all', [\App\Http\Controllers\NotificationsController::class, 'markAllRead'])
+                    ->name('nova.pages.notifications.read-all');
+                Route::delete('/notifications/all', [\App\Http\Controllers\NotificationsController::class, 'destroyAll'])
+                    ->name('nova.pages.notifications.destroy-all');
+                Route::post('/notifications/{notification}/read', [\App\Http\Controllers\NotificationsController::class, 'markRead'])
+                    ->name('nova.pages.notifications.read');
+                Route::post('/notifications/{notification}/unread', [\App\Http\Controllers\NotificationsController::class, 'markUnread'])
+                    ->name('nova.pages.notifications.unread');
+                Route::delete('/notifications/{notification}', [\App\Http\Controllers\NotificationsController::class, 'destroy'])
+                    ->name('nova.pages.notifications.destroy');
             });
     }
 
@@ -161,7 +210,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                   'himekarangulera@gmail.com','mekaranguleria@gmail.com'
             ]) || $user->type_id != 1;*/
 
-            return $user && in_array($user->type_id, [2, 3 ,4]);
+            return $user && in_array($user->type_id, [2, 3, 4, 5]);
         });
     }
 
@@ -185,6 +234,9 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     public function tools()
     {
         return [
+            new Interpret,
+            new Elements,
+            new Seasons
         ];
     }
 
@@ -195,7 +247,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
      */
     public function register()
     {
-        //
+        parent::register();
     }
 
     protected function redirectTo()

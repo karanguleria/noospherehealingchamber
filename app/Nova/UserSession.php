@@ -12,8 +12,11 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\BelongsTo as FieldsBelongsTo;
 use Illuminate\Support\Facades\Storage;
 use Laravel\Nova\Fields\Textarea;
+use App\Nova\Concerns\SearchesSessionColumns;
 class UserSession extends Resource
 {
+    use SearchesSessionColumns;
+
     /**
      * The model the resource corresponds to.
      *
@@ -35,6 +38,10 @@ class UserSession extends Resource
      */
     public static $search = [
         'id',
+        'session_start',
+        'session_end',
+        'total_session_time',
+        'recording_url',
     ];
 
     /**
@@ -64,14 +71,6 @@ class UserSession extends Resource
             Text::make('Total Session Time', function () {
                 return $this->total_session_time ?? 'N/A';
             }),
-
-            Text::make('Healing Type', function () {
-                return $this->healing_type ?: ($this->type ?: 'N/A');
-            })->readonly(),
-
-            Text::make('Gender', function () {
-                return $this->gender ?: 'N/A';
-            })->readonly(),
             /*Text::make('Audio Preview', function () {
                 return $this->audio_file
                     ? '<audio controls><source src="' . url('storage/' . $this->audio_file) . '" type="audio/mpeg"></audio>'
@@ -262,7 +261,7 @@ class UserSession extends Resource
                 ->orWhereNotNull('type')
                 ->orWhereNotNull('healing_type')
                 ->orWhereNotNull('notes')
-                ->orWhere('created_at', '>', Carbon::now()->subMinutes(30));
+                ->orWhere('created_at', '>', \Carbon\Carbon::now()->subMinutes(30));
         });
     }
 

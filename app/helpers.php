@@ -10,7 +10,7 @@ function is_admin()
 
 function is_super_admin()
 {
-    if (auth()->user()->type_id == 4) {
+    if (auth()->user()->type_id == 4 || auth()->user()->type_id == 5) {
         return true;
     } else {
         return false;

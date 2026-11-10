@@ -44,7 +44,16 @@ class WelcomeEmailPractitioner extends Mailable
 
     public function build()
     {
+        $replyToEmail = 'support@projectnoosphere.com'; // Default
+        
+        // Set reply-to email based on user type
+        if ($this->user->type_id == 2) {
+            // Practitioners
+            $replyToEmail = 'alumni@quantumuniversity.com';
+        }
+        
         return $this->subject('Welcome to the Noosphere Healing Chamber!')
+            ->replyTo($replyToEmail)
             ->view('email.welcome');
     }
 

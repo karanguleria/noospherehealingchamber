@@ -17,14 +17,14 @@ class NovaAccessControl
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // Check if the user is authenticated and has type_id 2 or 3
-        if (Auth::check() && !in_array(Auth::user()->type_id, [2, 3])) {
+        // Check if the user is authenticated and has appropriate access permissions
+        if (Auth::check() && !in_array(Auth::user()->type_id, [2, 3, 5])) {
             // If not authorized, log the user out
             Auth::logout();
 
             // Redirect to Nova login page with an error message
             return redirect()->route('nova.login')->withErrors([
-                'email' => 'Access denied. Only users with type_id 2 or 3 can access Nova.'
+                'email' => 'Access denied. Only authorized users can access Nova.'
             ]);
         }
 

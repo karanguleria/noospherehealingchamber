@@ -40,6 +40,16 @@ class SendInvitation extends Mailable
             view: 'email.sendinvitation',
         );
     }
+    
+    /**
+     * Build the message.
+     *
+     * @return $this
+     */
+    public function build()
+    {
+        return $this->replyTo('support@projectnoosphere.com');
+    }
 
     /**
      * Get the attachments for the message.

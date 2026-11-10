@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\UserSession;
 use App\Models\User;
+use App\Services\NovaNotifier;
 use Carbon\Carbon;
 use Mail;
 use App\Mail\SendInvitation;
@@ -57,6 +58,13 @@ class SessionController extends Controller
             $gender = !empty($userSession) ? $userSession->gender : '';
             $recording_url = (!empty($userSession) && !empty($userSession->recording_url)) ? $userSession->recording_url : null;
             $type = !empty($userSession) ? $userSession->type : '';
+            \Illuminate\Support\Facades\Log::info('Session type from DB', ['session_id' => $session_id, 'type' => $type, 'healing_type' => !empty($userSession) ? $userSession->healing_type : '']);
+            
+            // If type is empty but healing_type exists, use healing_type instead
+            if (empty($type) && !empty($userSession) && !empty($userSession->healing_type)) {
+                $type = $userSession->healing_type;
+                \Illuminate\Support\Facades\Log::info('Using healing_type instead of type', ['type' => $type]);
+            }
             $is_complete = !empty($userSession) ? $userSession->is_complete : '';
 
         return view('session.start-session', [
@@ -141,13 +149,18 @@ class SessionController extends Controller
         }
 
         $completed = filter_var($is_complete, FILTER_VALIDATE_BOOLEAN);
+        $alreadyEnded = filled($user_session->session_end);
 
-        // Keep the original end time if the session was already ended.
-        if (empty($user_session->session_end)) {
+        if (!$alreadyEnded) {
             $user_session->session_end = Carbon::now();
         }
         $user_session->is_complete = $completed ? 1 : 0;
         $user_session->save();
+
+        // Notify on first save/end (avoid duplicates if page is hit twice).
+        if (!$alreadyEnded) {
+            NovaNotifier::sessionEnded($user_session->fresh(['user']), $completed);
+        }
 
         $url = env('APP_URL') ."/nova/resources/user-sessions/" . $session_id. "/edit?viaRelationship=userSession&viaResource=users&viaResourceId=".$user_id;
         return redirect($url);

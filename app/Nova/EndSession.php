@@ -10,8 +10,11 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\BelongsTo as FieldsBelongsTo;
 use Illuminate\Support\Facades\Storage;
 use Laravel\Nova\Fields\Textarea;
+use App\Nova\Concerns\SearchesSessionColumns;
 class EndSession extends Resource
 {
+    use SearchesSessionColumns;
+
      /**
      * The model the resource corresponds to.
      *
@@ -225,7 +228,7 @@ class EndSession extends Resource
     {
         if(auth()->user()->is_admin()){
             return $query;
-        }else if(auth()->user()->is_premium_member()){
+        }else if(auth()->user()->is_premium_member() || auth()->user()->is_free_member()){
             return $query->where('user_id',auth()->id())->where('is_complete',1);
         }
         else{

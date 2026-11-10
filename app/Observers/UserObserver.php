@@ -5,13 +5,13 @@ namespace App\Observers;
 use App\Models\User;
 use App\Mail\SendEmailPractitioner;
 use App\Mail\WelcomeEmailPractitioner;
+use App\Services\NovaNotifier;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Password;
+
 class UserObserver
 {
-  
     /**
      * Handle the User "created" event.
      */
@@ -34,6 +34,8 @@ class UserObserver
         } else {
             Log::info('Email not sent. User is not type 2.', ['user_id' => $user->id]);
         }
+
+        NovaNotifier::userCreated($user);
     }
 
     /**
@@ -41,7 +43,8 @@ class UserObserver
      */
     public function updated(User $user): void
     {
-        //
+        // Admin password changes are saved on the user record only.
+        // Do not email the user when an admin sets a new password.
     }
 
     /**
