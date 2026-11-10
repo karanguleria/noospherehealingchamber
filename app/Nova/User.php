@@ -646,7 +646,9 @@ class User extends Resource
     }
     public function title()
     {
-        return $this->name;
+        return $this->name
+            ?: trim(($this->first_name ?? '') . ' ' . ($this->last_name ?? ''))
+            ?: $this->email;
     }
 
     /**

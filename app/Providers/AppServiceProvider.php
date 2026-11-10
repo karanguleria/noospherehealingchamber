@@ -52,11 +52,8 @@ class AppServiceProvider extends ServiceProvider
     protected function bootPolicies(): void
     {
         Gate::policy(User::class, UserPolicy::class);
-        Gate::policy(Result::class, ResultPolicy::class);
-        Gate::policy(Answer::class, AnswerPolicy::class);
-        Gate::policy(Question::class, QuestionPolicy::class);
-        Gate::policy(Bodypart::class, BodypartPolicy::class);
-        Gate::policy(Element::class, ElementPolicy::class);
+        Gate::policy(\App\Models\UserSession::class, \App\Policies\UserSessionPolicy::class);
+        Gate::policy(\App\Models\Invitation::class, \App\Policies\InvitationPolicy::class);
     }
 
     protected function bootEvents(): void

@@ -187,9 +187,17 @@ class NovaNotifier
         $healingType = ucfirst((string) $healingType);
         $name = static::displayName($user);
 
+        // Name the person who actually ended the session (practitioner/admin),
+        // falling back to the client when it was self-ended.
+        $actor = auth()->user();
+        $actorName = $actor ? static::displayName($actor) : null;
+        $actorLabel = ($actor && (int) $actor->id !== (int) $user->id)
+            ? "{$actorName} for client {$name}"
+            : $name;
+
         $message = $completed
-            ? "{$name} completed a {$healingType} exercise."
-            : "{$name} saved a {$healingType} exercise.";
+            ? "{$actorLabel} completed a {$healingType} session."
+            : "{$actorLabel} saved a {$healingType} session.";
 
         static::send(
             static::recipientsForSessionEvent($user),

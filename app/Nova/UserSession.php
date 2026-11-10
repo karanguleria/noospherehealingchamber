@@ -216,8 +216,17 @@ class UserSession extends Resource
 
     public function title()
     {
-         
-        return $this->user ? $this->user->name : 'Session';
+        if ($this->user) {
+            $name = $this->user->name
+                ?: trim(($this->user->first_name ?? '') . ' ' . ($this->user->last_name ?? ''))
+                ?: $this->user->email;
+
+            if ($name !== '') {
+                return $name;
+            }
+        }
+
+        return 'Session';
     }
 
     public static function resourceTitle(NovaRequest $request, $resource)

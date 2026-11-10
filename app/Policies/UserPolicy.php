@@ -19,8 +19,8 @@ class UserPolicy
      */
     public function viewAny(User $user): bool
     {
-        // Allow any user to view any users.
-        return true;
+        // Admins and practitioners can list users (indexQuery scopes practitioner results).
+        return in_array($user->type_id, [2, 3]);
     }
 
     /**
@@ -32,8 +32,17 @@ class UserPolicy
      */
     public function view(User $user, User $model): bool
     {
-        // Allow any user to view a specific user.
-        return true;
+        if ($user->is_admin()) {
+            return true;
+        }
+
+        // Practitioners can view only their own clients.
+        if ($user->is_practitioner()) {
+            return (int) $model->type_id === 1 && (int) $model->practitioner_id === (int) $user->id;
+        }
+
+        // Members can only view themselves.
+        return (int) $model->id === (int) $user->id;
     }
 
     /**

@@ -59,8 +59,6 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                     $menuItems[] = MenuSection::make('Resources', [
 
                         MenuItem::link('Clients', '/resources/users'),
-                        MenuItem::link('Sessions', '/resources/user-sessions'),
-                        MenuItem::link('All Sessions', '/resources/end-sessions'),
                     ])->icon('folder')->collapsable();
 
             }

@@ -94,6 +94,14 @@ class SessionController extends Controller
         if (!$user) {
             abort(404);
         }
+
+        // Practitioners may only invite their own clients.
+        $actor = auth()->user();
+        if ($actor && $actor->is_practitioner()
+            && ((int) $user->type_id !== 1 || (int) $user->practitioner_id !== (int) $actor->id)) {
+            abort(403);
+        }
+
         return view('session.send-invitation', [
             'user' => $user,
         ]);

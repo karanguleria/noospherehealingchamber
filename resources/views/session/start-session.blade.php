@@ -101,6 +101,13 @@
                             healingType = 'physical';
                         }
                         var freshSession = "{{$freshSession}}";
+                        // Resume at the first incomplete step: gender → healing type → chamber.
+                        var flowStep = "finalShow";
+                        if (!gender || gender.trim() === '') {
+                            flowStep = "gender";
+                        } else if (!"{{$type ?? ''}}" || "{{$type}}".trim() === '') {
+                            flowStep = "healingType";
+                        }
                         console.log('Session data:', {
                             healingType: healingType,
                             freshSession: freshSession,
@@ -117,7 +124,7 @@
                                 session: {
                                     intro: false,
                                     gender: gender,
-                                    flowStep: "finalShow",
+                                    flowStep: flowStep,
                                     sessionId: sessionId,
                                     userId: userId,
                                     uploadAudio: uploadAudio,
