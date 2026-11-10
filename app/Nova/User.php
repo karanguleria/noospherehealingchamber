@@ -100,8 +100,6 @@ class User extends Resource
                     ->updateRules('nullable', Rules\Password::defaults()),
                 
                 //HasOneRelation::make('Profile'),
-                //HasMany::make('Results'),
-                //HasMany::make('Answers'),
                 //HasMany::make('Invitations'),
                 //HasMany::make('Users'),
                 HasMany::make('Client Session History', 'userSession', \App\Nova\UserSession::class),
@@ -463,8 +461,6 @@ class User extends Resource
                     ->hideFromIndex(),
 
                 //HasOneRelation::make('Profile'),
-                //HasMany::make('Results'),
-                //HasMany::make('Answers'),
                 //HasMany::make('Invitations'),
                 //HasMany::make('Users'),
                 HasMany::make('Client Session History', 'userSession', \App\Nova\UserSession::class),
@@ -775,8 +771,6 @@ class User extends Resource
                 ->creationRules('required', Rules\Password::defaults())
                 ->updateRules('nullable', Rules\Password::defaults()),
                 //HasOneRelation::make('Profile'),
-                //HasMany::make('Results'),
-                //HasMany::make('Answers'),
                 //HasMany::make('Invitations'),
             //HasMany::make('Users'),
                 HasMany::make('Client Session', 'userSession', \App\Nova\UserSession::class),

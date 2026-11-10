@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\QuestionController;
+
 use App\Http\Controllers\SessionController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -36,7 +36,7 @@ Route::get('/end-session/{user_id}/{session_id}/{is_complete?}', [SessionControl
 //Route::get('/created-session/{user_id}/{session_id}',[SessionController::class,'createdSession'])->name('created.session');
 
 
-// Route::get('/question', [QuestionController::class, 'index']);
+
 /*Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');*/ 

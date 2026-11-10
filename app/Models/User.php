@@ -26,8 +26,7 @@ use Illuminate\Support\Str;
  * @property \Illuminate\Support\Carbon $created_at
  * @property \Illuminate\Support\Carbon $updated_at
  *
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Result[] $results
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Answer[] $answers
+
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Invitation[] $invitations
  * @property-read \App\Models\User $practitioner
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $users
@@ -76,26 +75,6 @@ class User extends Authenticatable
         'date_of_birth' => 'datetime',
         
     ];
-
-    /**
-     * Define the relationship between the User and Result models.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function results()
-    {
-        return $this->hasMany(Result::class);
-    }
-
-    /**
-     * Define the relationship between the User and Answer models.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function answers()
-    {
-        return $this->hasMany(Answer::class);
-    }
 
     /**
      * Define the relationship between the User and Invitation models.

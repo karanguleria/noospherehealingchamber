@@ -74,13 +74,7 @@
                <x-responsive-nav-link :href="route('profile.edit')">
                   {{ __('Profile') }}
                </x-responsive-nav-link>
-               <a class="block w-full pl-3 pr-4 py-2 border-l-4 border-transparent text-left text-base font-medium text-white hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:outline-hidden focus:text-gray-800 focus:bg-gray-50 focus:border-gray-300 transition duration-150 ease-in-out" href="https://quantumevaluation.exponentialhealthcare.com">
-     Questions
-</a><a class="block w-full pl-3 pr-4 py-2 border-l-4 border-transparent text-left text-base font-medium text-white hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:outline-hidden focus:text-gray-800 focus:bg-gray-50 focus:border-gray-300 transition duration-150 ease-in-out" href="https://quantumevaluation.exponentialhealthcare.com/elements-guide">
-       Guide to the Elements
-</a><a class="block w-full pl-3 pr-4 py-2 border-l-4 border-transparent text-left text-base font-medium text-white hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:outline-hidden focus:text-gray-800 focus:bg-gray-50 focus:border-gray-300 transition duration-150 ease-in-out" href="https://quantumevaluation.exponentialhealthcare.com/elements-seasons">
-      Guide to the Seasons
-</a>
+
                <!-- Authentication -->
                <form method="POST" action="{{ route('logout') }}">
                   @csrf

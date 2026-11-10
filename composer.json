@@ -16,11 +16,8 @@
         "laravel/nova": "4.34.2",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.8",
-        "quant/elements": "@dev",
-        "quant/interpret": "@dev",
         "quant/invitaion": "@dev",
         "quant/main": "@dev",
-        "quant/seasons": "@dev",
         "quant/endsession": "@dev"
     },
     "require-dev": {
@@ -90,18 +87,6 @@
         {
             "type": "path",
             "url": "./nova-components/Main"
-        },
-        {
-            "type": "path",
-            "url": "./nova-components/Interpret"
-        },
-        {
-            "type": "path",
-            "url": "./nova-components/Elements"
-        },
-        {
-            "type": "path",
-            "url": "./nova-components/Seasons"
         },
         {
             "type": "path",

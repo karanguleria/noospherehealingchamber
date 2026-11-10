@@ -5,9 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\Nova;
 use Laravel\Nova\NovaApplicationServiceProvider;
-use Quant\Elements\Elements;
-use Quant\Interpret\Interpret;
-use Quant\Seasons\Seasons;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Laravel\Nova\Menu\MenuItem;
@@ -152,9 +150,6 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     public function tools()
     {
         return [
-            new Interpret,
-            new Elements,
-            new Seasons
         ];
     }
 

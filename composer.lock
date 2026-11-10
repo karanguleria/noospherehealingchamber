@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9deb69bc50a06e7b52c145092b359af0",
+    "content-hash": "bf7a9bc5ac621b4d6b99d762ec62c115",
     "packages": [
         {
             "name": "barryvdh/laravel-dompdf",
@@ -4054,42 +4054,6 @@
             "time": "2025-03-16T03:05:19+00:00"
         },
         {
-            "name": "quant/elements",
-            "version": "dev-dev",
-            "dist": {
-                "type": "path",
-                "url": "./nova-components/Elements",
-                "reference": "0c779b97ed1c31e3d8c78a67f5226c23f0ee261a"
-            },
-            "require": {
-                "php": "^7.3|^8.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Quant\\Elements\\ToolServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Quant\\Elements\\": "src/"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "description": "A Laravel Nova tool.",
-            "keywords": [
-                "laravel",
-                "nova"
-            ],
-            "transport-options": {
-                "relative": true
-            }
-        },
-        {
             "name": "quant/endsession",
             "version": "dev-dev",
             "dist": {
@@ -4111,42 +4075,6 @@
             "autoload": {
                 "psr-4": {
                     "Quant\\Endsession\\": "src/"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "description": "A Laravel Nova tool.",
-            "keywords": [
-                "laravel",
-                "nova"
-            ],
-            "transport-options": {
-                "relative": true
-            }
-        },
-        {
-            "name": "quant/interpret",
-            "version": "dev-dev",
-            "dist": {
-                "type": "path",
-                "url": "./nova-components/Interpret",
-                "reference": "6e9885be4d413e5c5cb1bb114121ac20f5ce2b33"
-            },
-            "require": {
-                "php": "^7.3|^8.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Quant\\Interpret\\ToolServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Quant\\Interpret\\": "src/"
                 }
             },
             "license": [
@@ -4225,42 +4153,6 @@
                 "MIT"
             ],
             "description": "A Laravel Nova card.",
-            "keywords": [
-                "laravel",
-                "nova"
-            ],
-            "transport-options": {
-                "relative": true
-            }
-        },
-        {
-            "name": "quant/seasons",
-            "version": "dev-dev",
-            "dist": {
-                "type": "path",
-                "url": "./nova-components/Seasons",
-                "reference": "5666553a98338931baba5703c9371b2428d54d98"
-            },
-            "require": {
-                "php": "^7.3|^8.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Quant\\Seasons\\ToolServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Quant\\Seasons\\": "src/"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "description": "A Laravel Nova tool.",
             "keywords": [
                 "laravel",
                 "nova"
@@ -10458,12 +10350,9 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "pestphp/pest-plugin-laravel": 20,
-        "quant/elements": 20,
         "quant/endsession": 20,
-        "quant/interpret": 20,
         "quant/invitaion": 20,
-        "quant/main": 20,
-        "quant/seasons": 20
+        "quant/main": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

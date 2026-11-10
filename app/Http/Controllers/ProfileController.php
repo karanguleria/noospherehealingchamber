@@ -3,11 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
-use App\Models\Answer;
-use App\Models\Element;
 use App\Models\Invitation;
-use App\Models\Question;
-use App\Models\Result;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -65,41 +61,6 @@ class ProfileController extends Controller
         $request->session()->regenerateToken();
 
         return Redirect::to('/');
-    }
-    /**
-     * Display the questionnaire interface with all active questions.
-     * 
-     * Retrieves active questions and elements, organizes them by element and body part,
-     * and prepares the data structure for the question view.
-     * 
-     * @return \Illuminate\View\View
-     */
-    public function question(): View
-    {
-        $questions = Question::where('state', '1')->get();
-        $elements = Element::where('state', '1')->get();
-        $elements_arr = [];
-        
-        foreach($elements as $key => $element) {
-            $elements_arr[$element->title]['name'] = $element->title;
-            $elements_arr[$element->title]['seasone'] = $element->seasone;
-            $elements_arr[$element->title]['description'] = $element->description;
-            $elements_arr[$element->title]['image'] = $element->image;
-        }
-        
-        $question_arr = [];
-        foreach($questions as $key => $val) {
-            $type = ($val->type == 1) ? "Physical" : "Mental";
-         
-            $question_arr[$val->element->title][$val->bodypart->title]['image'] = $val->bodypart->image;
-            $question_arr[$val->element->title][$val->bodypart->title][$type][$key]['question'] = $val->title;
-            $question_arr[$val->element->title][$val->bodypart->title][$type][$key]['id'] = $val->id;
-            $question_arr[$val->element->title][$val->bodypart->title][$type][$key]['option_a'] = $val->option_a;
-            $question_arr[$val->element->title][$val->bodypart->title][$type][$key]['option_b'] = $val->option_b;
-            $question_arr[$val->element->title][$val->bodypart->title][$type][$key]['option_c'] = $val->option_c;
-        }
-        
-        return view('question', ['questions' => $question_arr, 'elements_arr' => $elements_arr]);
     }
     /**
      * Display the password protection page.
