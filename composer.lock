@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "19b3a51385900d4bb8580ac847258433",
+    "content-hash": "5b1e3e381cc8aebc7e6eb1cc7be9ff79",
     "packages": [
         {
             "name": "barryvdh/laravel-dompdf",
@@ -4084,80 +4084,6 @@
             "time": "2026-06-29T15:41:09+00:00"
         },
         {
-            "name": "quant/elements",
-            "version": "dev-main",
-            "dist": {
-                "type": "path",
-                "url": "./nova-components/Elements",
-                "reference": "bc074759daa8f658ddb509de89a7bfd7d6d2ac55"
-            },
-            "require": {
-                "php": "^7.3|^8.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Quant\\Elements\\ToolServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Quant\\Elements\\": "src/"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "description": "A Laravel Nova tool.",
-            "keywords": [
-                "laravel",
-                "nova"
-            ],
-            "transport-options": {
-                "symlink": true,
-                "relative": true
-            }
-        },
-        {
-            "name": "quant/interpret",
-            "version": "dev-main",
-            "dist": {
-                "type": "path",
-                "url": "./nova-components/Interpret",
-                "reference": "a9ce67df9d73455ef5d21c8bf29deb4d51e7cc59"
-            },
-            "require": {
-                "php": "^7.3|^8.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Quant\\Interpret\\ToolServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Quant\\Interpret\\": "src/"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "description": "A Laravel Nova tool.",
-            "keywords": [
-                "laravel",
-                "nova"
-            ],
-            "transport-options": {
-                "symlink": true,
-                "relative": true
-            }
-        },
-        {
             "name": "quant/invitaion",
             "version": "dev-main",
             "dist": {
@@ -4222,43 +4148,6 @@
                 "MIT"
             ],
             "description": "A Laravel Nova card.",
-            "keywords": [
-                "laravel",
-                "nova"
-            ],
-            "transport-options": {
-                "symlink": true,
-                "relative": true
-            }
-        },
-        {
-            "name": "quant/seasons",
-            "version": "dev-main",
-            "dist": {
-                "type": "path",
-                "url": "./nova-components/Seasons",
-                "reference": "5f2b23f38409daebc2cc1ddfbe663021f72f8c8e"
-            },
-            "require": {
-                "php": "^7.3|^8.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Quant\\Seasons\\ToolServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Quant\\Seasons\\": "src/"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "description": "A Laravel Nova tool.",
             "keywords": [
                 "laravel",
                 "nova"
@@ -11071,11 +10960,8 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "quant/elements": 20,
-        "quant/interpret": 20,
         "quant/invitaion": 20,
-        "quant/main": 20,
-        "quant/seasons": 20
+        "quant/main": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
