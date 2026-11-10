@@ -19,7 +19,10 @@ use Illuminate\Support\Facades\Redirect;
 */
 
 Route::get('/email-template', function () {
-    return view('email.sendemailpractitioner'); // create a basic test.blade.php
+    return view('email.sendemailpractitioner', [
+        'user' => \App\Models\User::first(),
+        'password' => '********',
+    ]);
 });
 Route::get('/', function () {
     return Redirect::to(route('nova.login'));
@@ -40,6 +43,21 @@ Route::get('/end-session/{user_id}/{session_id}/{is_complete?}', [SessionControl
 /*Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');*/ 
+
+Route::middleware('auth')->group(function () {
+    Route::get('/change-password', function () {
+        return Redirect::to('/nova/change-password');
+    })->name('password.change');
+    Route::post('/change-password', [ProfileController::class, 'updatePassword'])->name('password.update.custom');
+
+    Route::get('/dashboard', function () {
+        return Redirect::to('/nova');
+    })->name('dashboard');
+
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 
 Route::get('/password-protected', [ProfileController::class, 'passwordCheck']);
 

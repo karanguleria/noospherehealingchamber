@@ -63,6 +63,50 @@ class ProfileController extends Controller
         return Redirect::to('/');
     }
     /**
+     * Display the profile page inside Nova.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\View\View
+     */
+    public function novaProfile(Request $request): View
+    {
+        return view('nova-profile', [
+            'user' => $request->user(),
+        ]);
+    }
+
+    /**
+     * Display the change password page inside Nova.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function novaChangePassword(): View
+    {
+        return view('change-password');
+    }
+
+    /**
+     * Update the user's password.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function updatePassword(Request $request): RedirectResponse
+    {
+        $validated = $request->validate([
+            'current_password' => ['required', 'current_password'],
+            'password' => ['required', 'confirmed', \Illuminate\Validation\Rules\Password::defaults()],
+        ]);
+
+        $request->user()->update([
+            'password' => \Illuminate\Support\Facades\Hash::make($validated['password']),
+            'is_first_login' => 0,
+        ]);
+
+        return Redirect::route('nova.pages.change-password')->with('status', 'password-updated');
+    }
+
+    /**
      * Display the password protection page.
      * 
      * @return \Illuminate\View\View

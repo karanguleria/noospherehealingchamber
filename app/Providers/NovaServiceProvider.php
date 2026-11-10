@@ -7,6 +7,7 @@ use Laravel\Nova\Nova;
 use Laravel\Nova\NovaApplicationServiceProvider;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Laravel\Nova\Menu\MenuItem;
 use Laravel\Nova\Menu\MenuSection;
@@ -96,6 +97,40 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
 
         Nova::script('custom-button-label', public_path('js/nova-custom-button.js'));
 
+        // Add Profile and Change Password links to user dropdown menu
+        Nova::userMenu(function (Request $request, \Laravel\Nova\Menu\Menu $menu) {
+            return $menu
+                ->prepend(
+                    MenuItem::link('My Profile', 'profile')
+                )
+                ->append(
+                    MenuItem::link('Change Password', 'change-password')
+                );
+        });
+
+        // Register routes with Nova's router to get sidebar
+        $this->app->booted(function () {
+            $this->registerNovaCustomRoutes();
+        });
+
+    }
+
+    /**
+     * Register custom Nova routes with sidebar support
+     */
+    protected function registerNovaCustomRoutes()
+    {
+        if ($this->app->routesAreCached()) {
+            return;
+        }
+
+        Nova::router(['nova', \Laravel\Nova\Http\Middleware\Authenticate::class])
+            ->group(function () {
+                Route::get('/profile', [\App\Http\Controllers\ProfileController::class, 'novaProfile'])
+                    ->name('nova.pages.profile');
+                Route::get('/change-password', [\App\Http\Controllers\ProfileController::class, 'novaChangePassword'])
+                    ->name('nova.pages.change-password');
+            });
     }
 
     /**

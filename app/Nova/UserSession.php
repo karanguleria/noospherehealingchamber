@@ -64,6 +64,14 @@ class UserSession extends Resource
             Text::make('Total Session Time', function () {
                 return $this->total_session_time ?? 'N/A';
             }),
+
+            Text::make('Healing Type', function () {
+                return $this->healing_type ?: ($this->type ?: 'N/A');
+            })->readonly(),
+
+            Text::make('Gender', function () {
+                return $this->gender ?: 'N/A';
+            })->readonly(),
             /*Text::make('Audio Preview', function () {
                 return $this->audio_file
                     ? '<audio controls><source src="' . url('storage/' . $this->audio_file) . '" type="audio/mpeg"></audio>'
@@ -114,7 +122,7 @@ class UserSession extends Resource
                 Text::make('Resume Session', function () {
                     // Only show the Resume Session button if is_complete is 0
                     if ($this->is_complete == 0) {
-                        return '<a href="' . config('app.url') . '/start-session/' . auth()->user()->id . '/' . $this->id . '" 
+                        return '<a href="' . config('app.url') . '/start-session/' . $this->user_id . '/' . $this->id . '" 
                             class="shrink-0 h-9 px-4 focus:outline-none ring-primary-200 dark:ring-gray-600 focus:ring text-white dark:text-gray-800 
                             inline-flex items-center font-bold shadow rounded bg-primary-500 hover:bg-primary-400 active:bg-primary-600 text-sm" 
                             target="_blank">
@@ -231,15 +239,31 @@ class UserSession extends Resource
     public static function indexQuery(NovaRequest $request, $query)
     {
         if(auth()->user()->is_admin()){
-            return $query;
-        }else if(auth()->user()->is_premium_member()){
-            return $query->where('user_id',auth()->id())->where('is_complete',0);
+            $query = $query;
+        }else if(auth()->user()->is_premium_member() || auth()->user()->is_free_member()){
+            $query = $query->where('user_id',auth()->id());
         }
         else{
-            return $query->whereRelation('user',function($query){
+            $query = $query->whereRelation('user',function($query){
                 $query->where('practitioner_id',auth()->id());
             });
         }
+
+        // Show all sessions that were saved/ended or have content; skip only
+        // abandoned page visits that were never saved and have no content
+        // (unless the session was just started).
+        return $query->where(function ($q) {
+            $q->whereNotNull('session_end')
+                ->orWhereNotNull('image_1')
+                ->orWhereNotNull('image_2')
+                ->orWhereNotNull('audio')
+                ->orWhereNotNull('recording_url')
+                ->orWhereNotNull('gender')
+                ->orWhereNotNull('type')
+                ->orWhereNotNull('healing_type')
+                ->orWhereNotNull('notes')
+                ->orWhere('created_at', '>', Carbon::now()->subMinutes(30));
+        });
     }
 
         

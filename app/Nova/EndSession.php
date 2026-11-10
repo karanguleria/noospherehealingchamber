@@ -62,6 +62,14 @@ class EndSession extends Resource
             Text::make('Total Session Time', function () {
                 return $this->total_session_time ?? 'N/A';
             }),
+
+            Text::make('Healing Type', function () {
+                return $this->healing_type ?: ($this->type ?: 'N/A');
+            })->readonly(),
+
+            Text::make('Gender', function () {
+                return $this->gender ?: 'N/A';
+            })->readonly(),
             /*Text::make('Audio Preview', function () {
                 return $this->audio_file
                     ? '<audio controls><source src="' . url('storage/' . $this->audio_file) . '" type="audio/mpeg"></audio>'

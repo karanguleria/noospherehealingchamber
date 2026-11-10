@@ -28,11 +28,20 @@ class SessionController extends Controller
      * @return \Illuminate\View\View Returns the session view with user data
      */
     public function startSession($user_id, $session_id=null){
+        if (!is_numeric($user_id) || ($session_id !== null && !is_numeric($session_id))) {
+            abort(404);
+        }
         $userSession = '';
         $user = User::find($user_id);
+        if (!$user) {
+            abort(404);
+        }
             if($session_id){
                 $freshSession = true;
                 $userSession = UserSession::find($session_id);
+                if (!$userSession || (int) $userSession->user_id !== (int) $user_id) {
+                    abort(404);
+                }
             }else{
                 $session = UserSession::create([
                     'user_id' => $user_id,
@@ -70,7 +79,13 @@ class SessionController extends Controller
      * @return \Illuminate\View\View Returns the invitation form view
      */
     public function sendInvitation($user_id){
+        if (!is_numeric($user_id)) {
+            abort(404);
+        }
         $user = User::find($user_id);
+        if (!$user) {
+            abort(404);
+        }
         return view('session.send-invitation', [
             'user' => $user,
         ]);
@@ -120,8 +135,18 @@ class SessionController extends Controller
      */
     public function endSession($user_id, $session_id, $is_complete = false){
         $user_session = UserSession::where('id', $session_id)->first();
-        $user_session->session_end = Carbon::now();
-        $user_session->is_complete = $is_complete;
+
+        if (!$user_session || (int) $user_session->user_id !== (int) $user_id) {
+            abort(404);
+        }
+
+        $completed = filter_var($is_complete, FILTER_VALIDATE_BOOLEAN);
+
+        // Keep the original end time if the session was already ended.
+        if (empty($user_session->session_end)) {
+            $user_session->session_end = Carbon::now();
+        }
+        $user_session->is_complete = $completed ? 1 : 0;
         $user_session->save();
 
         $url = env('APP_URL') ."/nova/resources/user-sessions/" . $session_id. "/edit?viaRelationship=userSession&viaResource=users&viaResourceId=".$user_id;
