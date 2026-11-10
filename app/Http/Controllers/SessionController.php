@@ -37,6 +37,18 @@ class SessionController extends Controller
         if (!$user) {
             abort(404);
         }
+
+        // Only admins may start a session for any user; practitioners only for
+        // their own clients; members only for themselves.
+        $actor = auth()->user();
+        if ($actor && $actor->is_practitioner()
+            && ((int) $user->type_id !== 1 || (int) $user->practitioner_id !== (int) $actor->id)) {
+            abort(403);
+        }
+        if ($actor && !$actor->is_admin() && !$actor->is_practitioner()
+            && (int) $actor->id !== (int) $user->id) {
+            abort(403);
+        }
             if($session_id){
                 $freshSession = true;
                 $userSession = UserSession::find($session_id);
