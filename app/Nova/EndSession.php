@@ -47,9 +47,10 @@ class EndSession extends Resource
     public function fields(NovaRequest $request)
     {
         return [
-            /*FieldsBelongsTo::make('User', 'user', \App\Nova\User::class)
-                ->display('name') // Assuming your User model has a 'name' field
-                ->sortable(),*/
+            FieldsBelongsTo::make('User', 'user', \App\Nova\User::class)
+                ->display('name')
+                ->sortable(),
+
             Text::make('Session Start', 'session_start')
                 ->resolveUsing(function ($value) {
                     return $value ? Carbon::parse($value)->format('Y-m-d H:i:s A') : 'N/A';

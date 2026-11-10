@@ -5,9 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\Nova;
 use Laravel\Nova\NovaApplicationServiceProvider;
-use Quant\Elements\Elements;
-use Quant\Interpret\Interpret;
-use Quant\Seasons\Seasons;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
@@ -53,9 +51,6 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                     $menuItems[] = MenuSection::make('Resources', [
 
                         MenuItem::link('Users', '/resources/users'),
-                        MenuItem::link('Invitations', '/resources/invitations'),
-                        MenuItem::link('Sessions', '/resources/user-sessions'),
-                        MenuItem::link('All Sessions', '/resources/end-sessions'),
              
                     ])->icon('folder')->collapsable();
 
@@ -234,9 +229,6 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     public function tools()
     {
         return [
-            new Interpret,
-            new Elements,
-            new Seasons
         ];
     }
 

@@ -53,9 +53,10 @@ class UserSession extends Resource
     public function fields(NovaRequest $request)
     {
         return [
-            /*FieldsBelongsTo::make('User', 'user', \App\Nova\User::class)
-                ->display('name') // Assuming your User model has a 'name' field
-                ->sortable(),*/
+            FieldsBelongsTo::make('User', 'user', \App\Nova\User::class)
+                ->display('name')
+                ->sortable(),
+
             Text::make('Session Start', 'session_start')
                 ->resolveUsing(function ($value) {
                     return $value ? Carbon::parse($value)->format('Y-m-d H:i:s A') : 'N/A';
@@ -71,6 +72,14 @@ class UserSession extends Resource
             Text::make('Total Session Time', function () {
                 return $this->total_session_time ?? 'N/A';
             }),
+
+            Text::make('Healing Type', function () {
+                return $this->healing_type ?: ($this->type ?: 'N/A');
+            })->readonly(),
+
+            Text::make('Gender', function () {
+                return $this->gender ?: 'N/A';
+            })->readonly(),
             /*Text::make('Audio Preview', function () {
                 return $this->audio_file
                     ? '<audio controls><source src="' . url('storage/' . $this->audio_file) . '" type="audio/mpeg"></audio>'
@@ -260,8 +269,7 @@ class UserSession extends Resource
                 ->orWhereNotNull('gender')
                 ->orWhereNotNull('type')
                 ->orWhereNotNull('healing_type')
-                ->orWhereNotNull('notes')
-                ->orWhere('created_at', '>', \Carbon\Carbon::now()->subMinutes(30));
+                ->orWhereNotNull('notes');
         });
     }
 
