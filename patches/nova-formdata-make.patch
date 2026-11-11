@@ -1,0 +1,21 @@
+diff --git a/src/Fields/FormData.php b/src/Fields/FormData.php
+--- a/src/Fields/FormData.php
++++ b/src/Fields/FormData.php
+@@ -44,7 +44,7 @@
+      * @param  array<string, mixed>  $fields
+      * @return static
+      */
+-    public static function make(NovaRequest $request, array $fields)
++    public static function makeFromRequest(NovaRequest $request, array $fields)
+     {
+         if (! is_null($request->resource) && ! is_null($request->resourceId)) {
+             $fields["resource:{$request->resource}"] = $request->resourceId;
+@@ -74,7 +74,7 @@
+             ? Arr::only(json_decode(base64_decode($dependsOn), true), $onlyAttributes)
+             : $request->only($onlyAttributes);
+ 
+-        return static::make($request, $fields);
++        return static::makeFromRequest($request, $fields);
+     }
+ 
+     /**
