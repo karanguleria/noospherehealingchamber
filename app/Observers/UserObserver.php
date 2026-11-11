@@ -17,7 +17,7 @@ class UserObserver
      */
     public function created(User $user): void
     {
-        if ($user->type_id != 3) {
+        if (in_array($user->type_id, [2, 4, 5])) {
             $rawPassword = $user->plain_password ?? null;
 
             if (!empty($user) && (int) $user->is_first_login === 1) {
@@ -32,7 +32,7 @@ class UserObserver
             }
             Log::info('SendEmailPractitioner email sent to user.', ['user_id' => $user->id]);
         } else {
-            Log::info('Email not sent. User is not type 2.', ['user_id' => $user->id]);
+            Log::info('Email not sent. User type cannot log in.', ['user_id' => $user->id, 'type_id' => $user->type_id]);
         }
 
         NovaNotifier::userCreated($user);
